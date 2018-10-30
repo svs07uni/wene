@@ -9,6 +9,7 @@ use yii\web\Response;
 use yii\filters\VerbFilter;
 use app\models\LoginForm;
 use app\models\ContactForm;
+use app\models\Usuario;
 
 class SiteController extends Controller
 {
@@ -61,7 +62,18 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        return $this->render('index');
+        $model = new \app\models\Usuario();
+
+        if ($model->load(Yii::$app->request->post())) {
+            if ($model->validate()) {
+            // form inputs are valid, do something here
+                return;
+            }
+        }
+
+        return $this->render('registroView', [
+            'model' => $model,
+        ]);
     }
 
     /**
@@ -125,4 +137,21 @@ class SiteController extends Controller
     {
         return $this->render('about');
     }
+
+    public function actionRegistroView()
+    {
+        $model = new \app\models\Usuario();
+
+        if ($model->load(Yii::$app->request->post())) {
+            if ($model->validate()) {
+            // form inputs are valid, do something here
+                return;
+            }
+        }
+
+        return $this->render('registroView', [
+            'model' => $model,
+        ]);
+    }
+
 }
