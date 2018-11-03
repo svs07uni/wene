@@ -9,6 +9,9 @@ use yii\widgets\ActiveForm;
 ?>
 <div class="registroView">
 
+    <div>
+        <h2>Registro de Usuarios</h2>
+    </div>
     <?php $form = ActiveForm::begin(); ?>
 
         <?= $form->field($model, 'dni') ?>
