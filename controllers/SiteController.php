@@ -63,10 +63,11 @@ class SiteController extends Controller
     public function actionIndex()
     {
         $model = new \app\models\Usuario();
-
         if ($model->load(Yii::$app->request->post())) {
+
             if ($model->validate()) {
-            // form inputs are valid, do something here
+                // form inputs are valid, do something here
+                echo "aASD";
                 return;
             }
         }

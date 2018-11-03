@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+use yii\helpers\Url;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Usuario */
@@ -17,7 +18,7 @@ use yii\widgets\ActiveForm;
         <?= $form->field($model, 'fecha_nac') ?>
     
         <div class="form-group">
-            <?= Html::submitButton('Registrar', ['class' => 'btn btn-primary']) ?>
+            <?= Html::submitButton('Registrar',[] ,['class' => 'btn btn-primary']) ?>
         </div>
     <?php ActiveForm::end(); ?>
 

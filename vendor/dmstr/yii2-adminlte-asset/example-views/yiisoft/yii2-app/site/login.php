@@ -63,8 +63,8 @@ $fieldOptions2 = [
         <!-- /.social-auth-links -->
 
         <a href="#">Me olvidé la contraseña</a><br>
-        <a href="aaa" class="text-center">Registrate</a>
-
+        <!--<a href="registroView" class="text-center">Registrate</a>-->
+        <?= Html::a('Registrate',['registroView']) ?>
     </div>
     <!-- /.login-box-body -->
 </div><!-- /.login-box -->
