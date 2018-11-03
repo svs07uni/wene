@@ -34,7 +34,8 @@ class Registro extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['usuario', 'clave', 'fecha_registro'], 'required'],
+            [['usuario', 'clave'], 'required'],
+            [[ 'fecha_registro'],'date'],
             [['usuario', 'clave', 'email', 'token'], 'string'],
             [['fecha_registro', 'fecha_token'], 'safe'],
             [['recuperar_clave'], 'boolean'],

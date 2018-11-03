@@ -62,19 +62,7 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        $model = new \app\models\Usuario();
-        if ($model->load(Yii::$app->request->post())) {
-
-            if ($model->validate()) {
-                // form inputs are valid, do something here
-                echo "aASD";
-                return;
-            }
-        }
-
-        return $this->render('registroView', [
-            'model' => $model,
-        ]);
+        return $this->render('index');
     }
 
     /**
@@ -84,6 +72,7 @@ class SiteController extends Controller
      */
     public function actionLogin()
     {
+        
         if (!Yii::$app->user->isGuest) {
             return $this->goHome();
         }
@@ -138,7 +127,7 @@ class SiteController extends Controller
     {
         return $this->render('about');
     }
-
+    /* este deberia ser el de nuevo usuario
     public function actionRegistroView()
     {
         $model = new \app\models\Usuario();
@@ -153,6 +142,16 @@ class SiteController extends Controller
         return $this->render('registroView', [
             'model' => $model,
         ]);
+    }*/
+
+
+
+    public function guardarRegistro()
+    {
+        echo "asd";
     }
+    
+    
+    
 
 }
