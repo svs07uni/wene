@@ -2,15 +2,21 @@
 
 namespace app\models;
 
+use app\models\Registro as DbUsuario;
+
 class User extends \yii\base\BaseObject implements \yii\web\IdentityInterface
 {
-    public $id;
-    public $username;
-    public $password;
-    public $authKey;
-    public $accessToken;
+    public $id_registro;
+    public $usuario;
+    public $clave;
+    public $email;
+    public $fecha_registro;
+    public $recuperar_clave;
+    public $token;
+   public $fecha_token;
+   public $authKey;
 
-    private static $users = [
+ /*   private static $users = [
         '100' => [
             'id' => '100',
             'username' => 'admin',
@@ -25,12 +31,44 @@ class User extends \yii\base\BaseObject implements \yii\web\IdentityInterface
             'authKey' => 'test101key',
             'accessToken' => '101-token',
         ],
-    ];
+        ];*/ 
 
-
+    public static function findIdentity($id) {
+        $dbUser = DbUsuario::find()
+        ->where([
+            "id_registro" => $id
+        ])
+        ->one();
+        if ($dbUser == null) {
+            return null;
+        }
+        return new static($dbUser);
+    }
+    
+    public static function findIdentityByAccessToken($token, $userType = null) {
+        
+        $dbUser = DbUsuario::find()
+        ->where(["token" => $toke])
+        ->one();
+            if (!count($dbUser)) {
+                return null;
+            }
+        return new static($dbUser);
+    }
+    public static function findByUsername($username) {
+        $dbUser = DbUsuario::find()
+        ->where([
+            "usuario" => $username
+        ])
+        ->one();
+        if ($dbUser == null) {
+            return null;
+        }
+        return new static($dbUser);
+    }
     /**
      * {@inheritdoc}
-     */
+     *
     public static function findIdentity($id)
     {
         return isset(self::$users[$id]) ? new static(self::$users[$id]) : null;
@@ -38,7 +76,7 @@ class User extends \yii\base\BaseObject implements \yii\web\IdentityInterface
 
     /**
      * {@inheritdoc}
-     */
+     *
     public static function findIdentityByAccessToken($token, $type = null)
     {
         foreach (self::$users as $user) {
@@ -55,7 +93,7 @@ class User extends \yii\base\BaseObject implements \yii\web\IdentityInterface
      *
      * @param string $username
      * @return static|null
-     */
+     *
     public static function findByUsername($username)
     {
         foreach (self::$users as $user) {
@@ -72,7 +110,7 @@ class User extends \yii\base\BaseObject implements \yii\web\IdentityInterface
      */
     public function getId()
     {
-        return $this->id;
+        return $this->id_registro;
     }
 
     /**
@@ -99,6 +137,6 @@ class User extends \yii\base\BaseObject implements \yii\web\IdentityInterface
      */
     public function validatePassword($password)
     {
-        return $this->password === $password;
+        return $this->clave === $password;
     }
 }
