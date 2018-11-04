@@ -104,7 +104,7 @@ class Usuario extends \yii\db\ActiveRecord
      */
     public function getExperienciaLaborals()
     {
-        return $this->hasMany(Experiencia_Laboral::className(), ['id_usuario' => 'id_registro']);
+        return $this->hasMany(ExperienciaLaboral::className(), ['id_usuario' => 'id_registro']);
     }
 
     /**
@@ -128,7 +128,7 @@ class Usuario extends \yii\db\ActiveRecord
      */
     public function getRendimientoAcads()
     {
-        return $this->hasMany(Rendimiento_acad::className(), ['id_usuario' => 'id_registro']);
+        return $this->hasMany(RendimientoAcad::className(), ['id_usuario' => 'id_registro']);
     }
 
     /**
@@ -136,7 +136,7 @@ class Usuario extends \yii\db\ActiveRecord
      */
     public function getRendimientoNoAcads()
     {
-        return $this->hasMany(Rendimiento_no_acad::className(), ['id_usuario' => 'id_registro']);
+        return $this->hasMany(RendimientoNoAcad::className(), ['id_usuario' => 'id_registro']);
     }
 
     /**
