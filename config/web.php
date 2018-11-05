@@ -11,6 +11,8 @@ $config = [
         '@bower' => '@vendor/bower-asset',
         '@npm'   => '@vendor/npm-asset',
     ],
+    'language' => 'es-AR',
+    'sourceLanguage' => 'es-AR',
     'components' => [
         'request' => [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
@@ -55,7 +57,9 @@ $config = [
         ],
         'view' => [
              'theme' => [
-                    'pathMap' => ['@app/views' => '@vendor/dmstr/yii2-adminlte-asset/example-views/yiisoft/yii2-app'
+                    'pathMap' => [
+                       // '@app/views',
+                        '@vendor/dmstr/yii2-adminlte-asset'
                     ],
                 ],
         ],
