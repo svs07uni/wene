@@ -1,5 +1,4 @@
 <?php
-use Yii;
 use yii\web\Controller;
 
 namespace app\controllers;
@@ -14,7 +13,6 @@ class RegistroController extends \yii\web\Controller
     public function actionRegistro()
     {
         $model = new \app\models\Registro();
-        echo "asd";
         if ($model->load(\Yii::$app->request->post())) {
             if ($model->validate()) {
                 $this->actionGuardado();
@@ -30,4 +28,5 @@ class RegistroController extends \yii\web\Controller
     public function actionGuardado(){
         //Aca busqueda de los modelos y guardado del registro
     }
+    
 }

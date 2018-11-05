@@ -23,6 +23,7 @@ class Registro extends \yii\db\ActiveRecord
     /**
      * {@inheritdoc}
      */
+    public $captcha;
     public static function tableName()
     {
         return 'registro';
@@ -39,6 +40,7 @@ class Registro extends \yii\db\ActiveRecord
             [['usuario', 'clave', 'email', 'token'], 'string'],
             [['fecha_registro', 'fecha_token'], 'safe'],
             [['recuperar_clave'], 'boolean'],
+            [['captcha'], 'captcha']
         ];
     }
 
@@ -66,4 +68,5 @@ class Registro extends \yii\db\ActiveRecord
     {
         return $this->hasOne(Usuario::className(), ['id_registro' => 'id_registro']);
     }
+    
 }
