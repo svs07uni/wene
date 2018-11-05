@@ -28,6 +28,6 @@ class RegistroController extends \yii\web\Controller
     }
 
     public function actionGuardado(){
-        
+        //Aca busqueda de los modelos y guardado del registro
     }
 }
