@@ -9,6 +9,7 @@ use yii\web\Response;
 use yii\filters\VerbFilter;
 use app\models\LoginForm;
 use app\models\ContactForm;
+use app\models\Usuario;
 
 class SiteController extends Controller
 {
@@ -71,6 +72,7 @@ class SiteController extends Controller
      */
     public function actionLogin()
     {
+        
         if (!Yii::$app->user->isGuest) {
             return $this->goHome();
         }
@@ -125,4 +127,31 @@ class SiteController extends Controller
     {
         return $this->render('about');
     }
+    /* este deberia ser el de nuevo usuario
+    public function actionRegistroView()
+    {
+        $model = new \app\models\Usuario();
+
+        if ($model->load(Yii::$app->request->post())) {
+            if ($model->validate()) {
+            // form inputs are valid, do something here
+                return;
+            }
+        }
+
+        return $this->render('registroView', [
+            'model' => $model,
+        ]);
+    }*/
+
+
+
+    public function guardarRegistro()
+    {
+        echo "asd";
+    }
+    
+    
+    
+
 }
