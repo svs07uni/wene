@@ -64,7 +64,7 @@ $fieldOptions2 = [
 
         <a href="#">Me olvidé la contraseña</a><br>
         <a href = "<?phpUrl::to(['@app/site/prueba'])?>" class="text-center">Registrate</a>
-        <?= Html::a('Registrate', ['class' => 'btn btn-primary btn-block btn-flat', 'name' => 'login-button']) ?>
+        
     </div>
     <!-- /.login-box-body -->
 </div><!-- /.login-box -->
