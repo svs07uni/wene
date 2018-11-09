@@ -36,7 +36,7 @@ class Registro extends \yii\db\ActiveRecord
     {
         return [
             [['usuario', 'clave'], 'required'],
-            [[ 'fecha_registro'],'date'],
+            [[ 'fecha_registro'],'date','format' => 'php:d/m/Y'],
             [['usuario', 'clave', 'email', 'token'], 'string'],
             [['fecha_registro', 'fecha_token'], 'safe'],
             [['recuperar_clave'], 'boolean'],
@@ -68,5 +68,5 @@ class Registro extends \yii\db\ActiveRecord
     {
         return $this->hasOne(Usuario::className(), ['id_registro' => 'id_registro']);
     }
-    
+
 }

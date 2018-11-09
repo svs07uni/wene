@@ -44,13 +44,17 @@ use yii\captcha\Captcha;
             <?= $form->field($model, 'email') 
             ->label(false) ?>
         </div> 
+        <div> 
+        <?= $form->field($model, 'fecha_registro') 
+            ->label(false) ?>
+        </div> 
         <!--        CAPTCHA         -->
         <div> 
             <?= $form->field($model, 'captcha')->widget(Captcha::className()) ?>
         </div>
 
         <div class="form-group">
-            <?= Html::submitButton('Registrarse', ['class' => 'btn btn-primary', 'name'=> 'login-button' ]) ?>
+            <?= Html::submitButton('Registrarse', ['class' => 'btn btn-primary', 'name'=> 'register-button' ]) ?>
         </div>
     </div> 
     <?php ActiveForm::end(); ?>
