@@ -15,7 +15,7 @@ use Yii;
  * @property string $token
  * @property bool $recuperar_clave
  * @property string $fecha_token
- *
+ * @property string $claveRepetida
  * @property Usuario $usuario0
  */
 class Registro extends \yii\db\ActiveRecord
@@ -24,6 +24,7 @@ class Registro extends \yii\db\ActiveRecord
      * {@inheritdoc}
      */
     public $captcha;
+    public $claveRepetida;
     public static function tableName()
     {
         return 'registro';
@@ -35,10 +36,11 @@ class Registro extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['usuario', 'clave'], 'required'],
+            [['usuario', 'clave','claveRepetida'], 'required'],
             [[ 'fecha_registro'],'date','format' => 'php:d/m/Y'],
-            [['usuario', 'clave', 'email', 'token'], 'string'],
+            [['usuario', 'clave', 'email', 'token','claveRepetida'], 'string'],
             [['fecha_registro', 'fecha_token'], 'safe'],
+            [['claveRepetida'], 'compare','compareAttribute'=>'clave'],
             [['recuperar_clave'], 'boolean'],
             [['captcha'], 'captcha']
         ];

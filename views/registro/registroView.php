@@ -34,7 +34,7 @@ use yii\captcha\Captcha;
 
         <div> 
             <h4>Repetir Contraseña: </h4>
-            <?= $form->field($model, 'clave') 
+            <?= $form->field($model, 'claveRepetida') 
             ->label(false)
             ->passwordInput()?>
         </div> 
@@ -44,10 +44,7 @@ use yii\captcha\Captcha;
             <?= $form->field($model, 'email') 
             ->label(false) ?>
         </div> 
-        <div> 
-        <?= $form->field($model, 'fecha_registro') 
-            ->label(false) ?>
-        </div> 
+        
         <!--        CAPTCHA         -->
         <div> 
             <?= $form->field($model, 'captcha')->widget(Captcha::className()) ?>
