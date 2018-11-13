@@ -13,7 +13,7 @@ class RegistroUsuarioController extends \yii\web\Controller
     }
 
 
-    public function actionRegistro()
+    public function actionRegistroUsuario()
     {   
 
     $model = new \app\models\Usuario();
