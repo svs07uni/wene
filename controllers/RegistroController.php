@@ -37,5 +37,11 @@ class RegistroController extends \yii\web\Controller
         $pass = md5($this->password);
         $this->password = $pass;
         return true;
-	}
+    }
+
+
+
+
+
 }
+
