@@ -22,14 +22,31 @@ use yii\captcha\Captcha;
         <div> 
             <div class="container" style="background-color: #d5f5e3 ">
             <div class="col-sm-8"  style="background-color:  #d5f5e3  "> 
-                    <h2>Comentarios sobre el sistema aca!</h2>
+                <h2>
+                    El trabajo que buscas <strong>está en WENE</strong>
+                </h2>
+                <ul>
+                <h4>
+                    <br>    
+                    <li>Postúlate a las mejores ofertas</li>
+                    <br>
+                    <li>Sé visible para miles de empresas</li>
+                    <br>
+                    <li>Recibe ofertas adecuadas a tu perfil</li>
+                    <br>
+                    <li>Sigue el estado de tus postulaciones</li>
+                    <br>
+                    <li>Compárate con los demás inscritos</li>
+                    <br>
+                </h4>
+                </ul>
+            
                 </div>    
                 <div class="col-sm-4" style="background-color: #d5f5e3 "> 
                     <div > 
                         <h4>Usuario: </h4>
                         <?= $form->field($model, 'usuario') 
-                        ->label(false)
-                        ->textInput(['placeholder' => $model->getAttributeLabel('usuario')]) ?>
+                        ->label(false) ?>
                     </div> 
 
                     <div> 
@@ -68,5 +85,5 @@ use yii\captcha\Captcha;
         </div>
     </div>
     <?php ActiveForm::end(); ?>
-
+    
 </div><!-- registroView -->
