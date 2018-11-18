@@ -13,6 +13,7 @@ return array(
     'yii\\composer\\' => array($vendorDir . '/yiisoft/yii2-composer'),
     'yii\\bootstrap\\' => array($vendorDir . '/yiisoft/yii2-bootstrap/src'),
     'yii\\' => array($vendorDir . '/yiisoft/yii2'),
+    'yii2mod\\alert\\' => array($vendorDir . '/yii2mod/yii2-sweet-alert'),
     'rmrevin\\yii\\fontawesome\\' => array($vendorDir . '/rmrevin/yii2-fontawesome'),
     'phpDocumentor\\Reflection\\' => array($vendorDir . '/phpdocumentor/reflection-common/src', $vendorDir . '/phpdocumentor/reflection-docblock/src', $vendorDir . '/phpdocumentor/type-resolver/src'),
     'dmstr\\' => array($vendorDir . '/dmstr/yii2-adminlte-asset'),

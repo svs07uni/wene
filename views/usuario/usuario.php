@@ -1,5 +1,5 @@
 <?php
-
+use aryelds\sweetalert\SweetAlert;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
@@ -8,6 +8,14 @@ use yii\widgets\ActiveForm;
 /* @var $form ActiveForm */
 ?>
 <div class="usuario">
+<?php
+echo \yii2mod\alert\Alert::widget([
+    'options' => [
+        'title' => "Here's a message!"
+    ]
+]);
+?>
+
 
     <div class="col-sm-4">
     <?php $localidades = \yii\helpers\ArrayHelper::map(\app\models\Localidad::find()->all(), 'id_localidad', 'nombre');;?>
@@ -31,5 +39,5 @@ use yii\widgets\ActiveForm;
         </div>
     </div>
     <?php ActiveForm::end(); ?>
-    
+
 </div><!-- registroUsuario -->

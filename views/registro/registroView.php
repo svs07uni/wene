@@ -16,6 +16,9 @@ use yii\captcha\Captcha;
 ?>
 <div class="registroView">
 
+<?php
+
+?>
     <?php $form = ActiveForm::begin(); ?>
     
     <div class="jumbotron jumbotron-fluid">
