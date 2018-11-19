@@ -9,8 +9,8 @@ use yii\widgets\ActiveForm;
 ?>
 <div class="usuario">
 <?php $localidades = \yii\helpers\ArrayHelper::map(\app\models\Localidad::find()->all(), 'id_localidad', 'nombre');;?>
-<?php $roles = \yii\helpers\ArrayHelper::map(\app\models\Rol::find()->all(), 'id_rol', 'nombre');;?>    
-
+<?php $roles = \yii\helpers\ArrayHelper::map(\app\models\Rol::find()->all(), 'id_rol', 'nombre');?>    
+<?php $usrActual = Yii::$app->user->identity;?>
 <div class="jumbotron jumbotron-fluid">
         <div> 
             <div class="container" style="background-color: #d5f5e3 ">
