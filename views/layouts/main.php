@@ -14,8 +14,14 @@ if (Yii::$app->controller->action->id === 'login') {
         'main-login',
         ['content' => $content]
     );
-} else {
+} elseif(Yii::$app->controller->action->id === 'registro' Or Yii::$app->controller->action->id === 'usuario') {
+    
+    echo $this->render(
+        'main-registro.php',
+        ['content' => $content]
+    ); 
 
+}else{
     app\assets\AppAsset::register($this);
     
     dmstr\web\AdminLteAsset::register($this);
