@@ -10,7 +10,7 @@ class UsuarioController extends \yii\web\Controller
        
     }
 
-    public function actionUsuario()
+    public function actionRegistro()
     {
          //return $this->render('index');
          $model = new \app\models\Usuario();
