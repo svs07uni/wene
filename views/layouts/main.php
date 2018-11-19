@@ -14,7 +14,7 @@ if (Yii::$app->controller->action->id === 'login') {
         'main-login',
         ['content' => $content]
     );
-} elseif(Yii::$app->controller->action->id === 'registro') {
+} elseif(Yii::$app->controller->action->id === 'registro' Or Yii::$app->controller->action->id === 'usuario') {
     
     echo $this->render(
         'main-registro.php',

@@ -22,11 +22,12 @@ class RegistroController extends \yii\web\Controller
                 echo \yii2mod\alert\Alert::widget([
                     'options' => [
                         'title' => "Registro Existoso!",
-                        'text' => "Te enviaremos un email para verificar tu cuenta"
+                        'text' => "Te enviaremos un email para verificar tu cuenta",
                     ]
                     
                 ]);
-                //return $this->goHome();
+                return $this->goHome();
+                
                 //if ($model->validate()) {
                     //print_r(date("Y-m-d"));
                     
