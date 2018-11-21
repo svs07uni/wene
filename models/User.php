@@ -2,19 +2,26 @@
 
 namespace app\models;
 
-use app\models\Registro as DbUsuario;
+use app\models\Usuario as DbUsuario;
 
 class User extends \yii\base\BaseObject implements \yii\web\IdentityInterface
 {
     public $id_registro;
-    public $usuario;
-    public $clave;
-    public $email;
-    public $fecha_registro;
-    public $recuperar_clave;
     public $token;
-   public $fecha_token;
-   public $authKey;
+    public $authKey;
+    
+    public $dni;
+    public $telefono;
+    public $nombre;
+    public $apellido;
+    public $activo;
+    public $nacionalidad;
+    public $direccion;
+    public $id_localidad;
+    public $fecha_nac;
+    public $foto;
+    public $nombre_foto;
+    public  $id_rol;
 
  /*   private static $users = [
         '100' => [
@@ -34,11 +41,7 @@ class User extends \yii\base\BaseObject implements \yii\web\IdentityInterface
         ];*/ 
 
     public static function findIdentity($id) {
-        $dbUser = DbUsuario::find()
-        ->where([
-            "id_registro" => $id
-        ])
-        ->one();
+        $dbUser = DbUsuario::find()->joinWith("registro")->where([ "usuario.id_registro" => $id])->one();
         if ($dbUser == null) {
             return null;
         }
@@ -56,11 +59,13 @@ class User extends \yii\base\BaseObject implements \yii\web\IdentityInterface
         return new static($dbUser);
     }
     public static function findByUsername($username) {
-        $dbUser = DbUsuario::find()
+        
+        $dbUser = DbUsuario::find()->joinWith("registro")
         ->where([
             "usuario" => $username
         ])
         ->one();
+        print_r($dbUser);
         if ($dbUser == null) {
             return null;
         }
@@ -130,6 +135,38 @@ class User extends \yii\base\BaseObject implements \yii\web\IdentityInterface
     }
 
     /**
+     * @return mixed
+     */
+    public function getNombre()
+    {
+        return $this->nombre;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getApellido()
+    {
+        return $this->apellido;
+    }
+
+    /**
+     * @param mixed $nombre
+     */
+    public function setNombre($nombre)
+    {
+        $this->nombre = $nombre;
+    }
+
+    /**
+     * @param mixed $apellido
+     */
+    public function setApellido($apellido)
+    {
+        $this->apellido = $apellido;
+    }
+
+    /**
      * Validates password
      *
      * @param string $password password to validate
@@ -137,6 +174,11 @@ class User extends \yii\base\BaseObject implements \yii\web\IdentityInterface
      */
     public function validatePassword($password)
     {
-        return $this->clave === $password;
+        $dbUser = DbUsuario::find()->joinWith("registro")
+        ->where([
+            "clave" => $password
+        ])
+        ->one();
+        return $dbUser == null?false:true;
     }
 }

@@ -1,3 +1,7 @@
+<?php
+$nombre = Yii::$app->user->getNombre();
+$apellido = Yii::$app->user->getApellido();
+?>
 <aside class="main-sidebar">
 
     <section class="sidebar">
@@ -8,7 +12,7 @@
                 <img src="<?= $directoryAsset ?>/img/user2-160x160.jpg" class="img-circle" alt="User Image"/>
             </div>
             <div class="pull-left info">
-                <p>Alejandro Perez</p>
+                <p><?php echo $nombre,' ',$apellido?></p>
 
             </div>
         </div>

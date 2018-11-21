@@ -371,7 +371,18 @@ class User extends Component
 
         return $identity !== null ? $identity->getId() : null;
     }
-
+    public function getNombre()
+    {
+        $identity = $this->getIdentity();
+        
+        return $identity !== null ? $identity->getNombre() : null;
+    }
+    public function getApellido()
+    {
+        $identity = $this->getIdentity();
+        
+        return $identity !== null ? $identity->getApellido() : null;
+    }
     /**
      * Returns the URL that the browser should be redirected to after successful login.
      *
