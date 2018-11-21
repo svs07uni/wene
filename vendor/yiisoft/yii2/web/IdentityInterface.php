@@ -97,4 +97,6 @@ interface IdentityInterface
      * @see getAuthKey()
      */
     public function validateAuthKey($authKey);
+    public function getNombre();
+    public function getApellido();
 }
