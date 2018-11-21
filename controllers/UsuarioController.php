@@ -5,11 +5,6 @@ namespace app\controllers;
 
 class UsuarioController extends \yii\web\Controller
 {
-    public function actionIndex()
-    {
-       
-    }
-
     public function actionRegistro()
     {
         //return $this->render('index');
@@ -29,14 +24,8 @@ class UsuarioController extends \yii\web\Controller
                  ]);
              }
         }
-         
- 
-         return $this->render('usuario', [
-             'model' => $model,
-         ]);
+        return $this->render('usuario', [
+            'model' => $model,
+        ]);
     }
-
-
-
-
 }

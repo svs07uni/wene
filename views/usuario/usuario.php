@@ -32,14 +32,16 @@ use yii\widgets\ActiveForm;
                     <?= $form->field($model, 'nacionalidad') ?>
                     <?= $form->field($model, 'direccion') ?>
                     <!-- Desplegable con las localidades-->
-                    <?= $form->field($model, 'id_localidad')->dropDownList($localidades, ['prompt' => 'Seleccione Uno' ])?>
-                    <?= $form->field($model, 'fecha_nac') ?>
+                    <?= $form->field($model, 'id_localidad')->dropDownList($localidades, ['prompt' => 'Seleccione Uno' ])
+                        ->label('Localidad')?>
+                    <?= $form->field($model, 'fecha_nac') 
+                        ->label('Fecha de Nacimiento')?>
                     <!-- Desplegable con los posibles roles-->
-                    <?= $form->field($model, 'id_rol')->dropDownList($roles, ['prompt' => 'Seleccione Uno' ]) ?>
+                    <?= $form->field($model, 'id_rol')->dropDownList($roles, ['prompt' => 'Seleccione Uno' ]) 
+                        ->label('Rol')?>
                     <?= $form->field($model, 'telefono') ?>
-    
                     <div class="form-group">
-                        <?= Html::submitButton('Submit', ['class' => 'btn btn-primary']) ?>
+                        <?= Html::submitButton('Guardar', ['class' => 'btn btn-primary']) ?>
                     </div>
                     <?php ActiveForm::end(); ?>
                 </div>
