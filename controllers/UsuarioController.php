@@ -9,9 +9,13 @@ class UsuarioController extends \yii\web\Controller
     {
         //return $this->render('index');
         $model = new \app\models\Usuario();
+        //agrega el id_registro del usuario logueado actual
         $registro = \Yii::$app->getRequest()->getQueryParam('r');
         $model->id_registro = $registro;
-
+        //agrega el id_rol de estudiante para todos, por ahora hardcode
+        $model->id_rol = 2;
+        //$roles = \yii\helpers\ArrayHelper::map(\app\models\Rol::find()->where(${['nombre'=>'Postulante']})->one());
+        
         if ($model->load(\Yii::$app->request->post())) {
              //print_r($model);
             $usuario= \Yii::$app->user->identity;
