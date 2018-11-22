@@ -26,7 +26,7 @@ class RegistroController extends \yii\web\Controller
                     ]
                     
                 ]);
-                return $this->goHome();
+                return $this->redirect('@web/usuario/registro?r='.$model->id_registro);
                 
                 //if ($model->validate()) {
                     //print_r(date("Y-m-d"));
