@@ -34,9 +34,9 @@ $apellido = Yii::$app->user->getApellido();
                 'options' => ['class' => 'sidebar-menu tree', 'data-widget'=> 'tree'],
                 'items' => [
                     ['label' => 'Menu', 'options' => ['class' => 'header']],
-                    ['label' => 'Mis Postulaciones', 'icon' => 'file-code-o', 'url' => ['']],
-                    ['label' => 'Mi CV', 'icon' => 'dashboard', 'url' => ['']],
-                    ['label' => 'Rendimiento No Academico', 'icon' => 'dashboard', 'url' => [''], 'visible' => Yii::$app->user->isGuest],
+                    ['label' => 'Mis Postulaciones', 'icon' => 'list', 'url' => ['']],
+                    ['label' => 'Mi CV', 'icon' => 'user', 'url' => ['']],
+                    ['label' => 'Rendimiento No Academico', 'icon' => 'pencil', 'url' => [''], 'visible' => Yii::$app->user->isGuest],
                     ['label' => 'Login', 'url' => ['site/login'], 'visible' => Yii::$app->user->isGuest],
                     
                     /*[
