@@ -63,7 +63,8 @@ $fieldOptions2 = [
         <!-- /.social-auth-links -->
 
         <a href="#">Me olvidé la contraseña</a><br>
-        <a href = "<?phpUrl::to(['@app/site/prueba'])?>" class="text-center">Registrate</a>
+        
+        <a href ='/registro/registro' class="text-center">Registrate</a>
         
     </div>
     <!-- /.login-box-body -->

@@ -12,21 +12,47 @@ class RegistroController extends \yii\web\Controller
 
     public function actionRegistro()
     {
-        $model = new \app\models\Registro();
-        if ($model->load(\Yii::$app->request->post())) {
-            if ($model->validate()) {
-                $this->actionGuardado();
-                return;
-            }
+        
+        $model = new \app\models\Registro();    //carga del modelo para utilizarlo luego
+        if ($model->load(\Yii::$app->request->post())){// si se realizo un submit del boton guardar
+            $model->fecha_registro =  date("d/m/Y");//se carga la fecha de registro
+            
+            if ($model->save()) {//guardado de los datos 
+                //mensaje de exito
+                echo \yii2mod\alert\Alert::widget([
+                    'options' => [
+                        'title' => "Registro Existoso!",
+                        'text' => "Te enviaremos un email para verificar tu cuenta",
+                    ]
+                    
+                ]);
+                return $this->goHome();
+                
+                //if ($model->validate()) {
+                    //print_r(date("Y-m-d"));
+                    
+                    //return;
+                //}
+            }    
         }
-    
-        return $this->render('registroView', [
+        return $this->render('registroView', [// en caso de que no se quiera guardar y solo se accede por primera vez
             'model' => $model,
         ]);
     }
 
-    public function actionGuardado(){
-        //Aca busqueda de los modelos y guardado del registro
-    }
     
+    
+    /**Posible guardado con md5 */
+	public function antesDeGuardar()
+	{
+        $pass = md5($this->password);
+        $this->password = $pass;
+        return true;
+    }
+
+
+
+
+
 }
+
