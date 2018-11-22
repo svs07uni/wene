@@ -36,6 +36,12 @@ class ComposerStaticInitb9946aea46ece8f295a697f55000dea8
         array (
             'phpDocumentor\\Reflection\\' => 25,
         ),
+        'k' => 
+        array (
+            'kartik\\plugins\\depdrop\\' => 23,
+            'kartik\\depdrop\\' => 15,
+            'kartik\\base\\' => 12,
+        ),
         'd' => 
         array (
             'dosamigos\\datepicker\\' => 21,
@@ -129,6 +135,18 @@ class ComposerStaticInitb9946aea46ece8f295a697f55000dea8
             0 => __DIR__ . '/..' . '/phpdocumentor/reflection-common/src',
             1 => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src',
             2 => __DIR__ . '/..' . '/phpdocumentor/type-resolver/src',
+        ),
+        'kartik\\plugins\\depdrop\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/kartik-v/dependent-dropdown',
+        ),
+        'kartik\\depdrop\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/kartik-v/yii2-widget-depdrop/src',
+        ),
+        'kartik\\base\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/kartik-v/yii2-krajee-base/src',
         ),
         'dosamigos\\datepicker\\' => 
         array (
