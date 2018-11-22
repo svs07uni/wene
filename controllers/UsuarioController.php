@@ -9,11 +9,13 @@ class UsuarioController extends \yii\web\Controller
     {
         //return $this->render('index');
         $model = new \app\models\Usuario();
+        $registro = \Yii::$app->getRequest()->getQueryParam('r');
+        $model->id_registro = $registro;
 
         if ($model->load(\Yii::$app->request->post())) {
              //print_r($model);
             $usuario= \Yii::$app->user->identity;
-            $model->id_registro= $usuario->id_registro;//id_registro del usuario actual
+            //$model->id_registro= $usuario->id_registro;//id_registro del usuario actual
              if ($model->save()) {
                  // form inputs are valid, do something here
                  echo \yii2mod\alert\Alert::widget([
@@ -24,6 +26,7 @@ class UsuarioController extends \yii\web\Controller
                  ]);
              }
         }
+
         return $this->render('usuario', [
             'model' => $model,
         ]);

@@ -104,7 +104,7 @@ use yii\caching\CacheInterface;
  *         'class' => '\yii\db\Connection',
  *         'dsn' => 'mysql:host=127.0.0.1;dbname=demo',
  *         'username' => 'root',
- *         'password' => 'loren',
+ *         'password' => '',
  *         'charset' => 'utf8',
  *     ],
  * ],

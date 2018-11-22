@@ -125,22 +125,4 @@ class SiteController extends Controller
     {
         return $this->render('about');
     }
-
-    public function actionRegistroUsuario()
-    {   
-
-    $model = new \app\models\Usuario();
-    echo("asd");
-    print_r($model);
-    if ($model->load(Yii::$app->request->post())) {
-        if ($model->validate()) {
-            // form inputs are valid, do something here
-            return;
-        }
-    }
-
-    return $this->render('registroUsuario', [
-        'model' => $model,
-    ]);
-}
 }

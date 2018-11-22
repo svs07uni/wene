@@ -26,6 +26,7 @@ use yii\widgets\ActiveForm;
                 <div class="col-sm-5" style="background-color: #d5f5e3 "> 
                     
                     <?php $form = ActiveForm::begin(); ?>
+                    <?= $form->field($model, 'id_registro')->hiddenInput()->label(false) ?>
                     <?= $form->field($model, 'dni') ?>
                     <?= $form->field($model, 'nombre') ?>
                     <?= $form->field($model, 'apellido') ?>

@@ -1,6 +1,7 @@
 <?php
 use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
+use yii\helpers\Url;
 
 /* @var $this yii\web\View */
 /* @var $form yii\bootstrap\ActiveForm */
@@ -64,7 +65,7 @@ $fieldOptions2 = [
 
         <a href="#">Me olvidé la contraseña</a><br>
         
-        <a href ='/registro/registro' class="text-center">Registrate</a>
+        <a href ='<?=Url::to("@web/registro/registro")?>' class="text-center">Registrate</a>
         
     </div>
     <!-- /.login-box-body -->
