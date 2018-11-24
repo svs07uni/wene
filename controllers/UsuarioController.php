@@ -39,8 +39,20 @@ class UsuarioController extends \yii\web\Controller
             'model' => $model,
         ]);
     }
-public function actionLocalidades()
-{
+
+    public function actionEditar()
+    {
+        $model = new \app\models\Usuario();
+
+        
+
+        return $this->render('actualizar', [
+            'model' => $model,
+        ]);
+    }
+
+    public function actionLocalidades()
+    {
     $out = [];
     if (isset($_POST['depdrop_parents'])) {
         $parents = $_POST['depdrop_parents'];
@@ -62,12 +74,6 @@ public function actionLocalidades()
     }
 
     echo Json::encode(['output'=>'', 'selected'=>'']);
-}
-
-
-public function actionTest()
-{
-    echo 'Hola';
-}
+    }
 
 }

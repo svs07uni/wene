@@ -40,7 +40,7 @@ class Registro extends \yii\db\ActiveRecord
             [[ 'fecha_registro'],'date','format' => 'php:d/m/Y'],
             [['usuario', 'clave', 'email', 'token','claveRepetida'], 'string'],
             [['fecha_registro', 'fecha_token'], 'safe'],
-            [['claveRepetida'], 'compare','compareAttribute'=>'clave'],
+            //[['claveRepetida'], 'compare','compareAttribute'=>'clave'],
             [['recuperar_clave'], 'boolean'],
             [['captcha'], 'captcha']
         ];
