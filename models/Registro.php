@@ -71,4 +71,12 @@ class Registro extends \yii\db\ActiveRecord
         return $this->hasOne(Usuario::className(), ['id_registro' => 'id_registro']);
     }
 
+
+    public function beforeSave()
+	{
+        $pass = md5($this->clave);
+        $this->clave = $pass;
+        return true;
+    }
+
 }

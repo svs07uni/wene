@@ -15,6 +15,7 @@ class UsuarioController extends \yii\web\Controller
         //agrega el id_registro del usuario logueado actual
         $registro = \Yii::$app->getRequest()->getQueryParam('r');
         $model->id_registro = $registro;
+        
         //agrega el id_rol de estudiante para todos, por ahora hardcode
         $model->id_rol = 2;
         //$roles = \yii\helpers\ArrayHelper::map(\app\models\Rol::find()->where(${['nombre'=>'Postulante']})->one());
