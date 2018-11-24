@@ -3,6 +3,7 @@
 namespace app\models;
 
 use Yii;
+use yii\helpers\ArrayHelper;
 
 /**
  * This is the model class for table "rendimiento_no_acad".
@@ -94,5 +95,46 @@ class Rendimiento_no_acad extends \yii\db\ActiveRecord
     public function getUsuario()
     {
         return $this->hasOne(Usuario::className(), ['id_registro' => 'id_usuario']);
+    }
+
+    public static function reponerBD($datos){
+        //Obtener todos los dni de los usuarios ya creados
+        $dni_usuarios = Usuario::find()
+                            ->select(['dni','id_registro'])
+                            ->distinct()
+                            ->all();
+        //print_r($datos);exit;
+
+        $usuarios = ArrayHelper::toArray($dni_usuarios, [
+            'app\models\Usuario' => [
+                'id'=>'dni',
+                'value'=>'id_registro'
+            ]
+        ]);
+        $insertar = array();
+        foreach ($datos as $key => $un_dato) {
+            $pos = null;
+            
+            $pos = array_search($un_dato->nro_docum, array_column($usuarios, 'id'));//print_r($pos);
+            if($pos !== false){
+                $item['titulo'] = $un_dato->denominacion;
+                $item['id_tipo'] = $un_dato->tipo == 'I'? 5 : 6;
+                $item['norma_legal'] = $un_dato->norma;
+                $item['funcion'] = $un_dato->funcion;
+                $item['horas_semanales'] = $un_dato->carga_horaria;
+                $item['fecha_inicio'] = $un_dato->desde;
+                $item['fecha_fin'] = $un_dato->hasta;
+                $item['id_usuario'] = $usuarios[$pos]['value'];
+                $item['fecha_actualizado'] = date("d/m/Y H:m:s");;
+
+                $insertar[] = $item;
+            }            
+        }
+        //print_r($insertar);exit;
+        \Yii::$app->db->createCommand()
+                    ->batchInsert('rendimiento_no_acad', ['titulo', 'id_tipo','norma_legal','funcion','horas_semanales','fecha_inicio','fecha_fin','id_usuario','fecha_actualizado'], $insertar)
+                    ->execute();
+        exit;
+
     }
 }
