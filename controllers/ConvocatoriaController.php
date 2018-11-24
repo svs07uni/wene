@@ -8,7 +8,8 @@ use app\models\ConvocatoriaSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
-
+use app\models\Tipo;
+use yii\grid\GridView;
 /**
  * ConvocatoriaController implements the CRUD actions for Convocatoria model.
  */
@@ -65,17 +66,39 @@ class ConvocatoriaController extends Controller
     public function actionCreate()
     {
         $model = new Convocatoria();
-
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id_convocatoria]);
+                
+      if ($model->load(Yii::$app->request->post())) {
+      	$model->fecha_alta=date("d/m/Y");
+      	if($model->save()){
+      		return $this->redirect(['view', 'id' => $model->id_convocatoria]);
+      		} 
+      	
+            
         }
-
+        
+        
+        
+      /*  $datos_tipo= array();
+        $tipo= Tipo::find()->all();
+        foreach ($tipo as $it){
+        	$datos_tipo[$it->id_tipo]=$it->nombre;
+             	
+        }*/
+        
+        
+        
+       // print_r($tipo);
+        //print_r($datos_tipo);
+        
+        
+	
         return $this->render('create', [
             'model' => $model,
+        		//'datos_tipo' => $datos_tipo,
         ]);
     }
-
-    /**
+      
+   /**
      * Updates an existing Convocatoria model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
