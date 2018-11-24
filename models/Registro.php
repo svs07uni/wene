@@ -71,4 +71,6 @@ class Registro extends \yii\db\ActiveRecord
         return $this->hasOne(Usuario::className(), ['id_registro' => 'id_registro']);
     }
 
+
+
 }

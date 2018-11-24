@@ -19,7 +19,9 @@
         "yiisoft/yii2-bootstrap": "~2.0.0",
         "yiisoft/yii2-swiftmailer": "~2.0.0",
         "dmstr/yii2-adminlte-asset": "^2.1",
-        "yii2mod/yii2-sweet-alert": "*"
+        "yii2mod/yii2-sweet-alert": "*",
+        "2amigos/yii2-date-picker-widget": "~1.0",
+        "kartik-v/yii2-widget-depdrop": "@dev"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.0.0",

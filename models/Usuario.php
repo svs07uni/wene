@@ -20,6 +20,7 @@ use Yii;
  * @property resource $foto
  * @property string $nombre_foto
  * @property int $id_rol
+ * @property int $id_provincia //para la verificacion de 
  *
  * @property Aptitud[] $aptituds
  * @property Estudio[] $estudios
@@ -37,6 +38,7 @@ class Usuario extends \yii\db\ActiveRecord
     /**
      * {@inheritdoc}
      */
+    public $id_provincia;
     public static function tableName()
     {
         return 'usuario';
@@ -48,11 +50,12 @@ class Usuario extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['id_registro', 'dni', 'nombre', 'apellido', 'nacionalidad', 'direccion', 'id_localidad', 'fecha_nac', 'id_rol'], 'required'],
+            [[ 'dni', 'nombre', 'apellido', 'nacionalidad', 'direccion', 'id_localidad', 'fecha_nac', 'id_rol'], 'required'],
             [['id_registro', 'id_localidad', 'id_rol'], 'default', 'value' => null],
             [['id_registro', 'id_localidad', 'id_rol'], 'integer'],
             [['dni', 'telefono', 'nombre', 'apellido', 'nacionalidad', 'direccion', 'foto', 'nombre_foto'], 'string'],
             [['activo'], 'boolean'],
+            [['id_provincia'], 'integer'],
             [['fecha_nac'], 'safe'],
             [['id_registro'], 'unique'],
             [['id_localidad'], 'exist', 'skipOnError' => true, 'targetClass' => Localidad::className(), 'targetAttribute' => ['id_localidad' => 'id_localidad']],

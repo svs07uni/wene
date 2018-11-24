@@ -43,7 +43,7 @@ class RegistroController extends \yii\web\Controller
     
     
     /**Posible guardado con md5 */
-	public function antesDeGuardar()
+	public function beforeSave()
 	{
         $pass = md5($this->password);
         $this->password = $pass;
