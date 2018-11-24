@@ -72,11 +72,5 @@ class Registro extends \yii\db\ActiveRecord
     }
 
 
-    public function beforeSave()
-	{
-        $pass = md5($this->clave);
-        $this->clave = $pass;
-        return true;
-    }
 
 }
