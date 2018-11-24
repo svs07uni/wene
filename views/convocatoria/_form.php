@@ -2,6 +2,15 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+use yii\grid\GridView;
+
+use dosamigos\datepicker\DatePicker;
+use dosamigos\datepicker\DateRangePicker;
+
+
+
+
+
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Convocatoria */
@@ -12,29 +21,44 @@ use yii\widgets\ActiveForm;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'titulo')->textInput() ?>
+    <?= $form->field($model, 'titulo')->textInput() 
+    ->label('Nombre convocatoria') ?>
 
     <?= $form->field($model, 'descripcion')->textInput() ?>
 
     <?= $form->field($model, 'direccion')->textInput() ?>
 
-    <?= $form->field($model, 'fecha_alta')->textInput() ?>
+ 	<?= $form->field($model, 'fecha_desde')->widget(DateRangePicker::className(), [
+    'attributeTo' => 'fecha_hasta', 
+    'form' => $form, // best for correct client validation
+    'language' => 'es',
+    'size' => 'lg',
+    'clientOptions' => [
+        'autoclose' => true,
+        'format' => 'dd-M-yyyy'
+    ]
+	]);?>
+	   
 
-    <?= $form->field($model, 'fecha_desde')->textInput() ?>
-
-    <?= $form->field($model, 'fecha_hasta')->textInput() ?>
-
+  
     <?= $form->field($model, 'cant_postulantes')->textInput() ?>
 
     <?= $form->field($model, 'activo')->checkbox() ?>
 
-    <?= $form->field($model, 'id_tipo')->textInput() ?>
-
-    <?= $form->field($model, 'id_sede_pedido')->textInput() ?>
-
-    <?= $form->field($model, 'id_institucion')->textInput() ?>
-
-    <?= $form->field($model, 'requisitos')->textInput() ?>
+    <?php $datos_tipo= \yii\helpers\ArrayHelper::map(\app\models\Tipo::find()->all(), 'id_tipo', 'nombre');?>
+    <?= $form->field($model, 'id_tipo')->dropDownList($datos_tipo)->label('Tipo de la convocatoria')?>
+     
+     
+    
+	<?php $datos_sede= \yii\helpers\ArrayHelper::map(\app\models\Sede::find()->all(), 'id_sede', 'nombre');?>
+	<?= $form->field($model, 'id_sede_pedido')->dropDownList($datos_sede)->label('Sede de la convocatoria')?>
+    
+    
+    <?php $datos_institucion= \yii\helpers\ArrayHelper::map(\app\models\Institucion::find()->all(), 'id_institucion', 'nombre');?>
+    <?= $form->field($model, 'id_institucion')->dropDownList($datos_institucion)->label('Institucion')?>
+    
+       
+   <?= $form->field($model, 'requisitos')->textInput() ?>
 
     <div class="form-group">
         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
