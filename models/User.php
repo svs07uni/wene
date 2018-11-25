@@ -22,6 +22,12 @@ class User extends \yii\base\BaseObject implements \yii\web\IdentityInterface
     public $foto;
     public $nombre_foto;
     public  $id_rol;
+    
+    
+    const ROLE_GESTOR = 1;
+    const ROLE_POSTULANTE = 2;
+    const ROLE_ADMIN = 3;
+    const ROLE_SELECTOR = 4;
 
  /*   private static $users = [
         '100' => [

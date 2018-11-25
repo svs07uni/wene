@@ -1,4 +1,5 @@
 <?php
+use app\models\User;
 $nombre = Yii::$app->user->getNombre();
 $apellido = Yii::$app->user->getApellido();
 ?>
@@ -34,10 +35,34 @@ $apellido = Yii::$app->user->getApellido();
                 'options' => ['class' => 'sidebar-menu tree', 'data-widget'=> 'tree'],
                 'items' => [
                     ['label' => 'Menu', 'options' => ['class' => 'header']],
-                    ['label' => 'Mis Postulaciones', 'icon' => 'list', 'url' => [''], 'visible' => !Yii::$app->user->isGuest],
-                    ['label' => 'Mi CV', 'icon' => 'user', 'url' => [''], 'visible' => !Yii::$app->user->isGuest],
-                    ['label' => 'Rendimiento No Academico', 'icon' => 'pencil', 'url' => [''], 'visible' => !Yii::$app->user->isGuest],
-                    ['label' => 'Login', 'url' => ['site/login'], 'visible' => Yii::$app->user->isGuest],
+                    ['label' => 'Mis Postulaciones', 
+                     'icon' => 'list', 
+                     'url' => [''], 
+                     'visible' => !Yii::$app->user->isGuest && Yii::$app->user->identity->id_rol == User::ROLE_POSTULANTE
+                    ],
+                    ['label' => 'Mi CV', 
+                     'icon' => 'fa fa-address-book', 
+                     'url' => [''], 
+                     'visible' => !Yii::$app->user->isGuest
+                    ],
+                    ['label' => 'Rendimiento ', 
+                     'icon' => 'pencil', 
+                     'url' => [''], 
+                        'visible' => !Yii::$app->user->isGuest,
+                            'items'=>[
+                                ['label'=>'Academico',
+                                    'icon'=>'',
+                                    'url'=>[''],
+                                 ],   
+                                ['label'=>'No Academico',
+                                         'icon'=>'',
+                                         'url'=>[''],
+                                        ],
+                                      ],
+                    ],
+                    ['label' => 'Login', 'icon'=>'','url' => ['site/login'], 'visible' => Yii::$app->user->isGuest],
+                    ['label' => 'Acerca de', 'icon'=>'', 'url' => ['site/about'], 'visible' => Yii::$app->user->isGuest],
+                    ['label' => 'Contactos', 'url' => ['site/contact'], 'visible' => Yii::$app->user->isGuest],
                     
                     /*[
                         'label' => 'Some tools',

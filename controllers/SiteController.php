@@ -9,7 +9,10 @@ use yii\web\Response;
 use yii\filters\VerbFilter;
 use app\models\LoginForm;
 use app\models\ContactForm;
-
+use app\common\components\AccessRule;
+use app\models\User;
+use app\models\Convocatoria;
+use app\models\ConvocatoriaSearch;
 class SiteController extends Controller
 {
     /**
@@ -20,13 +23,29 @@ class SiteController extends Controller
         return [
             'access' => [
                 'class' => AccessControl::className(),
-                'only' => ['logout'],
+                'ruleConfig' => [
+                    'class' => AccessRule::className(),
+                ],
+                'only' => ['logout','about','contact'],
                 'rules' => [
                     [
                         'actions' => ['logout'],
                         'allow' => true,
                         'roles' => ['@'],
-                    ],
+                    ],[
+                        'actions' => ['about'],
+                        'allow' => true,
+                        // Allow users, moderators and admins to create
+                        'roles' => [
+                            User::ROLE_SELECTOR,User::ROLE_GESTOR
+                        ],
+                        
+                    ],[
+                        'actions' => ['contact'],
+                        'allow' => true,
+                        // Allow users, moderators and admins to create
+                        'roles' => ['@'
+                        ],],
                 ],
             ],
             'verbs' => [
@@ -61,7 +80,13 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        return $this->render('index');
+        $searchModel = new ConvocatoriaSearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        
+        return $this->render('index', [
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+        ]);
     }
 
     /**
