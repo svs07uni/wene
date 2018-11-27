@@ -71,7 +71,6 @@ class User extends \yii\base\BaseObject implements \yii\web\IdentityInterface
             "usuario" => $username
         ])
         ->one();
-        print_r($dbUser);
         if ($dbUser == null) {
             return null;
         }
