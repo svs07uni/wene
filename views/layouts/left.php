@@ -13,7 +13,7 @@ $apellido = Yii::$app->user->getApellido();
                 <img src="<?= $directoryAsset ?>/img/user2-160x160.jpg" class="img-circle" alt="User Image"/>
             </div>
             <div class="pull-left info">
-                <p><?php echo $nombre,' ',$apellido?></p>
+                <p class="text-capitalize"><?php echo $nombre,' ',$apellido?></p>
 
             </div>
         </div>
@@ -41,7 +41,7 @@ $apellido = Yii::$app->user->getApellido();
                      'visible' => !Yii::$app->user->isGuest && Yii::$app->user->identity->id_rol == User::ROLE_POSTULANTE
                     ],
                     ['label' => 'Mi CV', 
-                     'icon' => 'fa fa-address-book', 
+                     'icon' => 'fa fa-id-card-o', 
                      'url' => [''], 
                      'visible' => !Yii::$app->user->isGuest
                     ],
@@ -51,18 +51,18 @@ $apellido = Yii::$app->user->getApellido();
                         'visible' => !Yii::$app->user->isGuest,
                             'items'=>[
                                 ['label'=>'Academico',
-                                    'icon'=>'',
+                                    'icon'=>'certificate',
                                     'url'=>[''],
                                  ],   
                                 ['label'=>'No Academico',
-                                         'icon'=>'',
+                                         'icon'=>'certificate',
                                          'url'=>[''],
                                         ],
                                       ],
                     ],
-                    ['label' => 'Login', 'icon'=>'','url' => ['site/login'], 'visible' => Yii::$app->user->isGuest],
-                    ['label' => 'Acerca de', 'icon'=>'', 'url' => ['site/about'], 'visible' => Yii::$app->user->isGuest],
-                    ['label' => 'Contactos', 'url' => ['site/contact'], 'visible' => Yii::$app->user->isGuest],
+                    ['label' => 'Iniciar sesión', 'icon'=>'fa fa-user-circle','url' => ['site/login'], 'visible' => Yii::$app->user->isGuest],
+                    ['label' => 'Acerca de', 'icon'=>'fas fa-info-circle', 'url' => ['site/about'], 'visible' => Yii::$app->user->isGuest],
+                    ['label' => 'Contactos', 'icon'=>'far fa-comments', 'url' => ['site/contact'], 'visible' => Yii::$app->user->isGuest],
                     
                     /*[
                         'label' => 'Some tools',
