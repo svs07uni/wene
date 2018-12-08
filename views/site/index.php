@@ -18,8 +18,36 @@ $this->title = 'Wene';
               </span>
             </div>
         </form>
+<?php 
+echo ListView::widget([
+'dataProvider' => $dataProvider,
+'itemView' => '_list_item',
+]); ?>
     </div>
    <!--  
+   /*echo GridView::widget([
+        'dataProvider' => $dataProvider,
+        'filterModel' => $searchModel,
+        'columns' => [
+            ['class' => 'yii\grid\SerialColumn'],
+
+            'id_convocatoria',
+            'titulo',
+            'descripcion',
+            'direccion',
+            'fecha_alta',
+            //'fecha_desde',
+            //'fecha_hasta',
+            //'cant_postulantes',
+            //'activo:boolean',
+            //'id_tipo',
+            //'id_sede_pedido',
+            //'id_institucion',
+            //'requisitos',
+
+            ['class' => 'yii\grid\ActionColumn'],
+        ],
+    ]);*/
     <div class="body-content">
 
         <div class="row">
@@ -116,34 +144,4 @@ Interesados: enviar su CV actualizado a iara.m.ventosa@set.ypf.com
         </div>
 
     </div> -->
-    
-    
-    
-        <?php /*echo GridView::widget([
-        'dataProvider' => $dataProvider,
-        'filterModel' => $searchModel,
-        'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
-
-            'id_convocatoria',
-            'titulo',
-            'descripcion',
-            'direccion',
-            'fecha_alta',
-            //'fecha_desde',
-            //'fecha_hasta',
-            //'cant_postulantes',
-            //'activo:boolean',
-            //'id_tipo',
-            //'id_sede_pedido',
-            //'id_institucion',
-            //'requisitos',
-
-            ['class' => 'yii\grid\ActionColumn'],
-        ],
-    ]);*/
-echo ListView::widget([
-'dataProvider' => $dataProvider,
-'itemView' => '_list_item',
-]); ?>
 </div>
