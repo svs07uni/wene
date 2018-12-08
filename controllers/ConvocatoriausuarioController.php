@@ -20,6 +20,7 @@ class ConvocatoriausuarioController extends \yii\web\Controller
     public function actionMisconvocatorias(){
         $searchModel = new ConvocatoriaSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        $usuario = Yii::$app->user->identity;
         
 
         return $this->render('misConvocatorias', [
