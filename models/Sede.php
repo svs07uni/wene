@@ -48,7 +48,7 @@ class Sede extends \yii\db\ActiveRecord
     {
         return [
             'id_sede' => 'Id Sede',
-            'nombre' => 'Nombre',
+            'nombre' => 'Sede Dependencia',
             'id_dependencia' => 'Id Dependencia',
             'id_localidad' => 'Id Localidad',
         ];
