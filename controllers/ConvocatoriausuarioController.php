@@ -38,11 +38,12 @@ class ConvocatoriausuarioController extends \yii\web\Controller
         $model->id_usuario=$usuario->id_registro;
         $model->id_estado=1;//poner constante en estado postulante, cuando est
         $model->orden_merito=0;                
-        
-      	//$model->fecha_alta=date("d/m/Y");
+        $model->fecha_postulado=date("Y-m-d");
+
       	if($model->save()){
-      		return $this->redirect(['misconvocatoria']);
-    	} 
+      		return $this->redirect(['misconvocatorias']);
+        } 
+        echo("error");
       	
             
       
