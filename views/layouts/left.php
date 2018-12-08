@@ -37,7 +37,7 @@ $apellido = Yii::$app->user->getApellido();
                     ['label' => 'Menu', 'options' => ['class' => 'header']],
                     ['label' => 'Mis Postulaciones', 
                      'icon' => 'list', 
-                     'url' => [''], 
+                     'url' => ['convocatoriausuario/misconvocatorias'], 
                      'visible' => !Yii::$app->user->isGuest && Yii::$app->user->identity->id_rol == User::ROLE_POSTULANTE
                     ],
                     ['label' => 'Mi CV', 
