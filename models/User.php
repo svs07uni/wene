@@ -3,6 +3,7 @@
 namespace app\models;
 
 use app\models\Usuario as DbUsuario;
+use Yii;
 
 class User extends \yii\base\BaseObject implements \yii\web\IdentityInterface
 {
@@ -179,11 +180,17 @@ class User extends \yii\base\BaseObject implements \yii\web\IdentityInterface
      */
     public function validatePassword($password)
     {
-        $dbUser = DbUsuario::find()->joinWith("registro")
+        $dbUser = Registro::find()
+        ->select("clave")
         ->where([
-            "clave" => $password
+            "id_registro" => $this->id_registro
         ])
         ->one();
-        return $dbUser == null?false:true;
+        if( Yii::$app->getSecurity()->validatePassword($password, $dbUser->clave))
+        {
+            return true;
+        }else {
+            return false;
+        }
     }
 }
