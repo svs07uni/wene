@@ -57,7 +57,7 @@ class Usuario extends \yii\db\ActiveRecord
             [['activo'], 'boolean'],
             [['id_provincia'], 'integer'],
             [['fecha_nac'], 'safe'],
-            [['fecha_nac'], 'date', 'format' => 'dd-mm-yyyy'],
+            [['fecha_nac'], 'date', 'format' => 'dd/mm/yyyy'],
             [['id_registro'], 'unique'],
             [['id_localidad'], 'exist', 'skipOnError' => true, 'targetClass' => Localidad::className(), 'targetAttribute' => ['id_localidad' => 'id_localidad']],
             [['id_registro'], 'exist', 'skipOnError' => true, 'targetClass' => Registro::className(), 'targetAttribute' => ['id_registro' => 'id_registro']],
