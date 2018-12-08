@@ -109,6 +109,7 @@ class ConvocatoriaSearch extends Convocatoria
 
         // grid filtering conditions
         $query->andFilterWhere([
+            //aca poner el filtro para la empresa
             'id_convocatoria' => $this->id_convocatoria,
             'fecha_alta' => $this->fecha_alta,
             'fecha_desde' => $this->fecha_desde,
