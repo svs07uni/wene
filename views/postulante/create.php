@@ -4,19 +4,18 @@ use yii\helpers\Html;
 
 
 /* @var $this yii\web\View */
-/* @var $model app\models\Convocatoria */
+/* @var $model app\models\Postulante */
 
-$this->title = 'Create Convocatoria';
-$this->params['breadcrumbs'][] = ['label' => 'Convocatorias', 'url' => ['index']];
+$this->title = 'Create Postulante';
+$this->params['breadcrumbs'][] = ['label' => 'Postulantes', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="convocatoria-create">
+<div class="postulante-create">
 
     <h1><?= Html::encode($this->title) ?></h1>
 
     <?= $this->render('_form', [
         'model' => $model,
-    	//'datos_tipo' => $datos_tipo,
     ]) ?>
 
 </div>

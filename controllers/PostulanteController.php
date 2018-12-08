@@ -3,20 +3,16 @@
 namespace app\controllers;
 
 use Yii;
-use app\models\Convocatoria;
-use app\models\ConvocatoriaSearch;
 use app\models\Postulante;
 use app\models\PostulanteSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
-use app\models\Tipo;
-use yii\grid\GridView;
-use phpDocumentor\Reflection\Types\This;
+
 /**
- * ConvocatoriaController implements the CRUD actions for Convocatoria model.
+ * PostulanteController implements the CRUD actions for Postulante model.
  */
-class ConvocatoriaController extends Controller
+class PostulanteController extends Controller
 {
     /**
      * {@inheritdoc}
@@ -34,12 +30,12 @@ class ConvocatoriaController extends Controller
     }
 
     /**
-     * Lists all Convocatoria models.
+     * Lists all Postulante models.
      * @return mixed
      */
     public function actionIndex()
     {
-        $searchModel = new ConvocatoriaSearch();
+        $searchModel = new PostulanteSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
@@ -49,98 +45,49 @@ class ConvocatoriaController extends Controller
     }
 
     /**
-     * Displays a single Convocatoria model.
+     * Displays a single Postulante model.
      * @param integer $id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
     public function actionView($id)
     {
-    	$searchModel = new PostulanteSearch();
-    	$searchModel->id_convocatoria=$id;
-    	$dataProvider = $searchModel->search(null);
- 
-    	
         return $this->render('view', [
             'model' => $this->findModel($id),
-        		'searchModel' => $searchModel,
-        		'dataProvider' => $dataProvider,
         ]);
     }
 
     /**
-     * Creates a new Convocatoria model.
+     * Creates a new Postulante model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new Convocatoria();
-                
-      if ($model->load(Yii::$app->request->post())) {
-      	$model->fecha_alta=date("d/m/Y");
-      	if($model->save()){
-      		return $this->redirect(['view', 'id' => $model->id_convocatoria]);
-      		} 
-      	           
+        $model = new Postulante();
+
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            return $this->redirect(['view', 'id' => $model->id_postulante]);
         }
-        
-        
-        
-      /*  $datos_tipo= array();
-        $tipo= Tipo::find()->all();
-        foreach ($tipo as $it){
-        	$datos_tipo[$it->id_tipo]=$it->nombre;
-             	
-        }*/
-        
-        
-        
-       // print_r($tipo);
-        //print_r($datos_tipo);
-        
-        
-	
+
         return $this->render('create', [
             'model' => $model,
-        		//'datos_tipo' => $datos_tipo,
         ]);
     }
-    
-    
-    public function actionUpdatepostulante($id_convocatoria, $id_postulante){
-    	
-    	
-    	
-    	
-    	
-    	
-    	
-    }
-    
-    
-    
-    
-    
-    
-    
-      
-   /**
-     * Updates an existing Convocatoria model.
+
+    /**
+     * Updates an existing Postulante model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
-    
-    
-    
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id_convocatoria]);
+            return $this->redirect(['view', 'id' => $model->id_postulante]);
         }
 
         return $this->render('update', [
@@ -149,7 +96,7 @@ class ConvocatoriaController extends Controller
     }
 
     /**
-     * Deletes an existing Convocatoria model.
+     * Deletes an existing Postulante model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
@@ -163,23 +110,18 @@ class ConvocatoriaController extends Controller
     }
 
     /**
-     * Finds the Convocatoria model based on its primary key value.
+     * Finds the Postulante model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return Convocatoria the loaded model
+     * @return Postulante the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = Convocatoria::findOne($id)) !== null) {
+        if (($model = Postulante::findOne($id)) !== null) {
             return $model;
         }
 
         throw new NotFoundHttpException('The requested page does not exist.');
     }
-    
-    
-
-
-
 }
