@@ -68,4 +68,12 @@ class Localidad extends \yii\db\ActiveRecord
     {
         return $this->hasMany(Usuario::className(), ['id_localidad' => 'id_localidad']);
     }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getProvincia()
+    {
+        return $this->hasOne(Provincia::className(), ['id_provincia' => 'id_provincia']);
+    }
 }

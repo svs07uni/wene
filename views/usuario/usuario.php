@@ -52,7 +52,8 @@ use kartik\depdrop\DepDrop;
                         'placeholder'=>'Seleccione',
                         'url'=>Url::to(['/usuario/localidades'])
                         ]
-                    ]); ?>
+                    ])
+                    ->label('Localidad'); ?>
 
 
                     <?= $form->field($model, 'telefono') ?>
@@ -61,10 +62,10 @@ use kartik\depdrop\DepDrop;
                         'inline' => false, 
                         'size' => 'lg',
                         'language' => 'es',
-                        'clientOptions' => [
+                        /*'clientOptions' => [
                             'autoclose' => true,
-                            'format' => 'dd-M-yyyy'
-                        ]
+                            'format' => 'dd-M-yyyy',
+                        ]*/
                     ]);?>
                     
                     <div class="form-group">
