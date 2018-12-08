@@ -20,7 +20,6 @@ use dmstr\widgets\Alert;
                 } ?>
             </h1>
         <?php } ?>
-
         <?=
         Breadcrumbs::widget(
             [
