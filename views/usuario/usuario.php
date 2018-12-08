@@ -62,10 +62,10 @@ use kartik\depdrop\DepDrop;
                         'inline' => false, 
                         'size' => 'lg',
                         'language' => 'es',
-                        'clientOptions' => [
+                        /*'clientOptions' => [
                             'autoclose' => true,
-                            'format' => 'dd-M-yyyy'
-                        ]
+                            'format' => 'dd-M-yyyy',
+                        ]*/
                     ]);?>
                     
                     <div class="form-group">
