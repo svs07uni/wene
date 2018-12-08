@@ -12,7 +12,7 @@ use Yii;
  *
  * @property Postulante[] $postulantes
  */
-class Estado_Postulante extends \yii\db\ActiveRecord
+class EstadoPostulante extends \yii\db\ActiveRecord
 {
     /**
      * {@inheritdoc}
@@ -40,7 +40,7 @@ class Estado_Postulante extends \yii\db\ActiveRecord
     {
         return [
             'id_estado' => 'Id Estado',
-            'nombre' => 'Nombre',
+            'nombre' => 'Estado',
         ];
     }
 
