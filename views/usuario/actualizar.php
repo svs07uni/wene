@@ -43,19 +43,21 @@ use kartik\depdrop\DepDrop;
                         'placeholder'=>'Seleccione',
                         'url'=>Url::to(['/usuario/localidades'])
                         ]
-                    ]); ?>
+                    ])
+                    ->label('Localidad'); ?>
 
 
                     <?= $form->field($model, 'telefono') ?>
                     <!-- Desplegable de fecha -->
                     <?= $form->field($model, 'fecha_nac')->widget(DatePicker::className(), [
                         'inline' => false, 
-                        'size' => 'lg',
+                        'size' => '4',
                         'language' => 'es',
-                        'clientOptions' => [
+                        /*'clientOptions' => [
                             'autoclose' => true,
-                            'format' => 'dd-M-yyyy'
+                            'format' => 'dd-mm-yyyy'
                         ]
+                        */
                     ]);?>
                     
                     <div class="form-group">

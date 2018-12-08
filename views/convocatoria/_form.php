@@ -33,10 +33,11 @@ use dosamigos\datepicker\DateRangePicker;
     'form' => $form, // best for correct client validation
     'language' => 'es',
     'size' => 'lg',
-    'clientOptions' => [
+/*    'clientOptions' => [
         'autoclose' => true,
-        'format' => 'dd-M-yyyy'
-    ]
+        //'format' => 'dd-mm-yyyy'
+    		'format' => 'yyyy-mm-dd'
+    ]*/
 	]);?>
 	   
 

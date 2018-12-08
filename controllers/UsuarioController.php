@@ -8,9 +8,12 @@ use app\models\Provincia;
 
 class UsuarioController extends \yii\web\Controller
 {
+
+    /**
+     * Registro de un nuevo usuario
+     */
     public function actionRegistro()
     {
-        //return $this->render('index');
         $model = new \app\models\Usuario();
         //agrega el id_registro del usuario logueado actual
         $registro = \Yii::$app->getRequest()->getQueryParam('r');
@@ -21,7 +24,6 @@ class UsuarioController extends \yii\web\Controller
         //$roles = \yii\helpers\ArrayHelper::map(\app\models\Rol::find()->where(${['nombre'=>'Postulante']})->one());
         
         if ($model->load(\Yii::$app->request->post())) {
-             //print_r($model);
             $usuario= \Yii::$app->user->identity;
             //$model->id_registro= $usuario->id_registro;//id_registro del usuario actual
              if ($model->save()) {
@@ -40,17 +42,27 @@ class UsuarioController extends \yii\web\Controller
         ]);
     }
 
+    /**
+     * Edicion de los datos del usuario
+     */
     public function actionEditar()
     {
         $model = new \app\models\Usuario();
 
-        
+        if ($model->load(\Yii::$app->request->post())) {
+            if ($model->save()) {
+                
+            }
+        }
 
         return $this->render('actualizar', [
             'model' => $model,
         ]);
     }
 
+    /**
+     * Obtener las localidades de una provincia, utilizado en dropdown dependientes
+     */
     public function actionLocalidades()
     {
     $out = [];
@@ -60,14 +72,6 @@ class UsuarioController extends \yii\web\Controller
             $id_provincia = $parents[0];
             $provincia= Provincia::findOne($id_provincia);
             $out = $provincia->obtenerLocalidadesArray();
-            //print_r($out);
-            //exit; //sin param
-            // the getSubCatList function will query the database based on the
-            // cat_id and return an array like below:
-            // [
-            //    ['id'=>'<sub-cat-id-1>', 'name'=>'<sub-cat-name1>'],
-            //    ['id'=>'<sub-cat_id_2>', 'name'=>'<sub-cat-name2>']
-            // ]
             echo Json::encode(['output'=>$out, 'selected'=>'']);
             return;
         }

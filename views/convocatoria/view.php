@@ -2,11 +2,12 @@
 
 use yii\helpers\Html;
 use yii\widgets\DetailView;
+use yii\grid\GridView;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Convocatoria */
 
-$this->title = $model->id_convocatoria;
+$this->title = $model->titulo;
 $this->params['breadcrumbs'][] = ['label' => 'Convocatorias', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
@@ -15,11 +16,11 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Update', ['update', 'id' => $model->id_convocatoria], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a('Delete', ['delete', 'id' => $model->id_convocatoria], [
+        <?= Html::a('Actualizar', ['update', 'id' => $model->id_convocatoria], ['class' => 'btn btn-primary']) ?>
+        <?= Html::a('Borrar', ['delete', 'id' => $model->id_convocatoria], [
             'class' => 'btn btn-danger',
             'data' => [
-                'confirm' => 'Are you sure you want to delete this item?',
+                'confirm' => 'Esta seguro de borrar?',
                 'method' => 'post',
             ],
         ]) ?>
@@ -37,11 +38,44 @@ $this->params['breadcrumbs'][] = $this->title;
             'fecha_hasta',
             'cant_postulantes',
             'activo:boolean',
-            'id_tipo',
-            'id_sede_pedido',
-            'id_institucion',
+            //'id_tipo',
+            'tipo.nombre',
+            //'id_sede_pedido',
+            'sedePedido.nombre',
+            'institucion.nombre',
             'requisitos',
         ],
     ]) ?>
+<h2>Postulantes</h2>
+ <?= GridView::widget([
+        'dataProvider' => $dataProvider,
+       // 'filterModel' => $searchModel,
+        'columns' => [
+            ['class' => 'yii\grid\SerialColumn'],
 
+           // 'id_postulante',
+            //'id_usuario',
+            //'id_convocatoria',
+            'fecha_postulado',
+            //'id_estado',
+            'usuario.nombre',
+        	'usuario.apellido',
+        	'usuario.telefono',
+        	'usuario.direccion',
+            'usuario.localidad.nombre',
+        	'estado.nombre',
+            'orden_merito',
+        		['class' => 'yii\grid\ActionColumn',
+        				'buttons' => [
+        						'additional_icon' => function ($url, $model, $key) {
+        						return Html::a ( '<span class="glyphicon glyphicon-th-list" aria-hidden="true"></span> ', ['convocatoria/updatepostulante', 'id_convocatoria' => $model->id_convocatoria,'id_postulante' => $model->id_postulante] );
+ },
+ ],
+ 'template' => '{additional_icon}'
+        		
+        		
+        		],
+
+        ],
+    ]); ?>
 </div>
