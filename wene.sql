@@ -38,7 +38,6 @@ SET default_with_oids = false;
 --
 
 CREATE TABLE public.abarca (
-    id_abarca integer NOT NULL,
     id_dependencia integer NOT NULL,
     id_usuario integer NOT NULL
 );
@@ -890,6 +889,10 @@ ALTER TABLE ONLY public.tipo ALTER COLUMN id_tipo SET DEFAULT nextval('public.ti
 -- Data for Name: abarca; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
+INSERT INTO public.abarca VALUES (13, 2);
+INSERT INTO public.abarca VALUES (18, 2);
+INSERT INTO public.abarca VALUES (8, 1);
+INSERT INTO public.abarca VALUES (4, 1);
 
 
 --
@@ -1013,6 +1016,7 @@ INSERT INTO public.carrera VALUES (348, 'MAESTRíA EN MARKETING DE SERVICIOS', 2
 -- Data for Name: convocatoria; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
+INSERT INTO public.convocatoria VALUES (1, 'Secretaria del COPADE', 'Esta pidiendo...', 'Avenida Argentina a pasitos de Pancho Club', '2018-11-10 00:00:00', '2019-01-01 00:00:00', '2019-01-15 00:00:00', 2, true, 2, 21, 1, '');
 
 
 --
@@ -1066,6 +1070,8 @@ INSERT INTO public.estado_postulante VALUES (5, 'rechazado');
 -- Data for Name: institucion; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
+INSERT INTO public.institucion VALUES (1, 'FAEA', 'faea@gmail.com', '12345', 'una direccion');
+INSERT INTO public.institucion VALUES (2, 'FAIF', 'faif@gmail.com', '54321', 'otra direccion');
 
 
 --
@@ -3509,6 +3515,7 @@ INSERT INTO public.registro VALUES (3, 'estudiante', 'estudiante', 'estudiante@g
 INSERT INTO public.registro VALUES (4, 'prueba', 'prueba', '', '2018-11-22 00:00:00', NULL, NULL, NULL);
 INSERT INTO public.registro VALUES (5, 'prueba2', 'prueba', '', '2018-11-22 00:00:00', NULL, NULL, NULL);
 INSERT INTO public.registro VALUES (6, 'prueba2', 'prueba', '', '2018-11-22 00:00:00', NULL, NULL, NULL);
+INSERT INTO public.registro VALUES (7, 'sss', '$2y$13$RGTMejt5K0Tfka.SGeWRD.DWw4fzO6hGPZy5D7Y/kIH.vC6LLzIEu', 'sss@example.com', '2018-11-24 00:00:00', NULL, NULL, NULL);
 
 
 --
@@ -3521,8 +3528,8 @@ INSERT INTO public.registro VALUES (6, 'prueba2', 'prueba', '', '2018-11-22 00:0
 -- Data for Name: rendimiento_no_acad; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-INSERT INTO public.rendimiento_no_acad VALUES (4, 3, '2018-11-24 16:11:38', 'ORIGEN, TRANSPORTE Y PRECIPITACIÓN DE METALES EN ALGUNOS YACIMIENTOS ARGENTINOS. EFICIENCIA DE LOS PROCESOS QUE INTERVIENEN EN LA FORMACIÓN DE LA MINERALIZACIÓN.', NULL, NULL, NULL, 1, '2015-01-01 00:00:00', '2019-12-31 00:00:00', '0143/2014 ', 5, 'Colaborador                                                           ');
-INSERT INTO public.rendimiento_no_acad VALUES (5, 6, '2018-11-24 16:11:38', 'ORIGEN, TRANSPORTE Y PRECIPITACIÓN DE METALES EN ALGUNOS YACIMIENTOS ARGENTINOS. EFICIENCIA DE LOS PROCESOS QUE INTERVIENEN EN LA FORMACIÓN DE LA MINERALIZACIÓN.', NULL, NULL, NULL, 1, '2015-01-01 00:00:00', '2019-12-31 00:00:00', '0143/2014 ', 5, 'Colaborador                                                           ');
+INSERT INTO public.rendimiento_no_acad VALUES (32, 3, '2018-11-27 01:11:32', 'ORIGEN, TRANSPORTE Y PRECIPITACIÓN DE METALES EN ALGUNOS YACIMIENTOS ARGENTINOS. EFICIENCIA DE LOS PROCESOS QUE INTERVIENEN EN LA FORMACIÓN DE LA MINERALIZACIÓN.', NULL, NULL, NULL, 1, '2015-01-01 00:00:00', '2019-12-31 00:00:00', '0143/2014 ', 5, 'Colaborador                                                           ');
+INSERT INTO public.rendimiento_no_acad VALUES (33, 6, '2018-11-27 01:11:32', 'SOLUCIONES INDIVIDUALES Y GRUPALES A LOS CONFLICTO DE TRÁNSITO EN HORMIGAS: COMPORTAMIENTOS EN SENDEROS DE FORRAJEO Y RESTRICCIONES DE DISEÑO', NULL, NULL, NULL, 6, '2017-01-20 00:00:00', '2020-01-20 00:00:00', '1203/2017 ', 5, 'Integrante Externo                                                    ');
 
 
 --
@@ -3581,9 +3588,9 @@ INSERT INTO public.tipo VALUES (1, 'Pasantia');
 --
 
 INSERT INTO public.usuario VALUES (1, '12345678', '', 'admin', 'admin', true, '', '', 1, '1990-12-05 09:30:00', '\x', '', 4);
-INSERT INTO public.usuario VALUES (2, '12345678', '', 'gestor', 'gestor', true, '', '', 1, '1990-05-05 00:00:00', '\x', '', 2);
-INSERT INTO public.usuario VALUES (6, '-32', '', '222', 'www', NULL, 'ssss', 'ggg', 9, '1990-04-01 00:00:00', NULL, NULL, 1);
-INSERT INTO public.usuario VALUES (3, '-34', '', 'estudiante', 'estudiante', true, '', '', 1, '1995-03-02 00:00:00', '\x', '', 3);
+INSERT INTO public.usuario VALUES (6, '-30', '', '222', 'www', NULL, 'ssss', 'ggg', 9, '1990-04-01 00:00:00', NULL, NULL, 1);
+INSERT INTO public.usuario VALUES (3, '-34', '', 'estudiante', 'estudiante', true, '', '', 1, '1995-03-02 00:00:00', '\x', '', 1);
+INSERT INTO public.usuario VALUES (2, '12345678', '', 'gestor', 'gestor', true, '', '', 1, '1990-05-05 00:00:00', '\x', '', 3);
 
 
 --
@@ -3604,7 +3611,7 @@ SELECT pg_catalog.setval('public.carrera_id_carrera_seq', 348, true);
 -- Name: convocatoria_id_convocatoria_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.convocatoria_id_convocatoria_seq', 1, false);
+SELECT pg_catalog.setval('public.convocatoria_id_convocatoria_seq', 1, true);
 
 
 --
@@ -3639,7 +3646,7 @@ SELECT pg_catalog.setval('public.experiencia_laboral_id_experiencia_seq', 1, fal
 -- Name: institucion_id_institucion_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.institucion_id_institucion_seq', 1, false);
+SELECT pg_catalog.setval('public.institucion_id_institucion_seq', 2, true);
 
 
 --
@@ -3674,7 +3681,7 @@ SELECT pg_catalog.setval('public.publicacion_id_publicacion_seq', 1, false);
 -- Name: registro_id_registro_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.registro_id_registro_seq', 6, true);
+SELECT pg_catalog.setval('public.registro_id_registro_seq', 7, true);
 
 
 --
@@ -3688,7 +3695,7 @@ SELECT pg_catalog.setval('public.rendimiento_acad_id_rendimiento_seq', 1, false)
 -- Name: rendimiento_no_acad_id_rendimiento_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.rendimiento_no_acad_id_rendimiento_seq', 5, true);
+SELECT pg_catalog.setval('public.rendimiento_no_acad_id_rendimiento_seq', 33, true);
 
 
 --
@@ -3724,7 +3731,7 @@ SELECT pg_catalog.setval('public.usuario_nombre_foto_seq', 1, false);
 --
 
 ALTER TABLE ONLY public.abarca
-    ADD CONSTRAINT abarca_pkey PRIMARY KEY (id_abarca);
+    ADD CONSTRAINT abarca_pkey PRIMARY KEY (id_dependencia, id_usuario);
 
 
 --
@@ -3888,6 +3895,22 @@ ALTER TABLE ONLY public.usuario
 
 
 --
+-- Name: abarca fk_abarca_dependencia; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.abarca
+    ADD CONSTRAINT fk_abarca_dependencia FOREIGN KEY (id_dependencia) REFERENCES public.dependencia(id_dependencia);
+
+
+--
+-- Name: abarca fk_abarca_usuario; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.abarca
+    ADD CONSTRAINT fk_abarca_usuario FOREIGN KEY (id_usuario) REFERENCES public.usuario(id_registro);
+
+
+--
 -- Name: aptitud fk_aptitud_usuario; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -3965,6 +3988,14 @@ ALTER TABLE ONLY public.estudio
 
 ALTER TABLE ONLY public.experiencia_laboral
     ADD CONSTRAINT fk_experiencia_laboral_usuario FOREIGN KEY (id_usuario) REFERENCES public.usuario(id_registro);
+
+
+--
+-- Name: localidad fk_localidad_provincia; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.localidad
+    ADD CONSTRAINT fk_localidad_provincia FOREIGN KEY (id_provincia) REFERENCES public.provincia(id_provincia);
 
 
 --

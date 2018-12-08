@@ -62,4 +62,12 @@ class Dependencia extends \yii\db\ActiveRecord
     {
         return $this->hasMany(Sede::className(), ['id_dependencia' => 'id_dependencia']);
     }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getAbarcas()
+    {
+        return $this->hasMany(Abarca::className(), ['id_dependencia' => 'id_dependencia']);
+    }
 }

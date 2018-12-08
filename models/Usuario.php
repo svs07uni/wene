@@ -16,7 +16,7 @@ use Yii;
  * @property string $nacionalidad
  * @property string $direccion
  * @property int $id_localidad
- * @property string $fecha_nac
+ * @property date $fecha_nac
  * @property resource $foto
  * @property string $nombre_foto
  * @property int $id_rol
@@ -57,6 +57,7 @@ class Usuario extends \yii\db\ActiveRecord
             [['activo'], 'boolean'],
             [['id_provincia'], 'integer'],
             [['fecha_nac'], 'safe'],
+            [['fecha_nac'], 'date', 'format' => 'dd-mm-yyyy'],
             [['id_registro'], 'unique'],
             [['id_localidad'], 'exist', 'skipOnError' => true, 'targetClass' => Localidad::className(), 'targetAttribute' => ['id_localidad' => 'id_localidad']],
             [['id_registro'], 'exist', 'skipOnError' => true, 'targetClass' => Registro::className(), 'targetAttribute' => ['id_registro' => 'id_registro']],
@@ -70,7 +71,7 @@ class Usuario extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id_registro' => 'Id Registro',
+            'id_registro' => 'Registro',
             'dni' => 'Dni',
             'telefono' => 'Telefono',
             'nombre' => 'Nombre',
@@ -78,11 +79,11 @@ class Usuario extends \yii\db\ActiveRecord
             'activo' => 'Activo',
             'nacionalidad' => 'Nacionalidad',
             'direccion' => 'Direccion',
-            'id_localidad' => 'Id Localidad',
+            'id_localidad' => 'Localidad',
             'fecha_nac' => 'Fecha Nac',
             'foto' => 'Foto',
             'nombre_foto' => 'Nombre Foto',
-            'id_rol' => 'Id Rol',
+            'id_rol' => 'Rol',
         ];
     }
 
@@ -140,6 +141,14 @@ class Usuario extends \yii\db\ActiveRecord
     public function getRendimientoNoAcads()
     {
         return $this->hasMany(RendimientoNoAcad::className(), ['id_usuario' => 'id_registro']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getAbarcas()
+    {
+        return $this->hasMany(Abarca::className(), ['id_usuario' => 'id_registro']);
     }
 
     /**

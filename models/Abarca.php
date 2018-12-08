@@ -7,7 +7,6 @@ use Yii;
 /**
  * This is the model class for table "abarca".
  *
- * @property int $id_abarca
  * @property int $id_dependencia
  * @property int $id_usuario
  */
@@ -27,10 +26,8 @@ class Abarca extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['id_abarca', 'id_dependencia', 'id_usuario'], 'required'],
-            [['id_abarca', 'id_dependencia', 'id_usuario'], 'default', 'value' => null],
-            [['id_abarca', 'id_dependencia', 'id_usuario'], 'integer'],
-            [['id_abarca'], 'unique'],
+            [['id_dependencia', 'id_usuario'], 'required'],
+            [['id_dependencia', 'id_usuario'], 'integer'],
         ];
     }
 
@@ -40,9 +37,24 @@ class Abarca extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id_abarca' => 'Id Abarca',
             'id_dependencia' => 'Id Dependencia',
             'id_usuario' => 'Id Usuario',
         ];
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getUsuario()
+    {
+        return $this->hasOne(Usuario::className(), ['id_registro' => 'id_usuario']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getDependencia()
+    {
+        return $this->hasOne(Dependencia::className(), ['id_dependencia' => 'id_dependencia']);
     }
 }
