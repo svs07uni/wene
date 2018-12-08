@@ -18,13 +18,17 @@ $this->title = 'Wene';
               </span>
             </div>
         </form>
-<?php 
-echo ListView::widget([
-'dataProvider' => $dataProvider,
-'itemView' => '_list_item',
-]); ?>
-    </div>
-   <!--  
+    </div>    
+      <?php 
+            echo ListView::widget([
+            'dataProvider' => $dataProvider,
+            'itemView' => '_list_item',
+                'options' => [
+                    'tag' => 'div',
+                    'class' => 'container-fluid',
+                ],
+            ]); ?>
+ <!--    
    /*echo GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
