@@ -1,8 +1,7 @@
 <?php
-use yii\web\Controller;
-
 namespace app\controllers;
 
+use yii\web\Controller;
 class RegistroController extends \yii\web\Controller
 {
     public function actionIndex()
