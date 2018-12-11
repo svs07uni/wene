@@ -11,7 +11,7 @@ $this->title = 'Wene';
         <p>Pasantías, Bolsa de Trabajo, Actividades, Investigación, Extensión de la Universidad Nacional del Comahue y mucho más!</p>
         <form action="#" method="get" >
             <div class="input-group">
-                <input type="text" name="q" class="form-control" placeholder="Buscador..."/>
+                <input type="text" name="valor" class="form-control" placeholder="Buscador..." value="<?=$valor?>"/>
               <span class="input-group-btn">
                 <button type='submit' name='search' id='search-btn' class="btn btn-flat"><i class="fa fa-search"></i>
                 </button>
@@ -19,15 +19,17 @@ $this->title = 'Wene';
             </div>
         </form>
     </div>    
+    <div class="container-fluid">
       <?php 
             echo ListView::widget([
             'dataProvider' => $dataProvider,
             'itemView' => '_list_item',
                 'options' => [
                     'tag' => 'div',
-                    'class' => 'container-fluid',
+                    'class' => 'panel-group',
                 ],
             ]); ?>
+            </div>
  <!--    
    /*echo GridView::widget([
         'dataProvider' => $dataProvider,
