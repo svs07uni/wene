@@ -56,8 +56,18 @@ $this->params['breadcrumbs'][] = $this->title;
             'tipo',
             'nivel',
             //'id_usuario',
-
-            ['class' => 'yii\grid\ActionColumn'],
+/*
+            [
+                'class' => 'yii\grid\ActionColumn',
+                'template' => '{delete}',
+                'header' => 'Quitar',
+                'urlCreator' => function ($action, $model, $key, $index) {
+                                        if ($action === 'delete') {
+                                            $url ='?d='.$model->id_dependencia;
+                                            return $url;
+                                        }
+                                 }
+            ],*/
         ],
     ]); ?>
     <br>
