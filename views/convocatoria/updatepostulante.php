@@ -4,13 +4,13 @@ use yii\helpers\Html;
 use yii\widgets\DetailView;?>
 <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model->usuario, 'nombre')->textInput() 
-    ->label('Nombre Postulante') ?>
+    <?= $form->field($model->usuario, 'nombre')->textInput(['readonly'=> true,])->label('Nombre Postulante');
+     ?>
 
-    <?= $form->field($model->usuario, 'apellido')->textInput()
+    <?= $form->field($model->usuario, 'apellido')->textInput(['readonly'=> true,])
     ->label('Apellido Postulante') ?>
 
-    <?= $form->field($model->estado, 'nombre')->textInput()
+    <?= $form->field($model->estado, 'nombre')->textInput(['readonly'=> true,])
     ->label('Estado Postulante') ?>
 
  	<?= $form->field($model, 'orden_merito')->dropDownList([1=>1,2=>2,3=>3,4=>4,5=>5])->label('Orden de  Merito')?>
