@@ -39,7 +39,7 @@ class EstudioSearch extends Estudio
      *
      * @return ActiveDataProvider
      */
-    public function search($params,$id_usuario)
+    public function search($params,$id_usuario = null)
     {
         $query = Estudio::find();
 
