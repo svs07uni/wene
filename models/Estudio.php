@@ -8,7 +8,7 @@ use Yii;
  * This is the model class for table "estudio".
  *
  * @property int $id_estudio
- * @property int $id_institucion
+ * @property int $institucion
  * @property string $fecha_egreso
  * @property int $id_tipo
  * @property string $titulo
@@ -33,12 +33,12 @@ class Estudio extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['id_institucion', 'titulo', 'id_usuario'], 'required'],
-            [['id_institucion', 'id_tipo', 'id_usuario'], 'default', 'value' => null],
-            [['id_institucion', 'id_tipo', 'id_usuario'], 'integer'],
+            [['institucion', 'titulo', 'id_usuario'], 'required'],
+            [['institucion', 'id_tipo', 'id_usuario'], 'default', 'value' => null],
+            [['institucion', 'id_tipo', 'id_usuario'], 'integer'],
             [['fecha_egreso'], 'safe'],
             [['titulo'], 'string'],
-            [['id_institucion'], 'exist', 'skipOnError' => true, 'targetClass' => Institucion::className(), 'targetAttribute' => ['id_institucion' => 'id_institucion']],
+            [['institucion'], 'exist', 'skipOnError' => true, 'targetClass' => Institucion::className(), 'targetAttribute' => ['institucion' => 'id_institucion']],
             [['id_usuario'], 'exist', 'skipOnError' => true, 'targetClass' => Usuario::className(), 'targetAttribute' => ['id_usuario' => 'id_registro']],
         ];
     }
@@ -50,7 +50,7 @@ class Estudio extends \yii\db\ActiveRecord
     {
         return [
             'id_estudio' => 'Id Estudio',
-            'id_institucion' => 'Id Institucion',
+            'institucion' => 'Institucion',
             'fecha_egreso' => 'Fecha Egreso',
             'id_tipo' => 'Id Tipo',
             'titulo' => 'Titulo',
@@ -63,7 +63,7 @@ class Estudio extends \yii\db\ActiveRecord
      */
     public function getInstitucion()
     {
-        return $this->hasOne(Institucion::className(), ['id_institucion' => 'id_institucion']);
+        return $this->hasOne(Institucion::className(), ['institucion' => 'institucion']);
     }
 
     /**

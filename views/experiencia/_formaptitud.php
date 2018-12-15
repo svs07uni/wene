@@ -14,9 +14,9 @@ use yii\widgets\ActiveForm;
 
     
 
-        <?= $form->field($model, 'titulo')->textInput() ?>
+        <?= $form->field($model, 'tipo')->textInput() ?>
 
-        <?= $form->field($model, 'descripcion')->textarea() ?>
+        <?= $form->field($model, 'nivel')->textInput() ?>
 
         <div class="form-group">
             <?= Html::submitButton('Guardar', ['class' => 'btn btn-success']) ?>

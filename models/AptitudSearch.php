@@ -39,9 +39,11 @@ class AptitudSearch extends Aptitud
      *
      * @return ActiveDataProvider
      */
-    public function search($params)
+    public function search($params,$id_usuario)
     {
-        $query = Aptitud::find();
+        $query = Aptitud::find()
+        ->joinWith('usuario')
+        ->andFilterWhere(['usuario.id_registro' => $id_usuario]);
 
         // add conditions that should always apply here
 

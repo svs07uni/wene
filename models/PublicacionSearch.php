@@ -39,7 +39,7 @@ class PublicacionSearch extends Publicacion
      *
      * @return ActiveDataProvider
      */
-    public function search($params)
+    public function search($params,$id_usuario)
     {
         $query = Publicacion::find();
 

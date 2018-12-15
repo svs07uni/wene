@@ -15,11 +15,12 @@ class ConvocatoriaSearch extends Convocatoria
     /**
      * {@inheritdoc}
      */
+    public $institucion;
     public function rules()
     {
         return [
             [['id_convocatoria', 'cant_postulantes', 'id_tipo', 'id_sede_pedido', 'id_institucion'], 'integer'],
-            [['titulo', 'descripcion', 'direccion', 'fecha_alta', 'fecha_desde', 'fecha_hasta', 'requisitos'], 'safe'],
+            [['titulo', 'descripcion', 'direccion', 'fecha_alta', 'fecha_desde', 'fecha_hasta', 'requisitos', 'institucion'], 'safe'],
             [['activo'], 'boolean'],
         ];
     }
@@ -128,6 +129,7 @@ class ConvocatoriaSearch extends Convocatoria
     {
         $query = Convocatoria::find()
                 ->joinWith('postulantes')
+                ->joinWith('institucion')
                 ->andFilterWhere(['postulante.id_usuario' => $id_usuario]);
         // add conditions that should always apply here
 
@@ -145,6 +147,8 @@ class ConvocatoriaSearch extends Convocatoria
 
         // grid filtering conditions
         $query->andFilterWhere([
+            //aca poner el filtro para la empresa
+            //'id_institucion'=>$this->id_institucion,
             'id_convocatoria' => $this->id_convocatoria,
             'fecha_alta' => $this->fecha_alta,
             'fecha_desde' => $this->fecha_desde,
@@ -158,8 +162,9 @@ class ConvocatoriaSearch extends Convocatoria
 
         $query->andFilterWhere(['ilike', 'titulo', $this->titulo])
             ->andFilterWhere(['ilike', 'descripcion', $this->descripcion])
-            ->andFilterWhere(['ilike', 'direccion', $this->direccion])
-            ->andFilterWhere(['ilike', 'requisitos', $this->requisitos]);
+            ->andFilterWhere(['ilike', 'convocatoria.direccion', $this->direccion])
+            ->andFilterWhere(['ilike', 'requisitos', $this->requisitos])
+            ->andFilterWhere(['ilike', 'institucion.nombre', $this->institucion]);
 
         return $dataProvider;
     }
