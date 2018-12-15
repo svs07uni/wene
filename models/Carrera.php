@@ -49,10 +49,10 @@ class Carrera extends \yii\db\ActiveRecord
     {
         return [
             'id_carrera' => 'Id Carrera',
-            'nombre' => 'Nombre',
-            'anios' => 'Anios',
-            'cant_materias' => 'Cant Materias',
-            'id_dependencia' => 'Id Dependencia',
+            'nombre' => 'Nombre Carrera',
+            'anios' => 'Duracion',
+            'cant_materias' => 'Cantidad de  Materias',
+            'id_dependencia' => 'Sede',
         ];
     }
 

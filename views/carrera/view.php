@@ -6,7 +6,7 @@ use yii\widgets\DetailView;
 /* @var $this yii\web\View */
 /* @var $model app\models\Carrera */
 
-$this->title = $model->id_carrera;
+$this->title = $model->nombre;
 $this->params['breadcrumbs'][] = ['label' => 'Carreras', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
@@ -19,7 +19,7 @@ $this->params['breadcrumbs'][] = $this->title;
         <?= Html::a('Borrar', ['delete', 'id' => $model->id_carrera], [
             'class' => 'btn btn-danger',
             'data' => [
-                'confirm' => 'Are you sure you want to delete this item?',
+                'confirm' => 'Esta seguro/a que desea borrar esta carrera ?',
                 'method' => 'post',
             ],
         ]) ?>
@@ -29,7 +29,7 @@ $this->params['breadcrumbs'][] = $this->title;
         'model' => $model,
         'attributes' => [
             //'id_carrera',
-            'nombre',
+            //'nombre',
             'anios',
             'cant_materias',
             'id_dependencia',
