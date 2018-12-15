@@ -18,8 +18,8 @@ class EstudioSearch extends Estudio
     public function rules()
     {
         return [
-            [['id_estudio', 'id_institucion', 'id_tipo', 'id_usuario'], 'integer'],
-            [['fecha_egreso', 'titulo'], 'safe'],
+            [['id_estudio',  'id_tipo', 'id_usuario'], 'integer'],
+            [['fecha_egreso', 'institucion','titulo'], 'safe'],
         ];
     }
 
@@ -39,7 +39,7 @@ class EstudioSearch extends Estudio
      *
      * @return ActiveDataProvider
      */
-    public function search($params)
+    public function search($params,$id_usuario)
     {
         $query = Estudio::find();
 
@@ -60,7 +60,7 @@ class EstudioSearch extends Estudio
         // grid filtering conditions
         $query->andFilterWhere([
             'id_estudio' => $this->id_estudio,
-            'id_institucion' => $this->id_institucion,
+            'institucion' => $this->institucion,
             'fecha_egreso' => $this->fecha_egreso,
             'id_tipo' => $this->id_tipo,
             'id_usuario' => $this->id_usuario,

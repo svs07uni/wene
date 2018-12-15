@@ -2,7 +2,9 @@
 
 use yii\helpers\Html;
 use yii\grid\GridView;
-
+//para el date picker
+use dosamigos\datepicker\DatePicker;
+use dosamigos\datepicker\DateRangePicker;
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\ExperienciaSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
@@ -64,18 +66,40 @@ $this->params['breadcrumbs'][] = $this->title;
     <h3> Estudios Realizados</h3>
     <br>
     <p>
-        <?= Html::a('Agregar Estudios', ['createaptitud'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Agregar Estudios', ['createestudio'], ['class' => 'btn btn-success']) ?>
     </p>
     <?= GridView::widget([
-        'dataProvider' => $dataProviderAptitud,
-        'filterModel' => $searchModelAptitud,
+        'dataProvider' => $dataProviderEstudio,
+        'filterModel' => $searchModelEstudio,
 
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
             //'id_aptitud',
-            'tipo',
-            'nivel',
+            'institucion',
+            'fecha_egreso',
+            //'id_usuario',
+
+            ['class' => 'yii\grid\ActionColumn'],
+        ],
+    ]); ?>
+
+
+<h3> Publicaciones Realizados</h3>
+    <br>
+    <p>
+        <?= Html::a('Agregar Publicaciones', ['createpublicacion'], ['class' => 'btn btn-success']) ?>
+    </p>
+    <?= GridView::widget([
+        'dataProvider' => $dataProviderPublicacion,
+        'filterModel' => $searchModelPublicacion,
+
+        'columns' => [
+            ['class' => 'yii\grid\SerialColumn'],
+
+            //'id_aptitud',
+            'titulo',
+            'fecha',
             //'id_usuario',
 
             ['class' => 'yii\grid\ActionColumn'],

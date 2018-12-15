@@ -7,9 +7,14 @@ use app\models\Experiencia;
 use app\models\ExperienciaSearch;
 use app\models\Aptitud;
 use app\models\AptitudSearch;
+use app\models\Estudio;
+use app\models\EstudioSearch;
+use app\models\Publicacion;
+use app\models\PublicacionSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+
 
 /**
  * ExperienciaController implements the CRUD actions for Experiencia model.
@@ -48,11 +53,23 @@ class ExperienciaController extends Controller
         $searchModelAptitud = new AptitudSearch();
         $dataProviderAptitud = $searchModelAptitud->search(Yii::$app->request->queryParams,$usuario->id_registro);
 
+        //ESTUDIO
+        $searchModelEstudio = new EstudioSearch();
+        $dataProviderEstudio = $searchModelEstudio->search(Yii::$app->request->queryParams,$usuario->id_registro);
+
+        //PUBLICACION
+        $searchModelPublicacion = new PublicacionSearch();
+        $dataProviderPublicacion = $searchModelPublicacion->search(Yii::$app->request->queryParams,$usuario->id_registro);
+
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
             'searchModelAptitud' => $searchModelAptitud,
             'dataProviderAptitud' => $dataProviderAptitud,
+            'searchModelEstudio' => $searchModelEstudio,
+            'dataProviderEstudio' => $dataProviderEstudio,
+            'searchModelPublicacion' => $searchModelPublicacion,
+            'dataProviderPublicacion' => $dataProviderPublicacion,
         ]);
     }
 
@@ -108,6 +125,45 @@ class ExperienciaController extends Controller
         ]);
     }
 
+    /**
+     * Creates a new Estudio model.
+     * If creation is successful, the browser will be redirected to the 'view' page.
+     * @return mixed
+     */
+    public function actionCreateestudio()
+    {
+        $model = new Estudio();
+        $usuario = Yii::$app->user->identity;
+        $model->id_usuario = $usuario->id_registro;
+        
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            return $this->redirect(['index']);
+        }
+
+        return $this->render('createestudio', [
+            'model' => $model,
+        ]);
+    }
+
+    /**
+     * Creates a new Publicacion model.
+     * If creation is successful, the browser will be redirected to the 'view' page.
+     * @return mixed
+     */
+    public function actionCreatepublicacion()
+    {
+        $model = new Publicacion();
+        $usuario = Yii::$app->user->identity;
+        $model->id_usuario = $usuario->id_registro;
+        
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            return $this->redirect(['index']);
+        }
+
+        return $this->render('createpublicacion', [
+            'model' => $model,
+        ]);
+    }
 
 
     /**
