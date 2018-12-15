@@ -110,21 +110,20 @@ class ConvocatoriaController extends Controller
     
     public function actionUpdatepostulante($id_convocatoria, $id_postulante){
     	
-    	
-    	
-    	
-    	
-    	
-    	
+    	{
+    		$model = Postulante::findOne($id_postulante);
+    		
+    		if ($model->load(Yii::$app->request->post()) && $model->save()) {
+    			return $this->redirect(['view', 'id' => $model->id_postulante]);
+    		}
+    		
+    		return $this->render('updatepostulante', [
+    				'model' => $model,
+    		]);
+    	}
+    	   	
     }
-    
-    
-    
-    
-    
-    
-    
-      
+         
    /**
      * Updates an existing Convocatoria model.
      * If update is successful, the browser will be redirected to the 'view' page.
