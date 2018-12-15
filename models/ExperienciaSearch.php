@@ -39,9 +39,11 @@ class ExperienciaSearch extends Experiencia
      *
      * @return ActiveDataProvider
      */
-    public function search($params)
+    public function search($params,$id_usuario)
     {
-        $query = Experiencia::find();
+        $query = Experiencia::find()
+        ->joinWith('usuario')
+        ->andFilterWhere(['usuario.id_registro' => $id_usuario]);
 
         // add conditions that should always apply here
 

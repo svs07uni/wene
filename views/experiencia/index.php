@@ -7,13 +7,17 @@ use yii\grid\GridView;
 /* @var $searchModel app\models\ExperienciaSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Experiencias';
+$this->title = 'Experiencia Laboral';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="experiencia-index">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+    
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
+    <br>
+    <p>
+        <?= Html::a('Agregar Experiencia Laboral', ['create'], ['class' => 'btn btn-success']) ?>
+    </p>
 
     
 
@@ -31,8 +35,51 @@ $this->params['breadcrumbs'][] = $this->title;
             ['class' => 'yii\grid\ActionColumn'],
         ],
     ]); ?>
+    <br>
+    <br>
 
+    <h3> Aptitudes </h3>
+    <br>
     <p>
-        <?= Html::a('Agregar Experiencia Laboral', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Agregar Aptitudes', ['createaptitud'], ['class' => 'btn btn-success']) ?>
     </p>
+    <?= GridView::widget([
+        'dataProvider' => $dataProviderAptitud,
+        'filterModel' => $searchModelAptitud,
+
+        'columns' => [
+            ['class' => 'yii\grid\SerialColumn'],
+
+            //'id_aptitud',
+            'tipo',
+            'nivel',
+            //'id_usuario',
+
+            ['class' => 'yii\grid\ActionColumn'],
+        ],
+    ]); ?>
+    <br>
+    <br>
+    
+    <h3> Estudios Realizados</h3>
+    <br>
+    <p>
+        <?= Html::a('Agregar Estudios', ['createaptitud'], ['class' => 'btn btn-success']) ?>
+    </p>
+    <?= GridView::widget([
+        'dataProvider' => $dataProviderAptitud,
+        'filterModel' => $searchModelAptitud,
+
+        'columns' => [
+            ['class' => 'yii\grid\SerialColumn'],
+
+            //'id_aptitud',
+            'tipo',
+            'nivel',
+            //'id_usuario',
+
+            ['class' => 'yii\grid\ActionColumn'],
+        ],
+    ]); ?>
+
 </div>

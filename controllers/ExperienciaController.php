@@ -5,6 +5,8 @@ namespace app\controllers;
 use Yii;
 use app\models\Experiencia;
 use app\models\ExperienciaSearch;
+use app\models\Aptitud;
+use app\models\AptitudSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -35,12 +37,22 @@ class ExperienciaController extends Controller
      */
     public function actionIndex()
     {
+
+        $usuario = Yii::$app->user->identity;
+
+        //EXPERICIENCIA
         $searchModel = new ExperienciaSearch();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams,$usuario->id_registro);
+        
+        //APTITUD
+        $searchModelAptitud = new AptitudSearch();
+        $dataProviderAptitud = $searchModelAptitud->search(Yii::$app->request->queryParams,$usuario->id_registro);
 
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
+            'searchModelAptitud' => $searchModelAptitud,
+            'dataProviderAptitud' => $dataProviderAptitud,
         ]);
     }
 
@@ -65,15 +77,38 @@ class ExperienciaController extends Controller
     public function actionCreate()
     {
         $model = new Experiencia();
-
+        $usuario = Yii::$app->user->identity;
+        $model->id_usuario = $usuario->id_registro;
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id_experiencia]);
+            return $this->redirect(['index']);
         }
 
         return $this->render('create', [
+            'model' => $model
+        ]);
+    }
+
+    /**
+     * Creates a new Aptitud model.
+     * If creation is successful, the browser will be redirected to the 'view' page.
+     * @return mixed
+     */
+    public function actionCreateaptitud()
+    {
+        $model = new Aptitud();
+        $usuario = Yii::$app->user->identity;
+        $model->id_usuario = $usuario->id_registro;
+        
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            return $this->redirect(['index']);
+        }
+
+        return $this->render('createaptitud', [
             'model' => $model,
         ]);
     }
+
+
 
     /**
      * Updates an existing Experiencia model.
@@ -124,4 +159,9 @@ class ExperienciaController extends Controller
 
         throw new NotFoundHttpException('The requested page does not exist.');
     }
+
+
+    
+
+
 }
