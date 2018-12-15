@@ -36,16 +36,14 @@ class SiteController extends Controller
                         'actions' => ['about'],
                         'allow' => true,
                         // Allow users, moderators and admins to create
-                        'roles' => [
-                            User::ROLE_SELECTOR,User::ROLE_GESTOR
-                        ],
+                        'roles' => ['?'],
                         
                     ],[
                         'actions' => ['contact'],
                         'allow' => true,
                         // Allow users, moderators and admins to create
-                        'roles' => ['@'
-                        ],],
+                        'roles' => ['?'],
+                    ],
                 ],
             ],
             'verbs' => [
@@ -80,11 +78,21 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
+        $busqueda = Yii::$app->request->queryParams;
         $searchModel = new ConvocatoriaSearch();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        if( isset($busqueda['valor']))
+        {
+            $valor=$busqueda['valor'];
+            $searchModel->titulo=$valor;
+            $searchModel->descripcion=$valor;
+        }
+        else {
+            $valor ="";
+        }
+        $dataProvider = $searchModel->searchAvanzado();
         
         return $this->render('index', [
-            'searchModel' => $searchModel,
+            'valor' => $valor,
             'dataProvider' => $dataProvider,
         ]);
     }
