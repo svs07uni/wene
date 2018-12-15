@@ -43,11 +43,11 @@ $apellido = Yii::$app->user->getApellido();
                     ['label' => 'Mi CV', 
                      'icon' => 'fa fa-id-card-o', 
                      'url' => [''], 
-                     'visible' => !Yii::$app->user->isGuest
+                        'visible' => !Yii::$app->user->isGuest && Yii::$app->user->identity->id_rol == User::ROLE_POSTULANTE
                     ],
                     ['label' => 'Rendimiento ', 
                      'icon' => 'pencil',
-                        'visible' => !Yii::$app->user->isGuest,
+                        'visible' => !Yii::$app->user->isGuest && Yii::$app->user->identity->id_rol == User::ROLE_POSTULANTE,
                             'items'=>[
                                 ['label'=>'Academico',
                                     'icon'=>'certificate',
@@ -76,7 +76,7 @@ $apellido = Yii::$app->user->getApellido();
                     ['label' => 'Iniciar sesión', 'icon'=>'fa fa-user-circle','url' => ['site/login'], 'visible' => Yii::$app->user->isGuest],
                     ['label' => 'Acerca de', 'icon'=>'fas fa-info-circle', 'url' => ['site/about'], 'visible' => Yii::$app->user->isGuest],
                     ['label' => 'Contactos', 'icon'=>'far fa-comments', 'url' => ['site/contact'], 'visible' => Yii::$app->user->isGuest],
-                    ['label' => 'Gestor', 'icon'=>'fa fa-book-reader', 'url' => ['gestor/'], 'visible' => !Yii::$app->user->isGuest],
+                    
                     /*[
                         'label' => 'Some tools',
                         'icon' => 'share',
