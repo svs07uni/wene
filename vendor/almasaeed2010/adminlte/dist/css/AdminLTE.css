@@ -4977,3 +4977,7 @@ table.text-center th {
     white-space: normal !important;
   }
 }
+.panel-body {
+    height: 100px;    // or whatever
+    overflow: hidden;
+}

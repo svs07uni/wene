@@ -28,7 +28,7 @@ $apellido = Yii::$app->user->getApellido();
               </span>
             </div>
         </form>
-        <!-- /.search form -->
+        <!-- /.search form  agregar en gestor añadir convocatoria convocatoria/index-->
 
         <?= dmstr\widgets\Menu::widget(
             [
@@ -46,8 +46,7 @@ $apellido = Yii::$app->user->getApellido();
                      'visible' => !Yii::$app->user->isGuest
                     ],
                     ['label' => 'Rendimiento ', 
-                     'icon' => 'pencil', 
-                     'url' => [''], 
+                     'icon' => 'pencil',
                         'visible' => !Yii::$app->user->isGuest,
                             'items'=>[
                                 ['label'=>'Academico',
@@ -59,6 +58,20 @@ $apellido = Yii::$app->user->getApellido();
                                          'url'=>[''],
                                         ],
                                       ],
+                    ],
+                    ['label' => 'Convocatoria', 
+                        'icon'=>'fas fa-briefcase',
+                        'visible' => !Yii::$app->user->isGuest && Yii::$app->user->identity->id_rol == User::ROLE_GESTOR,
+                        'items'=>[
+                            ['label'=>'Crear',
+                                'icon'=>'fas fa-plus',
+                                'url'=>['/convocatoria/create'],
+                            ],
+                            ['label'=>'Listar',
+                                'icon'=>'far fa-list-alt',
+                                'url'=>['/convocatoria'],
+                            ],
+                        ],
                     ],
                     ['label' => 'Iniciar sesión', 'icon'=>'fa fa-user-circle','url' => ['site/login'], 'visible' => Yii::$app->user->isGuest],
                     ['label' => 'Acerca de', 'icon'=>'fas fa-info-circle', 'url' => ['site/about'], 'visible' => Yii::$app->user->isGuest],
