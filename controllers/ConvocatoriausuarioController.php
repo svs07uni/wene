@@ -46,8 +46,10 @@ class ConvocatoriausuarioController extends \yii\web\Controller
         echo("error");
     }
     public function actionVermas($id_convocatoria) {
-                
-        return $this->render('convocatoria1');
+        $model = Convocatoria::findOne($id_convocatoria);
+        return $this->render('convocatoria1', [
+            'model' => $model,
+        ]);
     }
 
 }

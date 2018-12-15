@@ -1,2 +1,2 @@
 <?php
-echo 'aca';
+print_r($model);
