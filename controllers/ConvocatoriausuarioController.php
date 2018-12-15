@@ -44,11 +44,10 @@ class ConvocatoriausuarioController extends \yii\web\Controller
       		return $this->redirect(['misconvocatorias']);
         } 
         echo("error");
-      	
-            
-      
-
     }
-
+    public function actionVermas($id_convocatoria) {
+                
+        return $this->render('convocatoria1');
+    }
 
 }

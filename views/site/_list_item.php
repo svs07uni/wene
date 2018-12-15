@@ -6,22 +6,21 @@ use yii\helpers\Url;
 ?>
 <div class="col-sm-4">
 <?php if($model->activo){
-    ?> <div class="panel panel-success" >
+    ?><div class="panel panel-success">
     		<div class="panel-heading"style="border: 1px solid green;"><?php
 }else {
-     ?><div class="panel panel-danger" >
+     ?><div class="panel panel-danger">
      		<div class="panel-heading"style="border: 1px solid red;"><?php 
 }?>
-
 		<h4 class="title">
 			<?= Html::encode($model->titulo);?>
 		</h4>
 	</div>
 	<div class="panel-body" style="height: 250px; overflow: hidden;">
 		<div class="item-excerpt">
-			<?= Html::encode(substr($model->descripcion,0,400)); ?>...
+			<?=Html::encode(substr($model->descripcion,0,400));?>...
 			</br>
-			<a href="#">Ver Mas</a>
+			<?= Html::a('Ver Mas', ['convocatoriausuario/vermas','id_convocatoria'=>$model->id_convocatoria]) ?>
 		</div>
 	</div>
 	<div class="panel-footer clearfix">
