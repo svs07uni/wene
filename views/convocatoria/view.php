@@ -33,10 +33,18 @@ $this->params['breadcrumbs'][] = $this->title;
             'titulo',
             'descripcion',
             'direccion',
-            'fecha_alta',
-            'fecha_desde',
-            'fecha_hasta',
-            'cant_postulantes',
+        	['attribute'=>'fecha_alta',
+        			'format'=>['DateTime','php:d-m-Y']
+        	],
+            
+        	['attribute'=>'fecha_desde',
+        			'format'=>['DateTime','php:d-m-Y']
+        	],
+        		
+        	['attribute'=>'fecha_hasta',
+        			'format'=>['DateTime','php:d-m-Y']
+        		],
+        	'cant_postulantes',
             'activo:boolean',
             //'id_tipo',
             'tipo.nombre',
@@ -49,6 +57,7 @@ $this->params['breadcrumbs'][] = $this->title;
 <h2>Postulantes</h2>
  <?= GridView::widget([
         'dataProvider' => $dataProvider,
+ 		'layout' => '{items}',
        // 'filterModel' => $searchModel,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
@@ -56,12 +65,12 @@ $this->params['breadcrumbs'][] = $this->title;
            // 'id_postulante',
             //'id_usuario',
             //'id_convocatoria',
-            'fecha_postulado',
+            //'fecha_postulado',
             //'id_estado',
             'usuario.nombre',
         	'usuario.apellido',
         	'usuario.telefono',
-        	'usuario.direccion',
+        	//'usuario.direccion',
             'usuario.localidad.nombre',
         	'estado.nombre',
             'orden_merito',

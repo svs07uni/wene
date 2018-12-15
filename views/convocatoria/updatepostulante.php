@@ -13,7 +13,7 @@ use yii\widgets\DetailView;?>
     <?= $form->field($model->estado, 'nombre')->textInput(['readonly'=> true,])
     ->label('Estado Postulante') ?>
 
- 	<?= $form->field($model, 'orden_merito')->dropDownList([1=>1,2=>2,3=>3,4=>4,5=>5])->label('Orden de  Merito')?>
+ 	<?= $form->field($model, 'orden_merito')-> textInput(['required'=>'true','integer'=>'true','value'<='100'])-> label('Orden de  Merito')?>
     
 	<div class="form-group">
         <?= Html::submitButton('Guardar', ['class' => 'btn btn-success']) ?>

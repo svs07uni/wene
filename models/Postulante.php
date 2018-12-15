@@ -41,6 +41,8 @@ class Postulante extends \yii\db\ActiveRecord
             [['id_convocatoria'], 'exist', 'skipOnError' => true, 'targetClass' => Convocatoria::className(), 'targetAttribute' => ['id_convocatoria' => 'id_convocatoria']],
             [['id_estado'], 'exist', 'skipOnError' => true, 'targetClass' => EstadoPostulante::className(), 'targetAttribute' => ['id_estado' => 'id_estado']],
             [['id_usuario'], 'exist', 'skipOnError' => true, 'targetClass' => Usuario::className(), 'targetAttribute' => ['id_usuario' => 'id_registro']],
+        	['orden_merito', 'compare', 'compareValue' => 100, 'operator' => '<=', 'type' => 'number'],
+        	['orden_merito', 'compare', 'compareValue' => 0, 'operator' => '>=', 'type' => 'number'],
         ];
     }
 
