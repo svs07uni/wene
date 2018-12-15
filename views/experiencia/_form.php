@@ -9,19 +9,19 @@ use yii\widgets\ActiveForm;
 ?>
 
 <div class="experiencia-form">
+    <div class="col-sm-8">
+        <?php $form = ActiveForm::begin(); ?>
 
-    <?php $form = ActiveForm::begin(); ?>
+    
 
-    <?= $form->field($model, 'id_usuario')->textInput() ?>
+        <?= $form->field($model, 'titulo')->textInput() ?>
 
-    <?= $form->field($model, 'titulo')->textInput() ?>
+        <?= $form->field($model, 'descripcion')->textarea() ?>
 
-    <?= $form->field($model, 'descripcion')->textInput() ?>
-
-    <div class="form-group">
-        <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
-    </div>
+        <div class="form-group">
+            <?= Html::submitButton('Guardar', ['class' => 'btn btn-success']) ?>
+        </div>
 
     <?php ActiveForm::end(); ?>
-
+    </div>
 </div>
