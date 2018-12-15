@@ -43,11 +43,11 @@ $apellido = Yii::$app->user->getApellido();
                     ['label' => 'Mi CV', 
                      'icon' => 'fa fa-id-card-o', 
                      'url' => [''], 
-                     'visible' => !Yii::$app->user->isGuest
+                        'visible' => !Yii::$app->user->isGuest && Yii::$app->user->identity->id_rol == User::ROLE_POSTULANTE
                     ],
                     ['label' => 'Rendimiento ', 
                      'icon' => 'pencil',
-                        'visible' => !Yii::$app->user->isGuest,
+                        'visible' => !Yii::$app->user->isGuest && Yii::$app->user->identity->id_rol == User::ROLE_POSTULANTE,
                             'items'=>[
                                 ['label'=>'Academico',
                                     'icon'=>'certificate',

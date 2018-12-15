@@ -26,19 +26,11 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            'id_convocatoria',
+        	'tipo.nombre',
             'titulo',
-            'descripcion',
-            'direccion',
             'fecha_alta',
-            //'fecha_desde',
-            //'fecha_hasta',
-            //'cant_postulantes',
-            //'activo:boolean',
-            //'id_tipo',
-            //'id_sede_pedido',
-            //'id_institucion',
-            //'requisitos',
+            'cant_postulantes',
+            
 
             ['class' => 'yii\grid\ActionColumn'],
         ],
