@@ -5,7 +5,7 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model app\models\Experiencia */
 
-$this->title = 'Update Experiencia: ' . $model->id_experiencia;
+$this->title = 'Modificar Experiencia Laboral: ' . $model->titulo;
 $this->params['breadcrumbs'][] = ['label' => 'Experiencias', 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => $model->id_experiencia, 'url' => ['view', 'id' => $model->id_experiencia]];
 $this->params['breadcrumbs'][] = 'Update';

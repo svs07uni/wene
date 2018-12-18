@@ -13,9 +13,11 @@ $this->title = 'Experiencia Laboral';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="experiencia-index">
-
-    
+<h1 align="center"> Cargar Experiencias</h1>
+<br>
+<br>    
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
+    <h3 align="center" > Experiencia Laboral</h3>
     <br>
     <p>
         <?= Html::a('Agregar Experiencia Laboral', ['create'], ['class' => 'btn btn-success']) ?>
@@ -40,7 +42,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <br>
     <br>
 
-    <h3> Aptitudes </h3>
+    <h3 align="center" > Aptitudes </h3>
     <br>
     <p>
         <?= Html::a('Agregar Aptitudes', ['createaptitud'], ['class' => 'btn btn-success']) ?>
@@ -56,24 +58,32 @@ $this->params['breadcrumbs'][] = $this->title;
             'tipo',
             'nivel',
             //'id_usuario',
-/*
             [
                 'class' => 'yii\grid\ActionColumn',
-                'template' => '{delete}',
-                'header' => 'Quitar',
-                'urlCreator' => function ($action, $model, $key, $index) {
+                'template' => '{delete} {update} {view}',
+                'header' => '',
+                /*'urlCreator' => function ($action, $model, $key, $index) {
                                         if ($action === 'delete') {
-                                            $url ='?d='.$model->id_dependencia;
+                                            $url ='?d='.$model->id_aptitud;
+                                            print_r($url);
+                                            
                                             return $url;
                                         }
-                                 }
-            ],*/
+                                 }*/
+                'buttons'=> [
+                    'view' => function ($action, $model, $key) {
+                        $url = 'aptitud/'. $model->id_aptitud;
+                        return Html::a('Action', $url);                        
+                    }
+
+                ]               
+            ],
         ],
     ]); ?>
     <br>
     <br>
     
-    <h3> Estudios Realizados</h3>
+    <h3 align="center" > Estudios Realizados</h3>
     <br>
     <p>
         <?= Html::a('Agregar Estudios', ['createestudio'], ['class' => 'btn btn-success']) ?>
@@ -86,16 +96,21 @@ $this->params['breadcrumbs'][] = $this->title;
             ['class' => 'yii\grid\SerialColumn'],
 
             //'id_aptitud',
+            'titulo',
             'institucion',
-            'fecha_egreso',
+        		
+        	['attribute'=>'fecha_egreso',
+        			'format'=>['DateTime','php:d-m-Y']
+        		],
             //'id_usuario',
 
             ['class' => 'yii\grid\ActionColumn'],
         ],
     ]); ?>
 
-
-<h3> Publicaciones Realizados</h3>
+<br>
+<br>
+<h3 align="center" > Publicaciones Realizados</h3>
     <br>
     <p>
         <?= Html::a('Agregar Publicaciones', ['createpublicacion'], ['class' => 'btn btn-success']) ?>
@@ -109,7 +124,9 @@ $this->params['breadcrumbs'][] = $this->title;
 
             //'id_aptitud',
             'titulo',
-            'fecha',
+            ['attribute'=>'fecha',
+        			'format'=>['DateTime','php:d-m-Y']
+        		],
             //'id_usuario',
 
             ['class' => 'yii\grid\ActionColumn'],

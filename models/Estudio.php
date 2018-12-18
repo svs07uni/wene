@@ -8,13 +8,12 @@ use Yii;
  * This is the model class for table "estudio".
  *
  * @property int $id_estudio
- * @property int $institucion
  * @property string $fecha_egreso
  * @property int $id_tipo
  * @property string $titulo
  * @property int $id_usuario
  *
- * @property Institucion $institucion
+ * @property string $institucion
  * @property Usuario $usuario
  */
 class Estudio extends \yii\db\ActiveRecord
@@ -35,10 +34,9 @@ class Estudio extends \yii\db\ActiveRecord
         return [
             [['institucion', 'titulo', 'id_usuario'], 'required'],
             [['institucion', 'id_tipo', 'id_usuario'], 'default', 'value' => null],
-            [['institucion', 'id_tipo', 'id_usuario'], 'integer'],
+            [[ 'id_tipo', 'id_usuario'], 'integer'],
             [['fecha_egreso'], 'safe'],
             [['titulo'], 'string'],
-            [['institucion'], 'exist', 'skipOnError' => true, 'targetClass' => Institucion::className(), 'targetAttribute' => ['institucion' => 'id_institucion']],
             [['id_usuario'], 'exist', 'skipOnError' => true, 'targetClass' => Usuario::className(), 'targetAttribute' => ['id_usuario' => 'id_registro']],
         ];
     }
@@ -63,7 +61,7 @@ class Estudio extends \yii\db\ActiveRecord
      */
     public function getInstitucion()
     {
-        return $this->hasOne(Institucion::className(), ['institucion' => 'institucion']);
+        return $this->hasOne(Institucion::className(), ['nombre' => 'institucion']);
     }
 
     /**
