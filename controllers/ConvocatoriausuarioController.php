@@ -47,7 +47,7 @@ class ConvocatoriausuarioController extends \yii\web\Controller
     }
     public function actionVermas($id_convocatoria) {
         $model = Convocatoria::findOne($id_convocatoria);
-        return $this->render('convocatoria1', [
+        return $this->render('unaconvocatoria', [
             'model' => $model,
         ]);
     }
