@@ -7,7 +7,7 @@ use yii\grid\GridView;
 /* @var $searchModel app\models\AbarcaSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Abarcas';
+$this->title = 'Abarca';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="abarca-index">
@@ -16,7 +16,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <?= Html::a('Create Abarca', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Crear Abarca', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?= GridView::widget([
