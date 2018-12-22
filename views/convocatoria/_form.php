@@ -29,15 +29,15 @@ use dosamigos\datepicker\DateRangePicker;
     <?= $form->field($model, 'direccion')->textInput() ?>
 
  	<?= $form->field($model, 'fecha_desde')->widget(DateRangePicker::className(), [
-    'attributeTo' => 'fecha_hasta', 
-    'form' => $form, // best for correct client validation
+    'attributeTo' => 'fecha_hasta',
+ 	  'form' => $form, // best for correct client validation
     'language' => 'es',
     'size' => 'lg',
-/*    'clientOptions' => [
+ 	'clientOptions' => [
         'autoclose' => true,
-        //'format' => 'dd-mm-yyyy'
-    		'format' => 'yyyy-mm-dd'
-    ]*/
+    	'format' => 'dd-mm-yyyy',
+ 	 ]
+ 		
 	]);?>
 	   
 
