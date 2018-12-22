@@ -41,7 +41,9 @@ class PublicacionSearch extends Publicacion
      */
     public function search($params,$id_usuario)
     {
-        $query = Publicacion::find();
+        $query = Publicacion::find()
+        ->joinWith('usuario')
+        ->andFilterWhere(['usuario.id_registro' => $id_usuario]);
 
         // add conditions that should always apply here
 

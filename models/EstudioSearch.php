@@ -41,7 +41,9 @@ class EstudioSearch extends Estudio
      */
     public function search($params,$id_usuario = null)
     {
-        $query = Estudio::find();
+        $query = Estudio::find()
+        ->joinWith('usuario')
+        ->andFilterWhere(['usuario.id_registro' => $id_usuario]);
 
         // add conditions that should always apply here
 
@@ -60,6 +62,7 @@ class EstudioSearch extends Estudio
         // grid filtering conditions
         $query->andFilterWhere([
             'id_estudio' => $this->id_estudio,
+            'titulo'=> $this->titulo,
             'institucion' => $this->institucion,
             'fecha_egreso' => $this->fecha_egreso,
             'id_tipo' => $this->id_tipo,
