@@ -123,7 +123,11 @@ class UsuarioController extends \yii\web\Controller
      */
     public function actionEditar()
     {
-        $model = new \app\models\Usuario();
+        //$model = new \app\models\Usuario();
+        $id_usuario =\Yii::$app->getRequest()->getQueryParam('id');
+        $model = Usuario::find()
+        ->where(['id_registro' => $id_usuario])
+        ->one();
 
         if ($model->load(\Yii::$app->request->post())) {
             if ($model->save()) {
