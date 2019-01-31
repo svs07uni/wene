@@ -17,13 +17,12 @@ use kartik\file\FileInput;
 use yii\widgets\ActiveForm;
 ?>
 <h3 align="center" > Perfil Publico</h3>
+
 <br>
 
 <body>
-<div class="col-sm-4" style="align=center;"> 
-</div>
 
-<div class="col-sm-4" style="align=center;"> 
+<div class="col-sm-6" style="align:'center';margin-left:260px;margin-bottom:10px; "> 
         <?= DetailView::widget([
             'model' => $modeluser,
             'attributes' => [
@@ -41,12 +40,13 @@ use yii\widgets\ActiveForm;
 <br>
 <br>    
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
+    
     <div class="col-sm-6" style="align=center;"> 
     <h3 align="center" > Experiencia Laboral</h3>
     <br>
         <?= GridView::widget([
             'dataProvider' => $dataProvider,
-            'filterModel' => $searchModel,
+            //'filterModel' => $searchModel,
             'columns' => [
                 ['class' => 'yii\grid\SerialColumn'],
 
@@ -54,7 +54,7 @@ use yii\widgets\ActiveForm;
                 //'id_usuario',
                 'titulo',
                 'descripcion',
-
+                ['class' => 'yii\grid\ActionColumn'],
             ],
         ]); ?>
     </div>
@@ -66,7 +66,7 @@ use yii\widgets\ActiveForm;
     
     <?= GridView::widget([
         'dataProvider' => $dataProviderAptitud,
-        'filterModel' => $searchModelAptitud,
+        //'filterModel' => $searchModelAptitud,
 
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
@@ -75,6 +75,7 @@ use yii\widgets\ActiveForm;
             'tipo',
             'nivel',
             //'id_usuario',
+            ['class' => 'yii\grid\ActionColumn'],
         ],
     ]); ?>
     </div>
@@ -85,7 +86,7 @@ use yii\widgets\ActiveForm;
     <br>
     <?= GridView::widget([
         'dataProvider' => $dataProviderEstudio,
-        'filterModel' => $searchModelEstudio,
+        //'filterModel' => $searchModelEstudio,
 
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
@@ -96,7 +97,8 @@ use yii\widgets\ActiveForm;
         		
         	['attribute'=>'fecha_egreso',
         			'format'=>['DateTime','php:d-m-Y']
-        		],
+                ],
+                ['class' => 'yii\grid\ActionColumn'],
             //'id_usuario',
 
         ],
@@ -109,7 +111,7 @@ use yii\widgets\ActiveForm;
     <br>
     <?= GridView::widget([
         'dataProvider' => $dataProviderPublicacion,
-        'filterModel' => $searchModelPublicacion,
+        //'filterModel' => $searchModelPublicacion,
 
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
@@ -120,7 +122,7 @@ use yii\widgets\ActiveForm;
         			'format'=>['DateTime','php:d-m-Y']
         		],
             //'id_usuario',
-
+            ['class' => 'yii\grid\ActionColumn'],
         ],
     ]); ?>
 </div>

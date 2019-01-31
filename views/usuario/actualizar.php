@@ -19,13 +19,10 @@ use kartik\depdrop\DepDrop;
 <?php $roles = \yii\helpers\ArrayHelper::map(\app\models\Rol::find()->all(), 'id_rol', 'nombre');?>    
 <?php $usrActual = Yii::$app->user->identity;?>
 <body >
-<div class="jumbotron jumbotron-fluid"  >
 <h3 align="center" > Modificación de datos Personales </h3>
         <div> 
-        <div class="col-sm-4" > 
-        </div>
             <div class="container" >
-                <div class="col-sm-4" style="background-color: rgb(0, 166, 90); "> 
+                <div class="col-sm-5" > 
                     
                     <?php $form = ActiveForm::begin(); ?>
                     <?= $form->field($model, 'id_registro')->hiddenInput()->label(false) ?>
@@ -36,7 +33,9 @@ use kartik\depdrop\DepDrop;
                     <?= $form->field($model, 'nacionalidad') ?>
                     <?= $form->field($model, 'direccion') ?>
                 </div>
-                <div class="col-sm-4" style="background-color: rgb(0, 166, 90); "> 
+                <br>
+
+                <div class="col-sm-5" > 
                     <!-- Desplegable con las provincias-->
                     <?= $form->field($model, 'id_provincia')->dropDownList($provincias, ['prompt' => 'Seleccione Uno' ])
                         ->label('Provincia')?>
@@ -66,10 +65,11 @@ use kartik\depdrop\DepDrop;
                         */
                     ]);?>
                     </div>
-
-
-                    <div class="form-group">
-                        <?= Html::submitButton('Guardar', ['class' => 'btn btn-primary']) ?>
+<br><br><br><br><br><br><br><br><br><br><br>
+                    <div class="col-sm-12" style="align=center"> 
+                        <div class="form-group">
+                            <?= Html::submitButton('Guardar', ['class' => 'btn btn-primary']) ?>
+                        </div>
                     </div>
                     <?php ActiveForm::end(); ?>
                 </div>
@@ -78,5 +78,4 @@ use kartik\depdrop\DepDrop;
             
         </div>
     </div>
-</div><!-- registroUsuario -->
 </body>

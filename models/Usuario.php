@@ -60,7 +60,6 @@ class Usuario extends \yii\db\ActiveRecord
             [['fecha_nac'], 'date', 'format' => 'dd/mm/yyyy'],            
             [['foto'], 'file', 'extensions'=>'jpg, gif, png'],
             [['foto'], 'file', 'maxSize'=>'100000'],
-             [['nombre_foto', 'image_web_filename'], 'string', 'max' => 255], 
             [['id_registro'], 'unique'],
             [['id_localidad'], 'exist', 'skipOnError' => true, 'targetClass' => Localidad::className(), 'targetAttribute' => ['id_localidad' => 'id_localidad']],
             [['id_registro'], 'exist', 'skipOnError' => true, 'targetClass' => Registro::className(), 'targetAttribute' => ['id_registro' => 'id_registro']],
