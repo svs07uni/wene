@@ -13,46 +13,54 @@ use app\models\Tipo;
 use yii\grid\GridView;
 use yii\widgets\DetailView;;
 use yii\helpers\Html;
+use kartik\file\FileInput;
+use yii\widgets\ActiveForm;
 ?>
-<h3 align="center" > Perfil </h3>
-    <br>
+<h3 align="center" > Perfil Publico</h3>
+<br>
 
-    <?= DetailView::widget([
-        'model' => $modelUsr,
-        'attributes' => [
-            'nombre',
-            'apellido',
-            'dni',
-            'localidad.nombre',
-        	['attribute'=>'fecha_nac',
-        			'format'=>['DateTime','php:d-m-Y']
-        		],
+<body>
+<div class="col-sm-4" style="align=center;"> 
+</div>
 
-        ],
-    ]) ?>
+<div class="col-sm-4" style="align=center;"> 
+        <?= DetailView::widget([
+            'model' => $modeluser,
+            'attributes' => [
+                'nombre',
+                'apellido',
+                'dni',
+                'localidad.nombre',
+                ['attribute'=>'fecha_nac',
+                        'format'=>['DateTime','php:d-m-Y']
+                    ],
 
+            ],
+        ]) ?>
+    </div>
 <br>
 <br>    
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
+    <div class="col-sm-6" style="align=center;"> 
     <h3 align="center" > Experiencia Laboral</h3>
     <br>
+        <?= GridView::widget([
+            'dataProvider' => $dataProvider,
+            'filterModel' => $searchModel,
+            'columns' => [
+                ['class' => 'yii\grid\SerialColumn'],
 
-    <?= GridView::widget([
-        'dataProvider' => $dataProvider,
-        'filterModel' => $searchModel,
-        'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
+                //'id_experiencia',
+                //'id_usuario',
+                'titulo',
+                'descripcion',
 
-            //'id_experiencia',
-            //'id_usuario',
-            'titulo',
-            'descripcion',
-
-        ],
-    ]); ?>
+            ],
+        ]); ?>
+    </div>
     <br>
     <br>
-
+    <div class="col-sm-6" style="align=center;">         
     <h3 align="center" > Aptitudes </h3>
     <br>
     
@@ -69,9 +77,10 @@ use yii\helpers\Html;
             //'id_usuario',
         ],
     ]); ?>
+    </div>
     <br>
     <br>
-    
+    <div class="col-sm-6" style="align=center;"> 
     <h3 align="center" > Estudios Realizados</h3>
     <br>
     <?= GridView::widget([
@@ -92,9 +101,10 @@ use yii\helpers\Html;
 
         ],
     ]); ?>
-
+    </div>
 <br>
 <br>
+<div class="col-sm-6" style="align=center;"> 
 <h3 align="center" > Publicaciones Realizados</h3>
     <br>
     <?= GridView::widget([
@@ -113,5 +123,5 @@ use yii\helpers\Html;
 
         ],
     ]); ?>
-
+</div>
 
