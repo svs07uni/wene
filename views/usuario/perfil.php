@@ -22,7 +22,7 @@ use yii\widgets\ActiveForm;
 
 <body>
 
-<div class="col-sm-6" style="align:'center';margin-left:260px;margin-bottom:10px; "> 
+<div class="col-sm-12" style=" position: relative;margin-left:10px;margin-bottom:10px; margin-right:10px;"> 
         <?= DetailView::widget([
             'model' => $modeluser,
             'attributes' => [
@@ -54,7 +54,7 @@ use yii\widgets\ActiveForm;
                 //'id_usuario',
                 'titulo',
                 'descripcion',
-                ['class' => 'yii\grid\ActionColumn'],
+              //  ['class' => 'yii\grid\ActionColumn'],
             ],
         ]); ?>
     </div>
@@ -75,13 +75,13 @@ use yii\widgets\ActiveForm;
             'tipo',
             'nivel',
             //'id_usuario',
-            ['class' => 'yii\grid\ActionColumn'],
+            //['class' => 'yii\grid\ActionColumn'],
         ],
     ]); ?>
     </div>
     <br>
     <br>
-    <div class="col-sm-6" style="align=center;"> 
+    <div class="col-sm-6"  style="margin-top:10px; "> 
     <h3 align="center" > Estudios Realizados</h3>
     <br>
     <?= GridView::widget([
@@ -98,7 +98,7 @@ use yii\widgets\ActiveForm;
         	['attribute'=>'fecha_egreso',
         			'format'=>['DateTime','php:d-m-Y']
                 ],
-                ['class' => 'yii\grid\ActionColumn'],
+              //  ['class' => 'yii\grid\ActionColumn'],
             //'id_usuario',
 
         ],
@@ -106,7 +106,7 @@ use yii\widgets\ActiveForm;
     </div>
 <br>
 <br>
-<div class="col-sm-6" style="align=center;"> 
+<div class="col-sm-6" style="margin-top:10px; "> 
 <h3 align="center" > Publicaciones Realizados</h3>
     <br>
     <?= GridView::widget([
@@ -122,7 +122,7 @@ use yii\widgets\ActiveForm;
         			'format'=>['DateTime','php:d-m-Y']
         		],
             //'id_usuario',
-            ['class' => 'yii\grid\ActionColumn'],
+            //['class' => 'yii\grid\ActionColumn'],
         ],
     ]); ?>
 </div>

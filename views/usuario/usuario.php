@@ -21,8 +21,8 @@ use kartik\depdrop\DepDrop;
 <div class="jumbotron jumbotron-fluid">
 
         <div> 
-            <div class="container" style="background-color: #d5f5e3 ">
-            <div class="col-sm-6"  style="background-color:  #d5f5e3  "> 
+            <div class="container" style="background-color: rgb(0, 166, 90); ">
+            <div class="col-sm-6"  style="background-color:  rgb(0, 166, 90);  "> 
                 <h2>
                     Necesitamos conocerte mejor!
                 </h2>
@@ -31,7 +31,7 @@ use kartik\depdrop\DepDrop;
                 A fin de que puedas postularte a las convocatorias son necesarios estos datos.
                 </h4>
                 </div>    
-                <div class="col-sm-5" style="background-color: #d5f5e3 "> 
+                <div class="col-sm-5" style="background-color: rgb(0, 166, 90); "> 
                     
                     <?php $form = ActiveForm::begin(); ?>
                     <?= $form->field($model, 'id_registro')->hiddenInput()->label(false) ?>
