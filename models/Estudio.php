@@ -47,7 +47,7 @@ class Estudio extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id_estudio' => 'Id Estudio',
+            //'id_estudio' => 'Id Estudio',
             'institucion' => 'Institucion',
             'fecha_egreso' => 'Fecha Egreso',
             'id_tipo' => 'Id Tipo',
