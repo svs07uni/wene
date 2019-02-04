@@ -16,7 +16,7 @@ use yii\helpers\Html;
 use kartik\file\FileInput;
 use yii\widgets\ActiveForm;
 ?>
-<h3 align="center" > Perfil Publico</h3>
+<h3 align="center" > Datos Personales Publico</h3>
 
 <br>
 

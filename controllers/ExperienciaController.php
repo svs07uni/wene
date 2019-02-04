@@ -50,6 +50,7 @@ class ExperienciaController extends Controller
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams,$usuario->id_registro);
         
         //APTITUD
+        $modelAptitud = new Aptitud();
         $searchModelAptitud = new AptitudSearch();
         $dataProviderAptitud = $searchModelAptitud->search(Yii::$app->request->queryParams,$usuario->id_registro);
 
@@ -64,6 +65,7 @@ class ExperienciaController extends Controller
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
+            'modelAptitud'  => $modelAptitud,
             'searchModelAptitud' => $searchModelAptitud,
             'dataProviderAptitud' => $dataProviderAptitud,
             'searchModelEstudio' => $searchModelEstudio,
@@ -216,8 +218,17 @@ class ExperienciaController extends Controller
         throw new NotFoundHttpException('The requested page does not exist.');
     }
 
+    /*
+    *   View de la grilla para ver una aptitud
+    */
+    public function actionAptitudview($id){
+        $model = new Aptitud();
 
-    
+        return $this->render('//aptitud/view', [
+            'model' => $model::findOne($id),   
+            'id' => $id
+        ]);
+    }
 
 
 }

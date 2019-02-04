@@ -8,7 +8,7 @@ use dosamigos\datepicker\DateRangePicker;
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\ExperienciaSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
-
+use yii\helpers\Url;
 $this->title = 'Experiencia Laboral';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
@@ -41,7 +41,7 @@ $this->params['breadcrumbs'][] = $this->title;
     ]); ?>
     <br>
     <br>
-
+<!--    APTITUDES   -->
     <h3 align="center" > Aptitudes </h3>
     <br>
     <p>
@@ -60,20 +60,20 @@ $this->params['breadcrumbs'][] = $this->title;
             //'id_usuario',
             [
                 'class' => 'yii\grid\ActionColumn',
-                'template' => '{delete} {update} {view}',
+                'template' => '{aptitudDelete} {aptitudUpdate} {aptitudView}',
                 'header' => '',
                 /*'urlCreator' => function ($action, $model, $key, $index) {
                                         if ($action === 'delete') {
                                             $url ='?d='.$model->id_aptitud;
                                             print_r($url);
-                                            
+                                            s
                                             return $url;
                                         }
                                  }*/
                 'buttons'=> [
-                    'view' => function ($action, $model, $key) {
-                        $url = 'aptitud/'. $model->id_aptitud;
-                        return Html::a('Action', $url);                        
+                    'aptitudView' => function ($url ,$modelAptitud) {
+                        $url = Url::to(['aptitudview','id'=> $modelAptitud->id_aptitud]);
+                        return Html::a('<span class="fa fa-eye"></span>', $url,['title'=>'view']);                        
                     }
 
                 ]               
@@ -82,7 +82,8 @@ $this->params['breadcrumbs'][] = $this->title;
     ]); ?>
     <br>
     <br>
-    
+
+<!--    ESTUDIOS REALIZADOS   -->
     <h3 align="center" > Estudios Realizados</h3>
     <br>
     <p>
@@ -110,6 +111,8 @@ $this->params['breadcrumbs'][] = $this->title;
 
 <br>
 <br>
+
+<!--    PUBLICACIONES   -->
 <h3 align="center" > Publicaciones Realizados</h3>
     <br>
     <p>
