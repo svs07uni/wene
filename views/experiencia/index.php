@@ -66,7 +66,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         $url = Url::to(['aptitudupdate','id'=> $modelAptitud->id_aptitud]);
                         return Html::a('<span class="fa fa-pencil"></span>', $url,['title'=>'view']);                        
                     },
-                    'aptituddelte' => function ($url ,$modelAptitud) {
+                    'aptitudDelete' => function ($url ,$modelAptitud) {
                         $url = Url::to(['aptituddelete','id'=> $modelAptitud->id_aptitud]);
                         return Html::a('<span class="fa fa-trash-o"></span>', $url,['title'=>'view']);                        
                     }
@@ -113,7 +113,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         $url = Url::to(['estudioupdate','id'=> $modelEstudio->id_estudio]);
                         return Html::a('<span class="fa fa-pencil"></span>', $url,['title'=>'view']);                        
                     },
-                    'estudiodelte' => function ($url ,$modelEstudio) {
+                    'estudioDelete' => function ($url ,$modelEstudio) {
                         $url = Url::to(['estudiodelete','id'=> $modelEstudio->id_estudio]);
                         return Html::a('<span class="fa fa-trash-o"></span>', $url,['title'=>'view']);                        
                     }
@@ -158,7 +158,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         $url = Url::to(['publicacionupdate','id'=> $modelPublicacion->id_publicacion]);
                         return Html::a('<span class="fa fa-pencil"></span>', $url,['title'=>'view']);                        
                     },
-                    'publicaciondelte' => function ($url ,$modelPublicacion) {
+                    'publicaciondelete' => function ($url ,$modelPublicacion) {
                         $url = Url::to(['publicaciondelete','id'=> $modelPublicacion->id_publicacion]);
                         return Html::a('<span class="fa fa-trash-o"></span>', $url,['title'=>'view']);                        
                     }
