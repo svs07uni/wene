@@ -15,11 +15,11 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Update', ['update', 'id' => $model->id_postulante], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a('Delete', ['delete', 'id' => $model->id_postulante], [
+        <?= Html::a('Actualizar', ['update', 'id' => $model->id_postulante], ['class' => 'btn btn-primary']) ?>
+        <?= Html::a('Borrar', ['delete', 'id' => $model->id_postulante], [
             'class' => 'btn btn-danger',
             'data' => [
-                'confirm' => 'Are you sure you want to delete this item?',
+                'confirm' => 'Esta seguro/a que desea borrar este postulante ?',
                 'method' => 'post',
             ],
         ]) ?>
@@ -30,8 +30,12 @@ $this->params['breadcrumbs'][] = $this->title;
         'attributes' => [
             'id_postulante',
             'id_usuario',
-            'id_convocatoria',
-            'fecha_postulado',
+            'usuario.nombre',
+        	'usuario.apellido',
+            'convocatoria.titulo',
+        	'convocatoria.institucion.nombre',	
+        	['attribute'=>'fecha_postulado',
+        		'format'=>['DateTime','php:d-m-Y']],
             'id_estado',
             'orden_merito',
         ],

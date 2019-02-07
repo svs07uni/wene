@@ -44,8 +44,8 @@ class Institucion extends \yii\db\ActiveRecord
     {
         return [
             'id_institucion' => 'Id Institucion',
-            'nombre' => 'Institución',
-            'email' => 'Email',
+            'nombre' => 'Nombre Institución',
+            'email' => 'Correo electronico',
             'telefono' => 'Telefono',
             'direccion' => 'Direccion',
         ];

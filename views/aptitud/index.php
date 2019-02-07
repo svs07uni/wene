@@ -7,7 +7,7 @@ use yii\grid\GridView;
 /* @var $searchModel app\models\AptitudSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Aptituds';
+$this->title = 'Aptitud';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="aptitud-index">
@@ -16,19 +16,21 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <?= Html::a('Create Aptitud', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Crear Aptitud', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
+    	'layout' => '{items}',
         'filterModel' => $searchModel,
         'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
+           // ['class' => 'yii\grid\SerialColumn'],
 
             'id_aptitud',
             'tipo',
-            'nivel',
-            'id_usuario',
+            //'nivel',
+        	'usuario.nombre',
+        	'usuario.apellido',
 
             ['class' => 'yii\grid\ActionColumn'],
         ],
