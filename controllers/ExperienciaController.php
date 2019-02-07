@@ -46,6 +46,7 @@ class ExperienciaController extends Controller
         $usuario = Yii::$app->user->identity;
 
         //EXPERICIENCIA
+        $model = new Experiencia();
         $searchModel = new ExperienciaSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams,$usuario->id_registro);
         
@@ -65,6 +66,7 @@ class ExperienciaController extends Controller
         $dataProviderPublicacion = $searchModelPublicacion->search(Yii::$app->request->queryParams,$usuario->id_registro);
 
         return $this->render('index', [
+            'modelExpericiencia'     => $model,
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
             'modelAptitud'  => $modelAptitud,
@@ -216,7 +218,8 @@ class ExperienciaController extends Controller
     public function actionAptituddelete($id){
         $modelAux = new Aptitud();
         $model = $modelAux::findOne($id);
-
+        //print_r($model);
+        //exit();
         $this->$model->delete();
 
         return $this->redirect(['index']);

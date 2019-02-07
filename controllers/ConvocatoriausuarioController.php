@@ -22,12 +22,13 @@ class ConvocatoriausuarioController extends \yii\web\Controller
         $searchModel = new ConvocatoriaSearch();
         $usuario = Yii::$app->user->identity;
         $dataProvider = $searchModel->search_postulante(Yii::$app->request->queryParams,$usuario->id_registro);
-        
+        $modelConvocatoria = new Convocatoria;
         //print_r($usuario->id_registro);
 
         return $this->render('misConvocatorias', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
+            'modelConvocatoria' => $modelConvocatoria,
         ]);
     }
 
@@ -45,10 +46,23 @@ class ConvocatoriausuarioController extends \yii\web\Controller
         } 
         echo("error");
     }
+    /*
     public function actionVermas($id_convocatoria) {
         $model = Convocatoria::findOne($id_convocatoria);
         return $this->render('convocatoria1', [
             'model' => $model,
+        ]);
+    }*/
+
+    /*
+    *   View de la grilla para ver una convocatoria
+    */
+    public function actionConvocatoriaview($id){
+        $model = new Convocatoria();
+
+        return $this->render('//convocatoria/viewUsuario',[
+            'model' => $model::findOne($id),   
+            //'id' => $id
         ]);
     }
 

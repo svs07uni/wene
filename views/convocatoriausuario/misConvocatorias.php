@@ -2,7 +2,7 @@
 
 use yii\helpers\Html;
 use yii\grid\GridView;
-
+use yii\helpers\Url;
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\ConvocatoriaSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
@@ -26,9 +26,30 @@ $this->params['breadcrumbs'][] = $this->title;
             'titulo',
             'direccion',
             //'fecha_alta',
-            'fecha_hasta',
+            //'fecha_hasta',
+            ['attribute'=>'fecha_hasta',
+        			'format'=>['DateTime','php:d-m-Y']
+        		],
             'activo:boolean',
-            ['class' => 'yii\grid\ActionColumn'],
+            [
+                'class' => 'yii\grid\ActionColumn',
+                'template' => '{convocatoriaUpdate} {convocatoriaView}   {convocatoriaDelete}' ,
+                'header' => '',
+                'buttons'=> [
+                    'convocatoriaView' => function ($url ,$modelConvocatoria) {
+                        $url = Url::to(['convocatoriaview','id'=> $modelConvocatoria->id_convocatoria]);
+                        return Html::a('<span class="fa fa-search"></span>', $url,['title'=>'Detalles']);                        
+                    },
+                    /*'convocatoriaUpdate' => function ($url ,$modelConvocatoria) {
+                        $url = Url::to(['convocatoriaupdate','id'=> $modelConvocatoria->id_convocatoria]);
+                        return Html::a('<span class="fa fa-pencil"></span>', $url,['title'=>'view']);                        
+                    },*/
+                    'convocatoriaDelete' => function ($url ,$modelConvocatoria) {
+                        $url = Url::to(['convocatoriadelete','id'=> $modelConvocatoria->id_convocatoria]);
+                        return Html::a('<span class="fa fa-trash"></span>', $url,['title'=>'Eliminar']);                        
+                    }
+                ]               
+            ],
         ],
     ]); ?>
 </div>
