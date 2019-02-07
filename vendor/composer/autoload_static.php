@@ -38,7 +38,9 @@ class ComposerStaticInitb9946aea46ece8f295a697f55000dea8
         ),
         'k' => 
         array (
+            'kartik\\plugins\\fileinput\\' => 25,
             'kartik\\plugins\\depdrop\\' => 23,
+            'kartik\\file\\' => 12,
             'kartik\\depdrop\\' => 15,
             'kartik\\base\\' => 12,
         ),
@@ -136,9 +138,17 @@ class ComposerStaticInitb9946aea46ece8f295a697f55000dea8
             1 => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src',
             2 => __DIR__ . '/..' . '/phpdocumentor/type-resolver/src',
         ),
+        'kartik\\plugins\\fileinput\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/kartik-v/bootstrap-fileinput',
+        ),
         'kartik\\plugins\\depdrop\\' => 
         array (
             0 => __DIR__ . '/..' . '/kartik-v/dependent-dropdown',
+        ),
+        'kartik\\file\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/kartik-v/yii2-widget-fileinput/src',
         ),
         'kartik\\depdrop\\' => 
         array (
