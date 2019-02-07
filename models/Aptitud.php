@@ -45,7 +45,7 @@ class Aptitud extends \yii\db\ActiveRecord
     {
         return [
             'id_aptitud' => 'Id Aptitud',
-            'tipo' => 'Tipo',
+            'tipo' => 'Tipo aptitud',
             'nivel' => 'Nivel',
             'id_usuario' => 'Id Usuario',
         ];
