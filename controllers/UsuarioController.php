@@ -24,10 +24,9 @@ class UsuarioController extends \yii\web\Controller
     public function actionPerfil()
     {
         $id_usuario =\Yii::$app->getRequest()->getQueryParam('id');
-        $modelUsr = Usuario::find()
+        $modeluser = Usuario::find()
         ->where(['id_registro' => $id_usuario])
         ->one();
-        
         //EXPERICIENCIA
         $searchModel = new ExperienciaSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams,$id_usuario);
@@ -53,7 +52,22 @@ class UsuarioController extends \yii\web\Controller
             'dataProviderEstudio' => $dataProviderEstudio,
             'searchModelPublicacion' => $searchModelPublicacion,
             'dataProviderPublicacion' => $dataProviderPublicacion,
-            'modelUsr'=>$modelUsr,
+            'modeluser'=>$modeluser,
+        ]);
+    }
+
+    public function actionCargaimagen()
+    {
+        $model = new \app\models\Usuario();
+
+        if ($model->load(\Yii::$app->request->post())) {
+            if ($model->save()) {
+                
+            }
+        }
+
+        return $this->render('cargaimagen', [
+            'model' => $model,
         ]);
     }
 
@@ -109,7 +123,11 @@ class UsuarioController extends \yii\web\Controller
      */
     public function actionEditar()
     {
-        $model = new \app\models\Usuario();
+        //$model = new \app\models\Usuario();
+        $id_usuario =\Yii::$app->getRequest()->getQueryParam('id');
+        $model = Usuario::find()
+        ->where(['id_registro' => $id_usuario])
+        ->one();
 
         if ($model->load(\Yii::$app->request->post())) {
             if ($model->save()) {

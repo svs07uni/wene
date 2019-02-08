@@ -53,7 +53,7 @@ class AptitudController extends Controller
     public function actionView($id)
     {
         return $this->render('view', [
-            'model' => $this->findModel($id),
+            'model' => $model::findOne($id),
         ]);
     }
 
@@ -85,9 +85,11 @@ class AptitudController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
-
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id_aptitud]);
+       
+        if ($model->load(Yii::$app->request->post())  ) {
+            if($model->save()){
+                return $this->redirect(['view', 'id' => $model->id_aptitud]);
+            }
         }
 
         return $this->render('update', [

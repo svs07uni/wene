@@ -9,6 +9,8 @@ use yii\widgets\DetailView;
 $this->title = $model->id_aptitud;
 $this->params['breadcrumbs'][] = ['label' => 'Aptitud', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
+//print_r($id);
+//exit();
 ?>
 <div class="aptitud-view">
 
