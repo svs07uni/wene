@@ -66,6 +66,7 @@ class ExperienciaController extends Controller
         $dataProviderPublicacion = $searchModelPublicacion->search(Yii::$app->request->queryParams,$usuario->id_registro);
 
         return $this->render('index', [
+            'usuario'   => $usuario,
             'modelExpericiencia'     => $model,
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,

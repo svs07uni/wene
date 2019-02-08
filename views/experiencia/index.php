@@ -5,6 +5,9 @@ use yii\grid\GridView;
 //para el date picker
 use dosamigos\datepicker\DatePicker;
 use dosamigos\datepicker\DateRangePicker;
+use yii\widgets\ActiveForm;
+use kartik\file\FileInput;
+
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\ExperienciaSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */

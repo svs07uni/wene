@@ -11,8 +11,8 @@ $this->params['breadcrumbs'][] = ['label' => 'Estudios', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <p>
-        <?= Html::a('Actualizar', ['update', 'id' => $model->id_estudio], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a('Borrar', ['delete', 'id' => $model->id_estudio], [
+        <?= Html::a('Actualizar', ['//estudio/update', 'id' => $model->id_estudio], ['class' => 'btn btn-primary']) ?>
+        <?= Html::a('Borrar', ['//estudio/delete', 'id' => $model->id_estudio], [
             'class' => 'btn btn-danger',
             'data' => [
                 'confirm' => 'Esta seguro de borrar?',
