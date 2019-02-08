@@ -56,7 +56,7 @@ class Postulante extends \yii\db\ActiveRecord
             'id_usuario' => 'Id Usuario',
             'id_convocatoria' => 'Id Convocatoria',
             'fecha_postulado' => 'Fecha Postulado',
-            'id_estado' => 'Id Estado',
+            'id_estado' => 'Estado postulante',
             'orden_merito' => 'Orden Merito',
         ];
     }

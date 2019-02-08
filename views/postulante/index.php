@@ -16,22 +16,21 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <?= Html::a('Create Postulante', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Crear Postulante', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
+    	'layout' => '{items}',
         'filterModel' => $searchModel,
         'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
+           // ['class' => 'yii\grid\SerialColumn'],
 
-            'id_postulante',
-            'id_usuario',
-            'id_convocatoria',
-            'fecha_postulado',
-            'id_estado',
-            //'orden_merito',
-
+        	'usuario.nombre',
+        	'usuario.apellido',
+        	'estado.nombre',
+            ['attribute'=>'fecha_postulado',
+        		'format'=>['DateTime','php:d-m-Y']],
             ['class' => 'yii\grid\ActionColumn'],
         ],
     ]); ?>

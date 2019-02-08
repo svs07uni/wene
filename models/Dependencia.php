@@ -42,7 +42,7 @@ class Dependencia extends \yii\db\ActiveRecord
     {
         return [
             'id_dependencia' => 'Id Dependencia',
-            'nombre' => 'Nombre',
+            'nombre' => 'Nombre Dependencia',
             'sigla' => 'Sigla',
         ];
     }

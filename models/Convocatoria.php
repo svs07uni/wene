@@ -63,7 +63,7 @@ class Convocatoria extends \yii\db\ActiveRecord
     {
         return [
             'id_convocatoria' => 'Id Convocatoria',
-            'titulo' => 'Titulo',
+            'titulo' => 'Titulo de convocatoria',
             'descripcion' => 'Descripcion',
             'direccion' => 'Direccion',
             'fecha_alta' => 'Fecha Alta',

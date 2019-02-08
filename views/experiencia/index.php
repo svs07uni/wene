@@ -8,21 +8,19 @@ use dosamigos\datepicker\DateRangePicker;
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\ExperienciaSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
-
+use yii\helpers\Url;
 $this->title = 'Experiencia Laboral';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="experiencia-index">
+<h1 align="center"> Adminitracion de Experiencias</h1>
 
-    
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
-    <br>
+    <h3 align="center" > Experiencia Laboral</h3>
     <p>
         <?= Html::a('Agregar Experiencia Laboral', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
-
-    
-
+<div class="col-lg-11" style="position: relative;margin-left:45px; margin-right:15px; "> 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
@@ -37,14 +35,13 @@ $this->params['breadcrumbs'][] = $this->title;
             ['class' => 'yii\grid\ActionColumn'],
         ],
     ]); ?>
-    <br>
-    <br>
-
-    <h3> Aptitudes </h3>
-    <br>
+</div>
+<!--    APTITUDES   -->
+    <h3 align="center" > Aptitudes </h3>
     <p>
         <?= Html::a('Agregar Aptitudes', ['createaptitud'], ['class' => 'btn btn-success']) ?>
     </p>
+<div class="col-lg-11" style="position: relative;margin-left:45px; margin-right:15px; "> 
     <?= GridView::widget([
         'dataProvider' => $dataProviderAptitud,
         'filterModel' => $searchModelAptitud,
@@ -56,28 +53,37 @@ $this->params['breadcrumbs'][] = $this->title;
             'tipo',
             'nivel',
             //'id_usuario',
-/*
             [
                 'class' => 'yii\grid\ActionColumn',
-                'template' => '{delete}',
-                'header' => 'Quitar',
-                'urlCreator' => function ($action, $model, $key, $index) {
-                                        if ($action === 'delete') {
-                                            $url ='?d='.$model->id_dependencia;
-                                            return $url;
-                                        }
-                                 }
-            ],*/
+                'template' => '{aptitudUpdate} {aptitudView} {aptitudDelete} ',
+                'header' => '',
+                'buttons'=> [
+                    'aptitudView' => function ($url ,$modelAptitud) {
+                        $url = Url::to(['aptitudview','id'=> $modelAptitud->id_aptitud]);
+                        return Html::a('<span class="fa fa-eye"></span>', $url,['title'=>'view']);                        
+                    },
+                    'aptitudUpdate' => function ($url ,$modelAptitud) {
+                        $url = Url::to(['aptitudupdate','id'=> $modelAptitud->id_aptitud]);
+                        return Html::a('<span class="fa fa-pencil"></span>', $url,['title'=>'view']);                        
+                    },
+                    'aptitudDelete' => function ($url ,$modelAptitud) {
+                        $url = Url::to(['aptituddelete','id'=> $modelAptitud->id_aptitud]);
+                        return Html::a('<span class="fa fa-trash-o"></span>', $url,['title'=>'view']);                        
+                    }
+
+                ]               
+            ],
         ],
     ]); ?>
-    <br>
-    <br>
-    
-    <h3> Estudios Realizados</h3>
-    <br>
+</div>
+
+<!--    ESTUDIOS REALIZADOS   -->
+    <h3 align="center" > Estudios Realizados</h3>
     <p>
         <?= Html::a('Agregar Estudios', ['createestudio'], ['class' => 'btn btn-success']) ?>
     </p>
+<div class="col-lg-11" style="position: relative;margin-left:45px;margin-right:15px; "> 
+
     <?= GridView::widget([
         'dataProvider' => $dataProviderEstudio,
         'filterModel' => $searchModelEstudio,
@@ -86,20 +92,45 @@ $this->params['breadcrumbs'][] = $this->title;
             ['class' => 'yii\grid\SerialColumn'],
 
             //'id_aptitud',
+            'titulo',
             'institucion',
-            'fecha_egreso',
+        		
+        	['attribute'=>'fecha_egreso',
+        			'format'=>['DateTime','php:d-m-Y']
+        		],
             //'id_usuario',
 
-            ['class' => 'yii\grid\ActionColumn'],
+            [
+                'class' => 'yii\grid\ActionColumn',
+                'template' => '{estudioDelete} {estudioUpdate} {estudioView}',
+                'header' => '',
+                'buttons'=> [
+                    'estudioView' => function ($url ,$modelEstudio) {
+                        $url = Url::to(['estudioview','id'=> $modelEstudio->id_estudio]);
+                        return Html::a('<span class="fa fa-eye"></span>', $url,['title'=>'view']);                        
+                    },
+                    'estudioUpdate' => function ($url ,$modelEstudio) {
+                        $url = Url::to(['estudioupdate','id'=> $modelEstudio->id_estudio]);
+                        return Html::a('<span class="fa fa-pencil"></span>', $url,['title'=>'view']);                        
+                    },
+                    'estudioDelete' => function ($url ,$modelEstudio) {
+                        $url = Url::to(['estudiodelete','id'=> $modelEstudio->id_estudio]);
+                        return Html::a('<span class="fa fa-trash-o"></span>', $url,['title'=>'view']);                        
+                    }
+
+                ]               
+            ],
         ],
     ]); ?>
+</div>
 
-
-<h3> Publicaciones Realizados</h3>
-    <br>
+<!--    PUBLICACIONES   -->
+<h3 align="center" > Publicaciones Realizados</h3>
     <p>
         <?= Html::a('Agregar Publicaciones', ['createpublicacion'], ['class' => 'btn btn-success']) ?>
     </p>
+<div class="col-lg-11" style="position: relative;margin-left:45px; margin-right:15px; "> 
+
     <?= GridView::widget([
         'dataProvider' => $dataProviderPublicacion,
         'filterModel' => $searchModelPublicacion,
@@ -109,11 +140,33 @@ $this->params['breadcrumbs'][] = $this->title;
 
             //'id_aptitud',
             'titulo',
-            'fecha',
+            ['attribute'=>'fecha',
+        			'format'=>['DateTime','php:d-m-Y']
+        		],
             //'id_usuario',
 
-            ['class' => 'yii\grid\ActionColumn'],
+            [
+                'class' => 'yii\grid\ActionColumn',
+                'template' => '{publicacionDelete} {publicacionUpdate} {publicacionView}',
+                'header' => '',
+                'buttons'=> [
+                    'publicacionView' => function ($url ,$modelPublicacion) {
+                        $url = Url::to(['publicacionview','id'=> $modelPublicacion->id_publicacion]);
+                        return Html::a('<span class="fa fa-eye"></span>', $url,['title'=>'view']);                        
+                    },
+                    'publicacionUpdate' => function ($url ,$modelPublicacion) {
+                        $url = Url::to(['publicacionupdate','id'=> $modelPublicacion->id_publicacion]);
+                        return Html::a('<span class="fa fa-pencil"></span>', $url,['title'=>'view']);                        
+                    },
+                    'publicaciondelete' => function ($url ,$modelPublicacion) {
+                        $url = Url::to(['publicaciondelete','id'=> $modelPublicacion->id_publicacion]);
+                        return Html::a('<span class="fa fa-trash-o"></span>', $url,['title'=>'view']);                        
+                    }
+
+                ]               
+            ],
         ],
     ]); ?>
+</div>
 
 </div>
