@@ -10,14 +10,36 @@ use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use app\models\Tipo;
 use yii\grid\GridView;
+use app\common\components\AccessRule;
+use yii\filters\AccessControl;
 
 class ConvocatoriausuarioController extends \yii\web\Controller
 {
-    public function actionIndex()
+    public function behaviors()
     {
-        return $this->render('index');
+        return [
+            'access' => [
+                'class' => AccessControl::className(),
+                'ruleConfig' => [
+                    'class' => AccessRule::className(),
+                ],
+                'only' => ['misconvocatorias','postularse'],
+                'rules' => [
+                    [
+                        'actions' => ['misconvocatorias','postularse'],
+                        'allow' => true,
+                        'roles' => ['@'],
+                    ],
+                ],
+            ],
+            'verbs' => [
+                'class' => VerbFilter::className(),
+                'actions' => [
+                    'delete' => ['POST'],
+                ],
+            ],
+        ];
     }
-
     public function actionMisconvocatorias(){
         $searchModel = new ConvocatoriaSearch();
         $usuario = Yii::$app->user->identity;
@@ -49,7 +71,7 @@ class ConvocatoriausuarioController extends \yii\web\Controller
     /*
     public function actionVermas($id_convocatoria) {
         $model = Convocatoria::findOne($id_convocatoria);
-        return $this->render('convocatoria1', [
+        return $this->render('unaconvocatoria', [
             'model' => $model,
         ]);
     }*/

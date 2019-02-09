@@ -25,7 +25,9 @@ use yii\helpers\Url;
 	</div>
 	<div class="panel-footer clearfix">
 		<?php 
-		$fecha = 'Fecha limite: '. substr($model->fecha_hasta,0,10);
+		$cadena = substr($model->fecha_hasta,0,10);
+		$formato = Yii::$app->formatter->asDate($cadena, 'php:d/m/Y');
+		$fecha = 'Fecha limite: '.$formato;
 		$activo = 'label-'.($model->activo?'success':'danger');
 		?>
 		<?= Html::label($fecha,null,['class' =>$activo])?>
