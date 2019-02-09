@@ -8,8 +8,8 @@ $apellido = Yii::$app->user->getApellido();
 
 <header class="main-header">
 
-    <?= Html::a('<span class="logo-mini"><img width="50%"  src="img/logocorto.png" alt="Wene"/> </span><span class="logo-lg">
-<img src="img/logolargo.png"  width="50%" alt="Wene"/>        
+    <?= Html::a('<span class="logo-mini"><img width="50%"  src="/img/logocorto.png" alt="Wene"/> </span><span class="logo-lg">
+<img src="/img/logolargo.png"  width="50%" alt="Wene"/>        
 </span>', Yii::$app->homeUrl, ['class' => 'logo']) ?>
 
     <nav class="navbar navbar-static-top" role="navigation">

@@ -5,16 +5,16 @@ use yii\helpers\Html;
 /* @var $content string */
 
 
-if (Yii::$app->controller->action->id === 'login') { 
+/*if (Yii::$app->controller->action->id === 'login') { 
 /**
  * Do not use this code in your template. Remove it. 
  * Instead, use the code  $this->layout = '//main-login'; in your controller.
- */
+ *
     echo $this->render(
         'main-login',
         ['content' => $content]
     );
-} elseif(Yii::$app->controller->action->id === 'registro' Or Yii::$app->controller->action->id === 'usuario') {
+} else*/if(Yii::$app->controller->action->id === 'registro' Or Yii::$app->controller->action->id === 'usuario') {
     
     echo $this->render(
         'main-registro.php',

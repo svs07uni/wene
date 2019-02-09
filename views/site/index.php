@@ -29,7 +29,7 @@ $this->title = 'Wene';
                     'class' => 'panel-group',
                 ],
             ]); ?>
-            </div>
+   </div>
  <!--    
    /*echo GridView::widget([
         'dataProvider' => $dataProvider,
