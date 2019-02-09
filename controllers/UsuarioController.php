@@ -15,6 +15,7 @@ use app\models\Publicacion;
 use app\models\PublicacionSearch;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\web\UploadedFile;
 
 class UsuarioController extends \yii\web\Controller
 {
@@ -130,8 +131,15 @@ class UsuarioController extends \yii\web\Controller
         ->one();
 
         if ($model->load(\Yii::$app->request->post())) {
-            if ($model->save()) {
-                
+            $model->foto = UploadedFile::getInstance($model, 'foto');
+            if ($model->upload()) {
+                //print_r($model->upload());
+                //exit();
+                if ($model->save()) {
+                // file is uploaded successfully
+
+                    return;
+                }
             }
         }
 
@@ -158,6 +166,22 @@ class UsuarioController extends \yii\web\Controller
     }
 
     echo Json::encode(['output'=>'', 'selected'=>'']);
+    }
+
+
+    public function actionUpload()
+    {
+        $model = new Usuario();
+
+        if (Yii::$app->request->isPost) {
+            $model->foto = UploadedFile::getInstance($model, 'foto');
+            if ($model->upload()) {
+                // file is uploaded successfully
+                return;
+            }
+        }
+
+        return $this->render('actualizar', ['model' => $model]);
     }
 
 }

@@ -53,7 +53,7 @@ class Usuario extends \yii\db\ActiveRecord
             [[ 'dni', 'nombre', 'apellido', 'nacionalidad', 'direccion', 'id_localidad', 'fecha_nac', 'id_rol'], 'required'],
             [['id_registro', 'id_localidad', 'id_rol'], 'default', 'value' => null],
             [['id_registro', 'id_localidad', 'id_rol'], 'integer'],
-            [['dni', 'telefono', 'nombre', 'apellido', 'nacionalidad', 'direccion', 'foto', 'nombre_foto'], 'string'],
+            [['dni', 'telefono', 'nombre', 'apellido', 'nacionalidad', 'direccion', 'nombre_foto'], 'string'],
             [['activo'], 'boolean'],
             [['id_provincia'], 'integer'],
             [['fecha_nac'], 'safe'],
@@ -87,6 +87,17 @@ class Usuario extends \yii\db\ActiveRecord
             'nombre_foto' => 'Nombre Foto',
             'id_rol' => 'Rol',
         ];
+    }
+
+    public function upload()
+    {
+        if ($this->validate()) {
+
+            $this->foto->saveAs('uploads/' . $this->id_registro . '.' . $this->foto->extension);
+            return true;
+        } else {
+            return false;
+        }
     }
 
     /**

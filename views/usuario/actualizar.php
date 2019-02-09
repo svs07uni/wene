@@ -10,6 +10,7 @@ use dosamigos\datepicker\DateRangePicker;
 //para el dropdown dependiente
 use yii\helpers\Url;
 use kartik\depdrop\DepDrop;
+use yii\web\UploadedFile;
 /* @var $this yii\web\View */
 /* @var $model app\models\Usuario */
 /* @var $form ActiveForm */
@@ -32,6 +33,7 @@ use kartik\depdrop\DepDrop;
                 
                     <?= $form->field($model, 'nacionalidad') ?>
                     <?= $form->field($model, 'direccion') ?>
+                    <?= $form->field($model, 'foto')->fileInput() ?>
                 </div>
                 <br>
 
