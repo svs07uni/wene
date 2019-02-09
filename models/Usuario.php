@@ -93,7 +93,7 @@ class Usuario extends \yii\db\ActiveRecord
     {
         if ($this->validate()) {
 
-            $this->foto->saveAs('uploads/' . $this->id_registro . '.' . $this->foto->extension);
+            $this->foto->saveAs('uploads/' . $this->id_registro .'.'. $this->foto->extension);
             return true;
         } else {
             return false;

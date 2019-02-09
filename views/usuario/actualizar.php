@@ -19,11 +19,11 @@ use yii\web\UploadedFile;
 <?php $provincias = \yii\helpers\ArrayHelper::map(\app\models\Provincia::find()->all(), 'id_provincia', 'nombre');?>
 <?php $roles = \yii\helpers\ArrayHelper::map(\app\models\Rol::find()->all(), 'id_rol', 'nombre');?>    
 <?php $usrActual = Yii::$app->user->identity;?>
-<body >
+<body>
 <h3 align="center" > Modificación de datos Personales </h3>
         <div> 
             <div class="container" >
-                <div class="col-sm-5" > 
+                <div class="col-sm-5"> 
                     
                     <?php $form = ActiveForm::begin(); ?>
                     <?= $form->field($model, 'id_registro')->hiddenInput()->label(false) ?>

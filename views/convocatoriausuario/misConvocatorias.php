@@ -37,7 +37,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'header' => '',
                 'buttons'=> [
                     'convocatoriaView' => function ($url ,$modelConvocatoria) {
-                        $url = Url::to(['convocatoriaview','id'=> $modelConvocatoria->id_convocatoria]);
+                        $url = Url::to(['convocatoriausuario/vermas','id_convocatoria'=> $modelConvocatoria->id_convocatoria]);
                         return Html::a('<span class="fa fa-search"></span>', $url,['title'=>'Detalles']);                        
                     },
                     /*'convocatoriaUpdate' => function ($url ,$modelConvocatoria) {

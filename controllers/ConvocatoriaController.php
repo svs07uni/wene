@@ -59,8 +59,7 @@ class ConvocatoriaController extends Controller
     	$searchModel = new PostulanteSearch();
     	$searchModel->id_convocatoria=$id;
     	$dataProvider = $searchModel->search(null);
- 
-    	
+
         return $this->render('view', [
             'model' => $this->findModel($id),
         		'searchModel' => $searchModel,
@@ -157,9 +156,9 @@ class ConvocatoriaController extends Controller
     public function actionDelete($id)
     {
         $this->findModel($id)->delete();
-
         return $this->redirect(['index']);
     }
+
 
     /**
      * Finds the Convocatoria model based on its primary key value.

@@ -57,6 +57,43 @@ class UsuarioController extends \yii\web\Controller
         ]);
     }
 
+    public function actionMiperfil()
+    {
+        
+        $id_usuario =\Yii::$app->user->identity->id_registro;
+        $modeluser = Usuario::find()
+        ->where(['id_registro' => $id_usuario])
+        ->one();
+
+        //EXPERICIENCIA
+        $searchModel = new ExperienciaSearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams,$id_usuario);
+        
+        //APTITUD
+        $searchModelAptitud = new AptitudSearch();
+        $dataProviderAptitud = $searchModelAptitud->search(Yii::$app->request->queryParams,$id_usuario);
+
+        //ESTUDIO
+        $searchModelEstudio = new EstudioSearch();
+        $dataProviderEstudio = $searchModelEstudio->search(Yii::$app->request->queryParams,$id_usuario);
+
+        //PUBLICACION
+        $searchModelPublicacion = new PublicacionSearch();
+        $dataProviderPublicacion = $searchModelPublicacion->search(Yii::$app->request->queryParams,$id_usuario);
+
+        return $this->render('perfil', [
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+            'searchModelAptitud' => $searchModelAptitud,
+            'dataProviderAptitud' => $dataProviderAptitud,
+            'searchModelEstudio' => $searchModelEstudio,
+            'dataProviderEstudio' => $dataProviderEstudio,
+            'searchModelPublicacion' => $searchModelPublicacion,
+            'dataProviderPublicacion' => $dataProviderPublicacion,
+            'modeluser'=>$modeluser,
+        ]);
+    }
+
     public function actionCargaimagen()
     {
         $model = new \app\models\Usuario();
@@ -131,16 +168,16 @@ class UsuarioController extends \yii\web\Controller
         ->one();
 
         if ($model->load(\Yii::$app->request->post())) {
+            if ($model->save()) {
             $model->foto = UploadedFile::getInstance($model, 'foto');
-            if ($model->upload()) {
-                //print_r($model->upload());
-                //exit();
-                if ($model->save()) {
-                // file is uploaded successfully
+                if ($model->upload()) {
+                    //print_r($model->upload());
+                    //exit();
+                    // file is uploaded successfully
 
-                    return;
+                        return;
+                    }
                 }
-            }
         }
 
         return $this->render('actualizar', [

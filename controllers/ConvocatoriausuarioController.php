@@ -40,6 +40,7 @@ class ConvocatoriausuarioController extends \yii\web\Controller
             ],
         ];
     }
+
     public function actionMisconvocatorias(){
         $searchModel = new ConvocatoriaSearch();
         $usuario = Yii::$app->user->identity;
@@ -56,25 +57,34 @@ class ConvocatoriausuarioController extends \yii\web\Controller
 
     public function actionPostularse($id_convocatoria){
         $usuario = Yii::$app->user->identity;
-        $model = new Postulante();
-        $model->id_convocatoria = $id_convocatoria;
-        $model->id_usuario=$usuario->id_registro;
-        $model->id_estado=1;//poner constante en estado postulante, cuando est
-        $model->orden_merito=0;                
-        $model->fecha_postulado=date("Y-m-d");
+        $postulante = Postulante::find()
+        ->where(['id_usuario' => $usuario->id_registro,'id_convocatoria' => $id_convocatoria])
+        ->one();
+        //print_r(ISSET($postulante));
+        //exit();
+        if(ISSET($postulante)==0){
+            $model = new Postulante();
+            $model->id_convocatoria = $id_convocatoria;
+            $model->id_usuario=$usuario->id_registro;
+            $model->id_estado=1;//poner constante en estado postulante, cuando est
+            $model->orden_merito=0;                
+            $model->fecha_postulado=date("Y-m-d");
+            if($model->save()){
+                return $this->redirect(['misconvocatorias']);
+            } 
+        }else{
+            return $this->redirect(['//site/index']);
+        }
 
-      	if($model->save()){
-      		return $this->redirect(['misconvocatorias']);
-        } 
-        echo("error");
+        //echo("error");
     }
-    /*
+    
     public function actionVermas($id_convocatoria) {
         $model = Convocatoria::findOne($id_convocatoria);
         return $this->render('unaconvocatoria', [
             'model' => $model,
         ]);
-    }*/
+    }   
 
     /*
     *   View de la grilla para ver una convocatoria
