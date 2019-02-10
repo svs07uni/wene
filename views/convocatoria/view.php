@@ -88,7 +88,7 @@ $this->params['breadcrumbs'][] = $this->title;
  ['class' => 'yii\grid\ActionColumn',
  		'buttons' => [
  				'additional_icon' => function ($url, $model, $key) {
- 				return Html::a ( '<span class="glyphicon fa fa-address-card-o" aria-hidden="true"></span> ', ['usuario/perfil?$model->usuario->id_registro', 'id'],['title' => "CV"]);
+ 				return Html::a ( '<span class="glyphicon fa fa-address-card-o" aria-hidden="true"></span> ', ['//usuario/perfil', 'id'=>$model->usuario->id_registro],['title' => "CV"]);
  },
  ],
  'template' => '{additional_icon}'

@@ -62,14 +62,14 @@ class Convocatoria extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id_convocatoria' => 'Id Convocatoria',
+            'id_convocatoria' => 'Convocatoria numero',
             'titulo' => 'Titulo de convocatoria',
             'descripcion' => 'Descripcion',
             'direccion' => 'Direccion',
             'fecha_alta' => 'Fecha Alta',
             'fecha_desde' => 'Fecha Desde',
             'fecha_hasta' => 'Fecha Hasta',
-            'cant_postulantes' => 'Cant Postulantes',
+            'cant_postulantes' => 'Cant Postulantes Requeridos',
             'activo' => 'Activo',
             'id_tipo' => 'Id Tipo',
             'id_sede_pedido' => 'Id Sede Pedido',
