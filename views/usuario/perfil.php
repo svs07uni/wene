@@ -16,13 +16,25 @@ use yii\helpers\Html;
 use kartik\file\FileInput;
 use yii\widgets\ActiveForm;
 ?>
-<h3 align="center" > Datos Personales Publico</h3>
+<h3 align="center" > Datos Personale</h3>
 
 <br>
 
 <body>
-
-<div class="col-sm-12" style=" position: relative;margin-left:10px;margin-bottom:10px; margin-right:10px;"> 
+<div class="col-sm-2"> 
+    <?=
+    DetailView::widget([
+        'model' => $modeluser,
+        'attributes' => [
+            [
+                'attribute'=>'',
+                'value'=>'@web/uploads/'.$modeluser->id_registro.'.'.$modeluser->nombre_foto, 
+                'format' => ['image',['width'=>'100','height'=>'140']],
+            ],
+        ],
+    ]) ?>
+</div>
+<div class="col-sm-10" > 
         <?= DetailView::widget([
             'model' => $modeluser,
             'attributes' => [
@@ -36,7 +48,7 @@ use yii\widgets\ActiveForm;
 
             ],
         ]) ?>
-    </div>
+</div>
 <br>
 <br>    
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>

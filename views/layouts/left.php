@@ -2,6 +2,8 @@
 use app\models\User;
 $nombre = Yii::$app->user->getNombre();
 $apellido = Yii::$app->user->getApellido();
+$usuario = Yii::$app->user->identity;
+
 ?>
 <aside class="main-sidebar">
 
@@ -10,7 +12,7 @@ $apellido = Yii::$app->user->getApellido();
         <!-- Sidebar user panel -->
         <div class="user-panel">
             <div class="pull-left image">
-                <img src="<?= $directoryAsset ?>/img/user2-160x160.jpg" class="img-circle" alt="User Image"/>
+            <?php echo("<img src='/uploads/".$usuario->id_registro.".".$usuario->nombre_foto."' class='user-image' />")?>
             </div>
             <div class="pull-left info">
                 <p class="text-capitalize"><?php echo $nombre,' ',$apellido?></p>

@@ -1,24 +1,26 @@
 <?php
+/* @var $this yii\web\View */
+/* @var $model app\models\Usuario */
+/* @var $form ActiveForm */
 // para los modals de notificacion
 use aryelds\sweetalert\SweetAlert;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
-
 //para el date picker
 use dosamigos\datepicker\DatePicker;
 use dosamigos\datepicker\DateRangePicker;
 //para el dropdown dependiente
 use yii\helpers\Url;
 use kartik\depdrop\DepDrop;
+//para la imagen de perfil
 use yii\web\UploadedFile;
-/* @var $this yii\web\View */
-/* @var $model app\models\Usuario */
-/* @var $form ActiveForm */
+use yii\widgets\DetailView;;
+
 ?>
 <div class="usuario">
 <?php $provincias = \yii\helpers\ArrayHelper::map(\app\models\Provincia::find()->all(), 'id_provincia', 'nombre');?>
 <?php $roles = \yii\helpers\ArrayHelper::map(\app\models\Rol::find()->all(), 'id_rol', 'nombre');?>    
-<?php $usrActual = Yii::$app->user->identity;?>
+
 <body>
 <h3 align="center" > Modificación de datos Personales </h3>
         <div> 
@@ -66,6 +68,20 @@ use yii\web\UploadedFile;
                         ]
                         */
                     ]);?>
+                    <div class="col-sm-6" >
+                        <?=
+                            DetailView::widget([
+                                'model' => $model,
+                                'attributes' => [
+                                    [
+                                        'attribute'=>'Imagen ',
+                                        'value'=>'@web/uploads/'.$model->id_registro.'.png', 
+                                        'format' => ['image',['width'=>'100','height'=>'140']],
+                                    ],
+                                ],
+                            ]) 
+                        ?>
+                    </div>
                     </div>
 <br><br><br><br><br><br><br><br><br><br><br>
                     <div class="col-sm-12" style="align=center"> 

@@ -4,6 +4,7 @@ use yii\helpers\Html;
 /* @var $content string */
 $nombre=Yii::$app->user->getNombre();
 $apellido = Yii::$app->user->getApellido();
+$usuario = Yii::$app->user->identity;
 ?>
 
 <header class="main-header">
@@ -61,14 +62,14 @@ $apellido = Yii::$app->user->getApellido();
 
                 <li class="dropdown user user-menu">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                        <img src="<?= $directoryAsset ?>/img/user2-160x160.jpg" class="user-image" alt="User Image"/>
+                        <?php echo("<img src='/uploads/".$usuario->id_registro.".".$usuario->nombre_foto."' class='user-image' />")?>
                         <span class="hidden-xs text-capitalize"><?php echo $nombre,' ',$apellido?></span>
                     </a>
                     <ul class="dropdown-menu">
                         <!-- User image -->
                         <li class="user-header">
-                            <img src="<?= $directoryAsset ?>/img/user2-160x160.jpg" class="img-circle"
-                                 alt="User Image"/>
+                        <?php echo("<img src='/uploads/".$usuario->id_registro.".".$usuario->nombre_foto."' class='user-image' />")?>
+                                 
                             <p class="text-capitalize">
                                 <?php echo $nombre,' ',$apellido?> - Desarrollador Web 
                                 <small>Egresado FAIF Nov. 2012</small>

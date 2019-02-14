@@ -101,7 +101,6 @@ class UsuarioController extends \yii\web\Controller
 
         if ($model->load(\Yii::$app->request->post())) {
             if ($model->save()) {
-                
             }
         }
 
@@ -163,24 +162,21 @@ class UsuarioController extends \yii\web\Controller
      */
     public function actionEditar()
     {
-        //$model = new \app\models\Usuario();
-        $id_usuario =\Yii::$app->getRequest()->getQueryParam('id');
+        $usuario = Yii::$app->user->identity;
         $model = Usuario::find()
-        ->where(['id_registro' => $id_usuario])
+        ->where(['id_registro' => $usuario->id_registro])
         ->one();
-
         if ($model->load(\Yii::$app->request->post())) {
-            if ($model->save()) {
             $model->foto = UploadedFile::getInstance($model, 'foto');
+            $model->nombre_foto=substr($model->foto->name,-3); //se guarda el formato
+            
+            if ($model->save()) {
                 if ($model->upload()) {
-                    //print_r($model->upload());
-                    //exit();
                     // file is uploaded successfully
-
-                        return;
-                    }
+                    return;
                 }
-        }
+            }
+        }   
 
         return $this->render('actualizar', [
             'model' => $model,
