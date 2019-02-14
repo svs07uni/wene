@@ -10,6 +10,7 @@ use dosamigos\datepicker\DateRangePicker;
 //para el dropdown dependiente
 use yii\helpers\Url;
 use kartik\depdrop\DepDrop;
+use yii\web\UploadedFile;
 /* @var $this yii\web\View */
 /* @var $model app\models\Usuario */
 /* @var $form ActiveForm */
@@ -18,11 +19,11 @@ use kartik\depdrop\DepDrop;
 <?php $provincias = \yii\helpers\ArrayHelper::map(\app\models\Provincia::find()->all(), 'id_provincia', 'nombre');?>
 <?php $roles = \yii\helpers\ArrayHelper::map(\app\models\Rol::find()->all(), 'id_rol', 'nombre');?>    
 <?php $usrActual = Yii::$app->user->identity;?>
-<body >
+<body>
 <h3 align="center" > Modificación de datos Personales </h3>
         <div> 
             <div class="container" >
-                <div class="col-sm-5" > 
+                <div class="col-sm-5"> 
                     
                     <?php $form = ActiveForm::begin(); ?>
                     <?= $form->field($model, 'id_registro')->hiddenInput()->label(false) ?>
@@ -32,6 +33,7 @@ use kartik\depdrop\DepDrop;
                 
                     <?= $form->field($model, 'nacionalidad') ?>
                     <?= $form->field($model, 'direccion') ?>
+                    <?= $form->field($model, 'foto')->fileInput() ?>
                 </div>
                 <br>
 

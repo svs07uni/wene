@@ -15,8 +15,9 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Update', ['update', 'id' => $model->id_publicacion], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a('Delete', ['delete', 'id' => $model->id_publicacion], [
+        <!--Solo se modifican desde el controller de Expericiencia, por eso //publicacion para ir al controller de publicacion-->
+        <?= Html::a('Update', ['//publicacion/update', 'id' => $model->id_publicacion], ['class' => 'btn btn-primary']) ?>
+        <?= Html::a('Delete', ['//publicacion/delete', 'id' => $model->id_publicacion], [
             'class' => 'btn btn-danger',
             'data' => [
                 'confirm' => 'Are you sure you want to delete this item?',
