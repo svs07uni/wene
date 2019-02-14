@@ -16,6 +16,7 @@ use app\models\PublicacionSearch;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\web\UploadedFile;
+use yii\helpers\Url;
 
 class UsuarioController extends \yii\web\Controller
 {
@@ -136,9 +137,10 @@ class UsuarioController extends \yii\web\Controller
                         'text' => "Ahora puedes acceder a todas las ofertas laborales.",
                         
                     ],
-                'callback' => new \yii\web\JsExpression(' function() { 
-                    $guardar = true
-                }')
+                    'callback' => new \yii\web\JsExpression(' function() { 
+                        $guardar = true;
+                        window.location = "'.Url::to(['/']).'";
+                    }')
                  ]);
                  echo($guardar);
                 if ($guardar = true){
