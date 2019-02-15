@@ -12,7 +12,14 @@ $usuario = Yii::$app->user->identity;
         <!-- Sidebar user panel -->
         <div class="user-panel">
             <div class="pull-left image">
-            <?php echo("<img src='/uploads/".$usuario->id_registro.".".$usuario->nombre_foto."' class='user-image' />")?>
+            <?php 
+                if (is_null($usuario)){
+                   // echo("<img src='/uploads/default.png' class='user-image' />");
+                }
+                else{
+                    echo("<img src='/uploads/".$usuario->id_registro.".".$usuario->nombre_foto."' class='user-image' />");
+                }
+            ?>
             </div>
             <div class="pull-left info">
                 <p class="text-capitalize"><?php echo $nombre,' ',$apellido?></p>

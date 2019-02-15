@@ -45,7 +45,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         return Html::a('<span class="fa fa-pencil"></span>', $url,['title'=>'view']);                        
                     },*/
                     'convocatoriaDelete' => function ($url ,$modelConvocatoria) {
-                        $url = Url::to(['convocatoriadelete','id'=> $modelConvocatoria->id_convocatoria]);
+                        $url = Url::to(['convocatoriausuario/despostularse','id_convocatoria'=> $modelConvocatoria->id_convocatoria]);
                         return Html::a('<span class="fa fa-trash"></span>', $url,['title'=>'Eliminar']);                        
                     }
                 ]               

@@ -62,14 +62,27 @@ $usuario = Yii::$app->user->identity;
 
                 <li class="dropdown user user-menu">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                        <?php echo("<img src='/uploads/".$usuario->id_registro.".".$usuario->nombre_foto."' class='user-image' />")?>
+                    <?php 
+                        if (is_null($usuario)){
+                            echo("<img src='/uploads/default.png' class='user-image' />");
+                        }
+                        else{
+                            echo("<img src='/uploads/".$usuario->id_registro.".".$usuario->nombre_foto."' class='user-image' />");
+                        }
+                    ?>
                         <span class="hidden-xs text-capitalize"><?php echo $nombre,' ',$apellido?></span>
                     </a>
                     <ul class="dropdown-menu">
                         <!-- User image -->
                         <li class="user-header">
-                        <?php echo("<img src='/uploads/".$usuario->id_registro.".".$usuario->nombre_foto."' class='user-image' />")?>
-                                 
+                        <?php 
+                            if (is_null($usuario)){
+                                echo("<img src='/uploads/default.png' class='user-image' />");
+                            }
+                            else{
+                                echo("<img src='/uploads/".$usuario->id_registro.".".$usuario->nombre_foto."' class='user-image' />");
+                            }
+                        ?>         
                             <p class="text-capitalize">
                                 <?php echo $nombre,' ',$apellido?> - Desarrollador Web 
                                 <small>Egresado FAIF Nov. 2012</small>
@@ -91,7 +104,7 @@ $usuario = Yii::$app->user->identity;
                         <?php if(!Yii::$app->user->isGuest){ ?>
                             <li class="user-footer">
                                 <div class="pull-left">
-                                    <a href="#" class="btn btn-default btn-flat">Perfil</a>
+                                    <a href="/usuario/miperfil" class="btn btn-default btn-flat">Perfil</a>
                                 </div>
                                 <div class="pull-right">
                                     <?= Html::a(

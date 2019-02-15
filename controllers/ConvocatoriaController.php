@@ -13,6 +13,7 @@ use yii\filters\VerbFilter;
 use app\models\Tipo;
 use yii\grid\GridView;
 use phpDocumentor\Reflection\Types\This;
+
 /**
  * ConvocatoriaController implements the CRUD actions for Convocatoria model.
  */
