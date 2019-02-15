@@ -5,6 +5,9 @@ use yii\grid\GridView;
 //para el date picker
 use dosamigos\datepicker\DatePicker;
 use dosamigos\datepicker\DateRangePicker;
+use yii\widgets\ActiveForm;
+use kartik\file\FileInput;
+
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\ExperienciaSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
@@ -32,7 +35,17 @@ $this->params['breadcrumbs'][] = $this->title;
             'titulo',
             'descripcion',
 
-            ['class' => 'yii\grid\ActionColumn'],
+            [
+                'class' => 'yii\grid\ActionColumn',
+                'template' => '{experienciaView}  ',
+                'header' => '',
+                'buttons'=> [
+                    'experienciaView' => function ($url ,$modelExpericiencia) {
+                        $url = Url::to(['view','id'=> $modelExpericiencia->id_experiencia]);
+                        return Html::a('<span class="fa fa-pencil"></span>', $url,['title'=>'view']);                        
+                    }
+                ]               
+            ],
         ],
     ]); ?>
 </div>
@@ -60,8 +73,8 @@ $this->params['breadcrumbs'][] = $this->title;
                 'buttons'=> [
                     'aptitudView' => function ($url ,$modelAptitud) {
                         $url = Url::to(['aptitudview','id'=> $modelAptitud->id_aptitud]);
-                        return Html::a('<span class="fa fa-eye"></span>', $url,['title'=>'view']);                        
-                    },
+                        return Html::a('<span class="fa fa-pencil"></span>', $url,['title'=>'view']);                        
+                    }/*,
                     'aptitudUpdate' => function ($url ,$modelAptitud) {
                         $url = Url::to(['aptitudupdate','id'=> $modelAptitud->id_aptitud]);
                         return Html::a('<span class="fa fa-pencil"></span>', $url,['title'=>'view']);                        
@@ -69,7 +82,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     'aptitudDelete' => function ($url ,$modelAptitud) {
                         $url = Url::to(['aptituddelete','id'=> $modelAptitud->id_aptitud]);
                         return Html::a('<span class="fa fa-trash-o"></span>', $url,['title'=>'view']);                        
-                    }
+                    }*/
 
                 ]               
             ],
@@ -102,13 +115,13 @@ $this->params['breadcrumbs'][] = $this->title;
 
             [
                 'class' => 'yii\grid\ActionColumn',
-                'template' => '{estudioDelete} {estudioUpdate} {estudioView}',
+                'template' => '{estudioUpdate} {estudioView} {estudioDelete} ',
                 'header' => '',
                 'buttons'=> [
                     'estudioView' => function ($url ,$modelEstudio) {
                         $url = Url::to(['estudioview','id'=> $modelEstudio->id_estudio]);
-                        return Html::a('<span class="fa fa-eye"></span>', $url,['title'=>'view']);                        
-                    },
+                        return Html::a('<span class="fa fa-pencil"></span>', $url,['title'=>'view']);                        
+                    }/*,
                     'estudioUpdate' => function ($url ,$modelEstudio) {
                         $url = Url::to(['estudioupdate','id'=> $modelEstudio->id_estudio]);
                         return Html::a('<span class="fa fa-pencil"></span>', $url,['title'=>'view']);                        
@@ -116,7 +129,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     'estudioDelete' => function ($url ,$modelEstudio) {
                         $url = Url::to(['estudiodelete','id'=> $modelEstudio->id_estudio]);
                         return Html::a('<span class="fa fa-trash-o"></span>', $url,['title'=>'view']);                        
-                    }
+                    }*/
 
                 ]               
             ],
@@ -147,21 +160,21 @@ $this->params['breadcrumbs'][] = $this->title;
 
             [
                 'class' => 'yii\grid\ActionColumn',
-                'template' => '{publicacionDelete} {publicacionUpdate} {publicacionView}',
+                'template' => ' {publicacionUpdate} {publicacionView} {publicacionDelete}',
                 'header' => '',
                 'buttons'=> [
                     'publicacionView' => function ($url ,$modelPublicacion) {
                         $url = Url::to(['publicacionview','id'=> $modelPublicacion->id_publicacion]);
-                        return Html::a('<span class="fa fa-eye"></span>', $url,['title'=>'view']);                        
-                    },
+                        return Html::a('<span class="fa fa-pencil"></span>', $url,['title'=>'view']);                        
+                    }/*,
                     'publicacionUpdate' => function ($url ,$modelPublicacion) {
                         $url = Url::to(['publicacionupdate','id'=> $modelPublicacion->id_publicacion]);
                         return Html::a('<span class="fa fa-pencil"></span>', $url,['title'=>'view']);                        
                     },
-                    'publicaciondelete' => function ($url ,$modelPublicacion) {
+                    'publicacionDelete' => function ($url ,$modelPublicacion) {
                         $url = Url::to(['publicaciondelete','id'=> $modelPublicacion->id_publicacion]);
                         return Html::a('<span class="fa fa-trash-o"></span>', $url,['title'=>'view']);                        
-                    }
+                    }*/
 
                 ]               
             ],

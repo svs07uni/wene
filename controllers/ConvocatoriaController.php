@@ -13,6 +13,7 @@ use yii\filters\VerbFilter;
 use app\models\Tipo;
 use yii\grid\GridView;
 use phpDocumentor\Reflection\Types\This;
+
 /**
  * ConvocatoriaController implements the CRUD actions for Convocatoria model.
  */
@@ -59,8 +60,7 @@ class ConvocatoriaController extends Controller
     	$searchModel = new PostulanteSearch();
     	$searchModel->id_convocatoria=$id;
     	$dataProvider = $searchModel->search(null);
- 
-    	
+
         return $this->render('view', [
             'model' => $this->findModel($id),
         		'searchModel' => $searchModel,
@@ -157,9 +157,9 @@ class ConvocatoriaController extends Controller
     public function actionDelete($id)
     {
         $this->findModel($id)->delete();
-
         return $this->redirect(['index']);
     }
+
 
     /**
      * Finds the Convocatoria model based on its primary key value.
@@ -177,7 +177,7 @@ class ConvocatoriaController extends Controller
         throw new NotFoundHttpException('The requested page does not exist.');
     }
     
-    
+   
 
 
 

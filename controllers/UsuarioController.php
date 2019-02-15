@@ -15,6 +15,7 @@ use app\models\Publicacion;
 use app\models\PublicacionSearch;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\web\UploadedFile;
 use yii\helpers\Url;
 
 class UsuarioController extends \yii\web\Controller
@@ -57,13 +58,49 @@ class UsuarioController extends \yii\web\Controller
         ]);
     }
 
+    public function actionMiperfil()
+    {
+        
+        $id_usuario =\Yii::$app->user->identity->id_registro;
+        $modeluser = Usuario::find()
+        ->where(['id_registro' => $id_usuario])
+        ->one();
+
+        //EXPERICIENCIA
+        $searchModel = new ExperienciaSearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams,$id_usuario);
+        
+        //APTITUD
+        $searchModelAptitud = new AptitudSearch();
+        $dataProviderAptitud = $searchModelAptitud->search(Yii::$app->request->queryParams,$id_usuario);
+
+        //ESTUDIO
+        $searchModelEstudio = new EstudioSearch();
+        $dataProviderEstudio = $searchModelEstudio->search(Yii::$app->request->queryParams,$id_usuario);
+
+        //PUBLICACION
+        $searchModelPublicacion = new PublicacionSearch();
+        $dataProviderPublicacion = $searchModelPublicacion->search(Yii::$app->request->queryParams,$id_usuario);
+
+        return $this->render('perfil', [
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+            'searchModelAptitud' => $searchModelAptitud,
+            'dataProviderAptitud' => $dataProviderAptitud,
+            'searchModelEstudio' => $searchModelEstudio,
+            'dataProviderEstudio' => $dataProviderEstudio,
+            'searchModelPublicacion' => $searchModelPublicacion,
+            'dataProviderPublicacion' => $dataProviderPublicacion,
+            'modeluser'=>$modeluser,
+        ]);
+    }
+
     public function actionCargaimagen()
     {
         $model = new \app\models\Usuario();
 
         if ($model->load(\Yii::$app->request->post())) {
             if ($model->save()) {
-                
             }
         }
 
@@ -125,17 +162,21 @@ class UsuarioController extends \yii\web\Controller
      */
     public function actionEditar()
     {
-        //$model = new \app\models\Usuario();
-        $id_usuario =\Yii::$app->getRequest()->getQueryParam('id');
+        $usuario = Yii::$app->user->identity;
         $model = Usuario::find()
-        ->where(['id_registro' => $id_usuario])
+        ->where(['id_registro' => $usuario->id_registro])
         ->one();
-
         if ($model->load(\Yii::$app->request->post())) {
+            $model->foto = UploadedFile::getInstance($model, 'foto');
+            $model->nombre_foto=substr($model->foto->name,-3); //se guarda el formato
+            
             if ($model->save()) {
-                
+                if ($model->upload()) {
+                    // file is uploaded successfully
+                    return;
+                }
             }
-        }
+        }   
 
         return $this->render('actualizar', [
             'model' => $model,
@@ -160,6 +201,22 @@ class UsuarioController extends \yii\web\Controller
     }
 
     echo Json::encode(['output'=>'', 'selected'=>'']);
+    }
+
+
+    public function actionUpload()
+    {
+        $model = new Usuario();
+
+        if (Yii::$app->request->isPost) {
+            $model->foto = UploadedFile::getInstance($model, 'foto');
+            if ($model->upload()) {
+                // file is uploaded successfully
+                return;
+            }
+        }
+
+        return $this->render('actualizar', ['model' => $model]);
     }
 
 }
