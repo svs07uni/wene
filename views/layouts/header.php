@@ -104,7 +104,7 @@ $usuario = Yii::$app->user->identity;
                         <?php if(!Yii::$app->user->isGuest){ ?>
                             <li class="user-footer">
                                 <div class="pull-left">
-                                    <a href="/usuario/miperfil" class="btn btn-default btn-flat">Perfil</a>
+                                    <a href="/usuario/editar" class="btn btn-default btn-flat">Perfil</a>
                                 </div>
                                 <div class="pull-right">
                                     <?= Html::a(
