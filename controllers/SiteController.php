@@ -26,23 +26,12 @@ class SiteController extends Controller
                 'ruleConfig' => [
                     'class' => AccessRule::className(),
                 ],
-                'only' => ['logout','about','contact'],
+                'only' => ['logout'],
                 'rules' => [
                     [
                         'actions' => ['logout'],
                         'allow' => true,
                         'roles' => ['@'],
-                    ],[
-                        'actions' => ['about'],
-                        'allow' => true,
-                        // Allow users, moderators and admins to create
-                        'roles' => ['?'],
-                        
-                    ],[
-                        'actions' => ['contact'],
-                        'allow' => true,
-                        // Allow users, moderators and admins to create
-                        'roles' => ['?'],
                     ],
                 ],
             ],

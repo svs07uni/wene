@@ -51,7 +51,7 @@ $usuario = Yii::$app->user->identity;
                     ],
                     ['label' => 'Mi CV', 
                      'icon' => 'fa fa-id-card-o', 
-                     'url' => ['usuario/perfil'], 
+                     'url' => ['usuario/miperfil'], 
                         'visible' => !Yii::$app->user->isGuest && Yii::$app->user->identity->id_rol == User::ROLE_POSTULANTE
                     ],
                     ['label' => 'Rendimiento ', 

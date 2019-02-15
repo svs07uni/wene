@@ -56,10 +56,9 @@ class Usuario extends \yii\db\ActiveRecord
             [['dni', 'telefono', 'nombre', 'apellido', 'nacionalidad', 'direccion', 'nombre_foto'], 'string'],
             [['activo'], 'boolean'],
             [['id_provincia'], 'integer'],
-            [['fecha_nac'], 'safe'],
-            [['fecha_nac'], 'date', 'format' => 'dd/mm/yyyy'],            
+            [['fecha_nac'], 'safe'],           
             [['foto'], 'file', 'extensions'=>'jpg, gif, png'],
-            [['foto'], 'file', 'maxSize'=>'100000'],
+            [['foto'], 'file', 'maxSize'=>'1000000'],
             [['id_registro'], 'unique'],
             [['id_localidad'], 'exist', 'skipOnError' => true, 'targetClass' => Localidad::className(), 'targetAttribute' => ['id_localidad' => 'id_localidad']],
             [['id_registro'], 'exist', 'skipOnError' => true, 'targetClass' => Registro::className(), 'targetAttribute' => ['id_registro' => 'id_registro']],
@@ -107,6 +106,7 @@ class Usuario extends \yii\db\ActiveRecord
     {
         return $this->hasMany(Aptitud::className(), ['id_usuario' => 'id_registro']);
     }
+
 
     /**
      * @return \yii\db\ActiveQuery

@@ -16,7 +16,7 @@ use yii\helpers\Html;
 use kartik\file\FileInput;
 use yii\widgets\ActiveForm;
 ?>
-<h3 align="center" > Datos Personale</h3>
+<h3 align="center" > Datos Personales</h3>
 
 <br>
 
@@ -29,7 +29,8 @@ use yii\widgets\ActiveForm;
             [
                 'attribute'=>'',
                 'value'=>'@web/uploads/'.$modeluser->id_registro.'.'.$modeluser->nombre_foto, 
-                'format' => ['image',['width'=>'100','height'=>'140']],
+                'format' => ['image',['style'=> 'border-radius:50%;height: 90px; width: 90px;']],
+                'options' => ['class' => 'user-image'],
             ],
         ],
     ]) ?>

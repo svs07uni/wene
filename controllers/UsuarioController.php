@@ -167,11 +167,14 @@ class UsuarioController extends \yii\web\Controller
         ->where(['id_registro' => $usuario->id_registro])
         ->one();
         if ($model->load(\Yii::$app->request->post())) {
-            $model->foto = UploadedFile::getInstance($model, 'foto');
-            $model->nombre_foto=substr($model->foto->name,-3); //se guarda el formato
+            
+            if (($model->foto)!=''){   
+                $model->foto = UploadedFile::getInstance($model, 'foto');
+                $model->nombre_foto=substr($model->foto->name,-3); //se guarda el formato
+            }
             
             if ($model->save()) {
-                if ($model->upload()) {
+                if (($model->foto)!='' && $model->upload()) {
                     // file is uploaded successfully
                     return;
                 }
