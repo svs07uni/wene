@@ -168,15 +168,15 @@ class UsuarioController extends \yii\web\Controller
         ->one();
         if ($model->load(\Yii::$app->request->post())) {
             
-            if (($model->foto)!=''){   
-                $model->foto = UploadedFile::getInstance($model, 'foto');
+            $model->foto = UploadedFile::getInstance($model, 'foto');
+            if (isset($model->foto->name)){   
                 $model->nombre_foto=substr($model->foto->name,-3); //se guarda el formato
             }
             
             if ($model->save()) {
                 if (($model->foto)!='' && $model->upload()) {
                     // file is uploaded successfully
-                    return;
+                    //return $this->render('actualizar');
                 }
             }
         }   
