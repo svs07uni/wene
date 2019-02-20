@@ -17,7 +17,7 @@ $usuario = Yii::$app->user->identity;
                    // echo("<img src='/uploads/default.png' class='user-image' />");
                 }
                 else{
-                    echo("<img src='/uploads/".$usuario->id_registro.".".$usuario->nombre_foto."' class='user-image' />");
+                    echo("<img src='/uploads/".$usuario->id_registro.".".$usuario->nombre_foto."' style='border-radius:50%;' />");
                 }
             ?>
             </div>

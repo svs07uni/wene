@@ -21,7 +21,7 @@ use yii\widgets\ActiveForm;
 <br>
 
 <body>
-<div class="col-sm-2"> 
+<div class="col-sm-2" style="background-color:rgb(236, 240, 245);"> 
     <?=
     DetailView::widget([
         'model' => $modeluser,
