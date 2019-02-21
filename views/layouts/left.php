@@ -90,7 +90,11 @@ $usuario = Yii::$app->user->identity;
                         'url' => ['/convocatoria/index'],
                         'visible' => !Yii::$app->user->isGuest && Yii::$app->user->identity->id_rol == User::ROLE_ADMIN
                     ],
-                    
+                    ['label' => 'Instituciones',
+                        'icon'=>'fas fa-edit',
+                        'url' => ['/instituciones/index'],
+                        'visible' => !Yii::$app->user->isGuest && Yii::$app->user->identity->id_rol == User::ROLE_ADMIN
+                    ]
                     /*[
                         'label' => 'Some tools',
                         'icon' => 'share',
