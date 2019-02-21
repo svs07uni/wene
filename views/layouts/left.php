@@ -60,11 +60,11 @@ $usuario = Yii::$app->user->identity;
                             'items'=>[
                                 ['label'=>'Academico',
                                     'icon'=>'certificate',
-                                    'url'=>[''],
+                                    'url'=>['rendimientoacademico/index'],
                                  ],   
                                 ['label'=>'No Academico',
                                          'icon'=>'certificate',
-                                         'url'=>[''],
+                                         'url'=>['rendimientonoacademico/index'],
                                         ],
                                       ],
                     ],

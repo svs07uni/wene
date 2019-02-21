@@ -6,15 +6,15 @@ use yii\grid\GridView;
 /* @var $this yii\web\View */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Rendimiento No Acads';
+$this->title = 'Rendimiento Acads';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="rendimiento-no-acad-index">
+<div class="rendimiento-acad-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Create Rendimiento No Acad', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Create Rendimiento Acad', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?= GridView::widget([
@@ -24,17 +24,13 @@ $this->params['breadcrumbs'][] = $this->title;
 
             //'id_rendimiento',
             //'id_usuario',
-            'titulo',
-            'descripcion',
-            'observacion',
             'fecha_actualizado',
-            //'id_rol',
-            //'horas_semanales',
-            'fecha_inicio',
-            'fecha_fin',
-            //'norma_legal',
-            //'id_tipo',
-
+            'cant_mat_aprobadas',
+            'anio_carrera',
+            //'legajo',
+            'fecha_egreso',
+            //'id_carrera',
+            'carrera.nombre',
             ['class' => 'yii\grid\ActionColumn'],
         ],
     ]); ?>

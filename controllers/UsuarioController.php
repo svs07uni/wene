@@ -13,8 +13,11 @@ use app\models\Estudio;
 use app\models\EstudioSearch;
 use app\models\Publicacion;
 use app\models\PublicacionSearch;
+use app\models\Rendimiento_no_acadSearch;
+use app\models\Rendimiento_acadSearch;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+
 use yii\web\UploadedFile;
 use yii\helpers\Url;
 
@@ -45,6 +48,13 @@ class UsuarioController extends \yii\web\Controller
         $searchModelPublicacion = new PublicacionSearch();
         $dataProviderPublicacion = $searchModelPublicacion->search(Yii::$app->request->queryParams,$id_usuario);
 
+        //RENDIMIENTO ACADEMICO
+        $searchModelRendimientoacademico = new Rendimiento_acadSearch();
+        $dataProviderRendimientoacademico = $searchModelRendimientoacademico->search(Yii::$app->request->queryParams,$id_usuario);
+        //RENDIMIENTO NO ACADEMIDO
+        $searchModelRendimientonoacademico = new Rendimiento_no_acadSearch();
+        $dataProviderRendimientonoacademico = $searchModelRendimientonoacademico->search(Yii::$app->request->queryParams,$id_usuario);
+
         return $this->render('perfil', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
@@ -54,6 +64,8 @@ class UsuarioController extends \yii\web\Controller
             'dataProviderEstudio' => $dataProviderEstudio,
             'searchModelPublicacion' => $searchModelPublicacion,
             'dataProviderPublicacion' => $dataProviderPublicacion,
+            'dataProviderRendimientoacademico' => $dataProviderRendimientoacademico,
+            'dataProviderRendimientonoacademico' => $dataProviderRendimientonoacademico,
             'modeluser'=>$modeluser,
         ]);
     }
@@ -82,6 +94,13 @@ class UsuarioController extends \yii\web\Controller
         $searchModelPublicacion = new PublicacionSearch();
         $dataProviderPublicacion = $searchModelPublicacion->search(Yii::$app->request->queryParams,$id_usuario);
 
+        //RENDIMIENTO ACADEMICO
+        $searchModelRendimientoacademico = new Rendimiento_acadSearch();
+        $dataProviderRendimientoacademico = $searchModelRendimientoacademico->search(Yii::$app->request->queryParams,$id_usuario);
+        //RENDIMIENTO NO ACADEMIDO
+        $searchModelRendimientonoacademico = new Rendimiento_no_acadSearch();
+        $dataProviderRendimientonoacademico = $searchModelRendimientonoacademico->search(Yii::$app->request->queryParams,$id_usuario);
+
         return $this->render('perfil', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
@@ -91,6 +110,8 @@ class UsuarioController extends \yii\web\Controller
             'dataProviderEstudio' => $dataProviderEstudio,
             'searchModelPublicacion' => $searchModelPublicacion,
             'dataProviderPublicacion' => $dataProviderPublicacion,
+            'dataProviderRendimientoacademico' => $dataProviderRendimientoacademico,
+            'dataProviderRendimientonoacademico' => $dataProviderRendimientonoacademico,
             'modeluser'=>$modeluser,
         ]);
     }
