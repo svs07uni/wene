@@ -92,7 +92,7 @@ $usuario = Yii::$app->user->identity;
                     ],
                     ['label' => 'Instituciones',
                         'icon'=>'fas fa-edit',
-                        'url' => ['/instituciones/index'],
+                        'url' => ['/institucion/index'],
                         'visible' => !Yii::$app->user->isGuest && Yii::$app->user->identity->id_rol == User::ROLE_ADMIN
                     ]
                     /*[
