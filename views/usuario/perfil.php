@@ -66,7 +66,7 @@ use yii\widgets\ActiveForm;
 
                 //'id_experiencia',
                 //'id_usuario',
-                'fecha_actualizacion',
+                //'fecha_actualizacion',
                 'horas_semanales',
                 'fecha_fin',
               //  ['class' => 'yii\grid\ActionColumn'],
