@@ -85,9 +85,9 @@ $usuario = Yii::$app->user->identity;
                     ['label' => 'Iniciar sesión', 'icon'=>'fa fa-user-circle','url' => ['site/login'], 'visible' => Yii::$app->user->isGuest],
                     ['label' => 'Acerca de', 'icon'=>'fas fa-info-circle', 'url' => ['site/about']],
                     ['label' => 'Contactos', 'icon'=>'far fa-comments', 'url' => ['site/contact']],
-                    ['label' => 'Gestor',
+                    ['label' => 'Convocatorias',
                         'icon'=>'fas fa-edit',
-                        'url' => ['/gestor'],
+                        'url' => ['/convocatoria/index'],
                         'visible' => !Yii::$app->user->isGuest && Yii::$app->user->identity->id_rol == User::ROLE_ADMIN
                     ],
                     
