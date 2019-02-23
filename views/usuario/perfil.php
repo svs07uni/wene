@@ -21,7 +21,7 @@ use yii\widgets\ActiveForm;
 <br>
 
 <body>
-<div class="col-sm-2"> 
+<div class="col-sm-2" style="background-color:rgb(236, 240, 245);"> 
     <?=
     DetailView::widget([
         'model' => $modeluser,
@@ -54,6 +54,44 @@ use yii\widgets\ActiveForm;
 <br>    
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
     
+    
+    <div class="col-sm-6" style="align=center;"> 
+    <h3 align="center" > Rendimiento No Academico</h3>
+    <br>
+        <?= GridView::widget([
+            'dataProvider' => $dataProviderRendimientonoacademico,
+            //'filterModel' => $searchModel,
+            'columns' => [
+                ['class' => 'yii\grid\SerialColumn'],
+
+                //'id_experiencia',
+                //'id_usuario',
+                //'fecha_actualizacion',
+                'horas_semanales',
+                'fecha_fin',
+              //  ['class' => 'yii\grid\ActionColumn'],
+            ],
+        ]); ?>
+    </div>
+
+    <div class="col-sm-6" style="align=center;"> 
+    <h3 align="center" > Rendimiento Academico</h3>
+    <br>
+        <?= GridView::widget([
+            'dataProvider' => $dataProviderRendimientoacademico,
+            //'filterModel' => $searchModel,
+            'columns' => [
+                ['class' => 'yii\grid\SerialColumn'],
+                //'id_experiencia',
+                //'id_usuario',
+                'cant_materias_aprobadas',
+                'anio_carrera',
+                'fecha_egreso',
+              //  ['class' => 'yii\grid\ActionColumn'],
+            ],
+        ]); ?>
+    </div>
+
     <div class="col-sm-6" style="align=center;"> 
     <h3 align="center" > Experiencia Laboral</h3>
     <br>

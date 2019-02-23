@@ -26,7 +26,10 @@ use dosamigos\datepicker\DateRangePicker;
 
     <?= $form->field($model, 'descripcion')->textInput() ?>
 
-    <?= $form->field($model, 'direccion')->textInput() ?>
+    <?php $datos_tipo= \yii\helpers\ArrayHelper::map(\app\models\Carrera::find()->all(), 'id_carrera', 'nombre');?>
+    <?= $form->field($model, 'id_tipo')->dropDownList($datos_tipo)->label('Carreras Necesarias')?>
+
+    <?= $form->field($model, 'direccion')->textInput() ->label('Direccion de la Empresa')?>
 
  	<?= $form->field($model, 'fecha_desde')->widget(DateRangePicker::className(), [
     'attributeTo' => 'fecha_hasta',

@@ -5,12 +5,12 @@ namespace app\models;
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use app\models\Estudio;
+use app\models\Rendimiento_acad;
 
 /**
- * EstudioSearch represents the model behind the search form of `app\models\Estudio`.
+ * Rendimiento_acadSearch represents the model behind the search form of `app\models\Rendimiento_acad`.
  */
-class EstudioSearch extends Estudio
+class Rendimiento_acadSearch extends Rendimiento_acad
 {
     /**
      * {@inheritdoc}
@@ -18,8 +18,8 @@ class EstudioSearch extends Estudio
     public function rules()
     {
         return [
-            [['id_estudio',  'id_tipo', 'id_usuario'], 'integer'],
-            [['fecha_egreso', 'institucion','titulo'], 'safe'],
+            [['id_rendimiento', 'id_usuario', 'cant_mat_aprobadas', 'anio_carrera', 'id_carrera'], 'integer'],
+            [['fecha_actualizado', 'legajo', 'fecha_egreso'], 'safe'],
         ];
     }
 
@@ -39,11 +39,9 @@ class EstudioSearch extends Estudio
      *
      * @return ActiveDataProvider
      */
-    public function search($params,$id_usuario = null)
+    public function search($params)
     {
-        $query = Estudio::find()
-        ->joinWith('usuario')
-        ->andFilterWhere(['usuario.id_registro' => $id_usuario]);
+        $query = Rendimiento_acad::find();
 
         // add conditions that should always apply here
 
@@ -61,15 +59,16 @@ class EstudioSearch extends Estudio
 
         // grid filtering conditions
         $query->andFilterWhere([
-            'id_estudio' => $this->id_estudio,
-            'institucion' => $this->institucion,
-            'fecha_egreso' => $this->fecha_egreso,
-            'id_tipo' => $this->id_tipo,
-            'titulo' => $this->titulo,
+            'id_rendimiento' => $this->id_rendimiento,
             'id_usuario' => $this->id_usuario,
+            'fecha_actualizado' => $this->fecha_actualizado,
+            'cant_mat_aprobadas' => $this->cant_mat_aprobadas,
+            'anio_carrera' => $this->anio_carrera,
+            'fecha_egreso' => $this->fecha_egreso,
+            'id_carrera' => $this->id_carrera,
         ]);
 
-        //$query->andFilterWhere(['ilike', 'titulo', $this->titulo]);
+        $query->andFilterWhere(['ilike', 'legajo', $this->legajo]);
 
         return $dataProvider;
     }

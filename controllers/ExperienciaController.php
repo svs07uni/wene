@@ -65,6 +65,8 @@ class ExperienciaController extends Controller
         $searchModelPublicacion = new PublicacionSearch();
         $dataProviderPublicacion = $searchModelPublicacion->search(Yii::$app->request->queryParams,$usuario->id_registro);
 
+        //RENDIMIENTO NO ACADEMICO
+        
         return $this->render('index', [
             'usuario'   => $usuario,
             'modelExpericiencia'     => $model,
