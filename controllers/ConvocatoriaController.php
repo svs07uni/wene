@@ -7,8 +7,12 @@ use app\models\Convocatoria;
 use app\models\ConvocatoriaSearch;
 use app\models\Postulante;
 use app\models\PostulanteSearch;
+use app\models\Carrera;
+use app\models\CarreraDestinada;
 use yii\web\Controller;
+use yii\data\ActiveDataProvider;
 use yii\web\NotFoundHttpException;
+use yii\helpers\ArrayHelper;
 use yii\filters\VerbFilter;
 use app\models\Tipo;
 use yii\grid\GridView;
@@ -79,31 +83,16 @@ class ConvocatoriaController extends Controller
                 
       if ($model->load(Yii::$app->request->post())) {
       	$model->fecha_alta=date("d/m/Y");
+        $model->activo = true;
+        
       	if($model->save()){
-      		return $this->redirect(['view', 'id' => $model->id_convocatoria]);
+      		return $this->redirect(['update', 'id' => $model->id_convocatoria]);
       		} 
       	           
         }
         
-        
-        
-      /*  $datos_tipo= array();
-        $tipo= Tipo::find()->all();
-        foreach ($tipo as $it){
-        	$datos_tipo[$it->id_tipo]=$it->nombre;
-             	
-        }*/
-        
-        
-        
-       // print_r($tipo);
-        //print_r($datos_tipo);
-        
-        
-	
         return $this->render('create', [
             'model' => $model,
-        		//'datos_tipo' => $datos_tipo,
         ]);
     }
     
@@ -135,15 +124,66 @@ class ConvocatoriaController extends Controller
     
     
     public function actionUpdate($id)
-    {
+    {//print_r($aux);exit;
+        $quitarCarrera = Yii::$app->request->getQueryParam('d');
+        if(isset($quitarCarrera)){
+            $abarca = CarreraDestinada::find()
+                        ->where(['id_carrera'=>$quitarCarrera, 'id_convocatoria'=>$id])
+                        ->one();
+            $abarca->delete();  
+
+            $this->redirect('@web/convocatoria/update/'.$id);          
+        }
+
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id_convocatoria]);
+            $idCarrera = Yii::$app->request->post()['Convocatoria']['unaCarreraDest'];
+
+            if($idCarrera > 0){
+                $modelCarrera = Carrera::findOne($idCarrera);
+
+                $destinada = CarreraDestinada::find()
+                        ->where(['id_carrera'=>$idCarrera, 'id_convocatoria'=>$id])
+                        ->one();
+                if(!isset($destinada)){
+                    $destinada = new CarreraDestinada();
+                    $destinada->id_convocatoria = $id;
+                    $destinada->id_carrera = $idCarrera;
+                    $destinada->anios_necesario = Yii::$app->request->post()['Convocatoria']['unaCarreraDestAnios'];
+                    $destinada->cant_materias_nec = Yii::$app->request->post()['Convocatoria']['unaCarreraDestMaterias'];
+                    $destinada->save();
+                }
+                           
+            }else{
+                return $this->redirect(['view', 'id' => $model->id_convocatoria]);
+            }
         }
+
+        $query = CarreraDestinada::find()->joinWith('carrera')
+                ->where(['id_convocatoria' => $id]);
+        
+        $dataProviderCarrerasDest = new ActiveDataProvider([
+            'query' => $query,
+        ]);
+
+        $usuario = Yii::$app->user->identity;
+        $id_usuario = $usuario->id_registro;
+//print_r($query);exit;
+        // Filtra en base a las dependencias que abarca el gestor
+        $colCarreras = Carrera::find()
+                                ->joinWith('dependencia')
+                                ->joinWith('dependencia.abarcas')
+                                ->where(['id_usuario'=>$id_usuario])
+                                ->all();
+        $carreras = ArrayHelper::map($colCarreras, 
+                                        'id_carrera', 
+                                        'nombre');
 
         return $this->render('update', [
             'model' => $model,
+            'carreras' => $carreras,
+            'dataProviderCarrerasDest' => $dataProviderCarrerasDest
         ]);
     }
 
@@ -156,7 +196,14 @@ class ConvocatoriaController extends Controller
      */
     public function actionDelete($id)
     {
-        $this->findModel($id)->delete();
+        try{//print_r("expression");exit;
+            $this->findModel($id)->delete();
+        }catch(\Exception $e){
+            $convocatoria = Convocatoria::findOne($id);
+            $convocatoria->activo = false;
+            $convocatoria->save();
+        }
+        
         return $this->redirect(['index']);
     }
 

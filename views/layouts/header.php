@@ -1,5 +1,6 @@
 <?php
 use yii\helpers\Html;
+use yii\helpers\Url;
 /* @var $this \yii\web\View */
 /* @var $content string */
 $nombre=Yii::$app->user->getNombre();
@@ -63,11 +64,11 @@ $usuario = Yii::$app->user->identity;
                 <li class="dropdown user user-menu">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                     <?php 
-                        if (is_null($usuario)){
-                            echo("<img src='/uploads/default.png' class='user-image' />");
+                        if (is_null($usuario) || !isset($usuario->nombre_foto)){
+                            echo("<img src='".Url::to(['uploads/default.png'])."' class='user-image' />");
                         }
                         else{
-                            echo("<img src='/uploads/".$usuario->id_registro.".".$usuario->nombre_foto."' class='user-image' />");
+                            echo("<img src='".Url::to(['uploads/'.$usuario->id_registro.".".$usuario->nombre_foto])."' class='user-image' />");
                         }
                     ?>
                         <span class="hidden-xs text-capitalize"><?php echo $nombre,' ',$apellido?></span>
@@ -76,11 +77,11 @@ $usuario = Yii::$app->user->identity;
                         <!-- User image -->
                         <li class="user-header">
                         <?php 
-                            if (is_null($usuario)){
-                                echo("<img src='/uploads/default.png' class='user-image' />");
+                            if (is_null($usuario) || !isset($usuario->nombre_foto)){
+                                echo("<img src='".Url::to(['uploads/default.png'])."' class='user-image' />");
                             }
                             else{
-                                echo("<img src='/uploads/".$usuario->id_registro.".".$usuario->nombre_foto."' class='user-image' />");
+                                echo("<img src='".Url::to(['uploads/'.$usuario->id_registro.".".$usuario->nombre_foto])."' class='user-image' />");
                             }
                         ?>         
                             <p class="text-capitalize">
@@ -104,7 +105,7 @@ $usuario = Yii::$app->user->identity;
                         <?php if(!Yii::$app->user->isGuest){ ?>
                             <li class="user-footer">
                                 <div class="pull-left">
-                                    <a href="/usuario/editar" class="btn btn-default btn-flat">Perfil</a>
+                                    <a href="<?=Url::to(['usuario/editar'])?>" class="btn btn-default btn-flat">Perfil</a>
                                 </div>
                                 <div class="pull-right">
                                     <?= Html::a(

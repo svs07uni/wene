@@ -3,6 +3,8 @@
 use yii\helpers\Html;
 use yii\grid\GridView;
 use yii\widgets\Pjax;
+use yii\helpers\Url;
+
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\UsuariosSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
@@ -48,8 +50,26 @@ $this->params['breadcrumbs'][] = $this->title;
 
             [
                 'class' => 'yii\grid\ActionColumn',
-                'template' => '{update}',
-                'header' => 'Editar Dep.'                
+                'template' => ' {update}',
+                'header' => 'Editar',
+                'buttons' => [
+                            'updateDep' => function ($url, $model) {
+                                return Html::a('<span class="fa fa-address-card"></span>', $url, [
+                                            'title' => Yii::t('app', 'lead-delete'),
+                                ]);
+                            }
+                        ],
+                'urlCreator' => function ($action, $model, $key, $index) {
+                                        if ($action === 'updateDep') {
+                                            $url ='actualizarusr?id='.$model->id_registro;
+                                            return $url;
+                                        }else{
+                                            if ($action === 'update') {
+                                                $url =Url::to(['gestor/update/'.$model->id_registro]);
+                                                return $url;
+                                            }
+                                        }
+                                 }                
             ],
         ],
     ]); ?>
