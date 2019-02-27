@@ -13,6 +13,9 @@ use app\common\components\AccessRule;
 use app\models\User;
 use app\models\Convocatoria;
 use app\models\ConvocatoriaSearch;
+
+use app\models\CarreraDestinada;
+use yii\data\ActiveDataProvider;
 class SiteController extends Controller
 {
     /**
@@ -79,6 +82,7 @@ class SiteController extends Controller
             $valor ="";
         }
         $dataProvider = $searchModel->searchAvanzado();
+        
         
         return $this->render('index', [
             'valor' => $valor,

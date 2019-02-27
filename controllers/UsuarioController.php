@@ -100,7 +100,7 @@ class UsuarioController extends \yii\web\Controller
         //RENDIMIENTO NO ACADEMIDO
         $searchModelRendimientonoacademico = new Rendimiento_no_acadSearch();
         $dataProviderRendimientonoacademico = $searchModelRendimientonoacademico->search(Yii::$app->request->queryParams,$id_usuario);
-
+        
         return $this->render('perfil', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,

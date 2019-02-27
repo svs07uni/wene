@@ -173,6 +173,14 @@ class User extends \yii\base\BaseObject implements \yii\web\IdentityInterface
     }
 
     /**
+     * @param mixed $dni
+     */
+    public function getDni()
+    {
+        return $this->dni;
+    }
+
+    /**
      * Validates password
      *
      * @param string $password password to validate

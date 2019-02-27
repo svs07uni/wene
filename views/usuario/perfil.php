@@ -35,6 +35,7 @@ use yii\widgets\ActiveForm;
         ],
     ]) ?>
 </div>
+
 <div class="col-sm-10" > 
         <?= DetailView::widget([
             'model' => $modeluser,
@@ -54,7 +55,8 @@ use yii\widgets\ActiveForm;
 <br>    
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
     
-    
+    <?= Html::a('Editar Expericiencias', ['//experiencia/index'], ['class'=>'btn btn-primary']) ?>
+
     <div class="col-sm-6" style="align=center;"> 
     <h3 align="center" > Rendimiento No Academico</h3>
     <br>

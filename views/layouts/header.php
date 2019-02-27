@@ -1,11 +1,19 @@
 <?php
 use yii\helpers\Html;
 use yii\helpers\Url;
+use app\models\Usuario;
 /* @var $this \yii\web\View */
 /* @var $content string */
 $nombre=Yii::$app->user->getNombre();
 $apellido = Yii::$app->user->getApellido();
-$usuario = Yii::$app->user->identity;
+$usuario = \Yii::$app->user->identity;
+if(ISSET(\Yii::$app->user->identity)){
+    $usuario=Usuario::find()
+    ->where(['id_registro' => \Yii::$app->user->identity->id_registro])
+    ->one();    
+}
+
+
 ?>
 
 <header class="main-header">
@@ -84,9 +92,14 @@ $usuario = Yii::$app->user->identity;
                                 echo("<img src='".Url::to(['uploads/'.$usuario->id_registro.".".$usuario->nombre_foto])."' class='user-image' />");
                             }
                         ?>         
+
                             <p class="text-capitalize">
-                                <?php echo $nombre,' ',$apellido?> - Desarrollador Web 
-                                <small>Egresado FAIF Nov. 2012</small>
+                                <?php 
+                                        echo $nombre,' ',$apellido?> -
+                                        <small>DNI: <?php if (!is_null($usuario)){ echo $usuario->dni;}?></small>
+                                        <small>Fecha de Nacimiento: <?php if (!is_null($usuario)){echo $usuario->fecha_nac;}?> </small>
+                                    
+                                
                             </p>
                         </li>
                         <!-- Menu Body -->
