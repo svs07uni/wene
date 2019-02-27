@@ -41,7 +41,7 @@ class Rol extends \yii\db\ActiveRecord
     {
         return [
             'id_rol' => 'Id Rol',
-            'nombre' => 'Nombre',
+            'nombre' => 'Rol',
         ];
     }
 

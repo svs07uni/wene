@@ -30,6 +30,9 @@ use Yii;
  */
 class Convocatoria extends \yii\db\ActiveRecord
 {
+    public $unaCarreraDest;
+    public $unaCarreraDestAnios;
+    public $unaCarreraDestMaterias;
     /**
      * {@inheritdoc}
      */

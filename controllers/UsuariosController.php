@@ -40,7 +40,7 @@ class UsuariosController extends Controller
     public function actionIndex()
     {
         $searchModel = new UsuariosSearch();
-        $searchModel->id_rol = 3;
+        //$searchModel->id_rol = 3;
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [

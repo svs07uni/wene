@@ -1,5 +1,6 @@
 <?php
 use app\models\User;
+use yii\helpers\Url;
 $nombre = Yii::$app->user->getNombre();
 $apellido = Yii::$app->user->getApellido();
 $usuario = Yii::$app->user->identity;
@@ -13,11 +14,11 @@ $usuario = Yii::$app->user->identity;
         <div class="user-panel">
             <div class="pull-left image">
             <?php 
-                if (is_null($usuario)){
-                   // echo("<img src='/uploads/default.png' class='user-image' />");
+                if (is_null($usuario) || !isset($usuario->nombre_foto)){
+                   echo("<img src='".Url::to(['uploads/default.png'])."' class='user-image' />");
                 }
                 else{
-                    echo("<img src='/uploads/".$usuario->id_registro.".".$usuario->nombre_foto."' style='border-radius:50%;' />");
+                    echo("<img src='".Url::to(['uploads/'.$usuario->id_registro.".".$usuario->nombre_foto])."' style='border-radius:50%;' />");
                 }
             ?>
             </div>

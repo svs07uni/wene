@@ -31,7 +31,7 @@ class GestorController extends Controller
                 'ruleConfig' => [
                     'class' => AccessRule::className(),
                 ],
-                'only' => ['index','update'],
+                'only' => ['index','update','updateUsr'],
                 'rules' => [
                     [
                         'actions' => ['index'],
@@ -39,6 +39,12 @@ class GestorController extends Controller
                         'roles' => ['@'],
                     ],[
                         'actions' => ['update'],
+                        'allow' => true,
+                        // Allow users, moderators and admins to create
+                        'roles' => ['@'],
+                        
+                    ],[
+                        'actions' => ['updateUsr'],
                         'allow' => true,
                         // Allow users, moderators and admins to create
                         'roles' => ['@'],
@@ -166,6 +172,27 @@ class GestorController extends Controller
             'modelDep' => $modelDep,            
             'dependencias' => $dependencias,
             'dataProviderAbarca' => $dataProviderAbarca
+        ]);
+    }
+
+    /**
+     * Updates an existing Usuario model.
+     * If update is successful, the browser will be redirected to the 'view' page.
+     * @param integer $id
+     * @return mixed
+     * @throws NotFoundHttpException if the model cannot be found
+     */
+    public function actionActualizarusr($id)
+    {       
+        //Usado para agregar dependencias para gestionar
+        if(Yii::$app->request->post()){
+            
+        }
+
+        $model = $this->findModel($id);
+        
+        return $this->render('updateUsr', [
+            'model' => $model 
         ]);
     }
 
