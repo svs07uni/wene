@@ -29,10 +29,24 @@ class ConvocatoriaController extends Controller
     public function behaviors()
     {
         return [
+            'access' => [
+                'class' => AccessControl::className(),
+                'ruleConfig' => [
+                    'class' => AccessRule::className(),
+                ],
+                'only' => ['index','view','delete','create','update'],
+                'rules' => [
+                    [
+                        'actions' => ['index','view','delete','create','update'],
+                        'allow' => true,
+                        'roles' => [User::ROLE_GESTOR],
+                    ],
+                ],
+            ],
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [
-                    'delete' => ['POST'],
+                    'logout' => ['post'],
                 ],
             ],
         ];

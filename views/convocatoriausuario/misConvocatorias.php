@@ -46,7 +46,9 @@ $this->params['breadcrumbs'][] = $this->title;
                     },*/
                     'convocatoriaDelete' => function ($url ,$modelConvocatoria) {
                         $url = Url::to(['convocatoriausuario/despostularse','id_convocatoria'=> $modelConvocatoria->id_convocatoria]);
-                        return Html::a('<span class="fa fa-trash"></span>', $url,['title'=>'Eliminar']);                        
+                        return Html::a('<span class="fa fa-trash"></span>', $url,['title'=>'Eliminar','data' => [
+                            'confirm' => 'Estas seguro que desea despostularse?.',
+                        ],]);                        
                     }
                 ]               
             ],

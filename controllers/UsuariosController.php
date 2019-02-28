@@ -12,6 +12,9 @@ use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\data\ActiveDataProvider;
 use yii\helpers\ArrayHelper;
+use app\models\User;
+use app\common\components\AccessRule;
+use yii\filters\AccessControl;
 
 /**
  * UsuariosController implements the CRUD actions for Usuario model.
@@ -24,14 +27,29 @@ class UsuariosController extends Controller
     public function behaviors()
     {
         return [
+            'access' => [
+                'class' => AccessControl::className(),
+                'ruleConfig' => [
+                    'class' => AccessRule::className(),
+                ],
+                'only' => ['index','view','delete','create','update'],
+                'rules' => [
+                    [
+                        'actions' => ['index','view','delete','create','update'],
+                        'allow' => true,
+                        'roles' => [User::ROLE_ADMIN],
+                    ],
+                ],
+            ],
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [
-                    'delete' => ['POST'],
+                    'logout' => ['post'],
                 ],
             ],
         ];
     }
+    
 
     /**
      * Lists all Usuario models.

@@ -25,10 +25,10 @@ class User extends \yii\base\BaseObject implements \yii\web\IdentityInterface
     public  $id_rol;
     
     
-    const ROLE_GESTOR = 1;
-    const ROLE_POSTULANTE = 2;
-    const ROLE_ADMIN = 3;
-    const ROLE_SELECTOR = 4;
+    const ROLE_GESTOR = 3;
+    const ROLE_POSTULANTE = 1;
+    const ROLE_ADMIN = 4;
+    const ROLE_SELECTOR = 2;
 
  /*   private static $users = [
         '100' => [

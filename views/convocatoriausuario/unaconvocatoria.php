@@ -27,10 +27,14 @@ use dosamigos\datepicker\DateRangePicker;
 			<h2 class="text-center">
 			<?php if (is_null($postulante)): ?>
 				<?= /*si no esta postulado*/
-				 Html::a('Postular', ['convocatoriausuario/postularse','id_convocatoria'=>$model->id_convocatoria], ['class' => 'btn btn-success pull-right'])?>
+				 Html::a('Postular', ['convocatoriausuario/postularse','id_convocatoria'=>$model->id_convocatoria], ['class' => 'btn btn-success pull-right','data' => [
+					'confirm' => 'Estas seguro que desea postularse?.',
+				],])?>
 			<?php else: ?>
 			<?= /*si  esta postulado*/
-				 Html::a('Despostular', ['convocatoriausuario/despostularse','id_convocatoria'=>$model->id_convocatoria], ['class' => 'btn btn-warning pull-right'])?>
+				 Html::a('Despostular', ['convocatoriausuario/despostularse','id_convocatoria'=>$model->id_convocatoria], ['class' => 'btn btn-warning pull-right','data' => [
+					'confirm' => 'Estas seguro que desea despostularse?.',
+				],])?>
 			<?php endif; ?>
 			<?= Html::a('Convocatoria', ['/',], ['class' => 'btn btn-success pull-left'])?>
 				<?= Html::encode($model->institucion->nombre);?>
