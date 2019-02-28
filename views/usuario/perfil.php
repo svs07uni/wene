@@ -55,8 +55,11 @@ use yii\widgets\ActiveForm;
 <br>    
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
     
-    <?= Html::a('Editar Expericiencias', ['//experiencia/index'], ['class'=>'btn btn-primary']) ?>
-
+    
+    <?php if (($esEditable)): ?>
+		<?= /*si no esta postulado*/
+	    Html::a('Editar Expericiencias', ['//experiencia/index'], ['class'=>'btn btn-primary'])	?>
+	<?php endif; ?>
     <div class="col-sm-6" style="align=center;"> 
     <h3 align="center" > Rendimiento No Academico</h3>
     <br>

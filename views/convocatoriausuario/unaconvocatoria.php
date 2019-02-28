@@ -41,13 +41,13 @@ use dosamigos\datepicker\DateRangePicker;
 		</div>
 		<div class="container-fluid">
 			<h4>
-				<dt>Carreras</dt>
+				<dt>Carreras Requeridas</dt>
 			</h4>
 				<?= GridView::widget([
 					'dataProvider' => $dataProviderCarrerasDest,
 					'layout' => '{items}',
 					'columns' => [            
-						['label' => 'Carrera destinada',
+						['label' => 'Nombre',
 							'attribute' => 'carrera.nombre'],
 						['label' => 'Años necesarios',
 							'attribute' => 'anios_necesario'],
