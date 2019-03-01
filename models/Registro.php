@@ -73,4 +73,16 @@ class Registro extends \yii\db\ActiveRecord
 
 
 
+    public function enviarMail($asunto, $cuerpo)
+    {
+        if(isset($this->email)){
+            Yii::$app->mailer->compose()
+                ->setFrom('hornero@fi.uncoma.edu.ar')
+                ->setTo($this->email)
+                ->setSubject($asunto)
+                //->setTextBody('probando')
+                ->setHtmlBody($cuerpo)
+                ->send();
+        }        
+    }
 }
