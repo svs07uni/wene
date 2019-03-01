@@ -54,6 +54,8 @@ class UsuarioController extends \yii\web\Controller
         //RENDIMIENTO NO ACADEMIDO
         $searchModelRendimientonoacademico = new Rendimiento_no_acadSearch();
         $dataProviderRendimientonoacademico = $searchModelRendimientonoacademico->search(Yii::$app->request->queryParams,$id_usuario);
+        //para no mostrar boton editar expericiencias
+        $esEditable = false;
 
         return $this->render('perfil', [
             'searchModel' => $searchModel,
@@ -67,6 +69,7 @@ class UsuarioController extends \yii\web\Controller
             'dataProviderRendimientoacademico' => $dataProviderRendimientoacademico,
             'dataProviderRendimientonoacademico' => $dataProviderRendimientonoacademico,
             'modeluser'=>$modeluser,
+            'esEditable'=> $esEditable
         ]);
     }
 
@@ -100,7 +103,8 @@ class UsuarioController extends \yii\web\Controller
         //RENDIMIENTO NO ACADEMIDO
         $searchModelRendimientonoacademico = new Rendimiento_no_acadSearch();
         $dataProviderRendimientonoacademico = $searchModelRendimientonoacademico->search(Yii::$app->request->queryParams,$id_usuario);
-
+        //para  mostrar boton editar expericiencias
+        $esEditable = true;
         return $this->render('perfil', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
@@ -113,6 +117,7 @@ class UsuarioController extends \yii\web\Controller
             'dataProviderRendimientoacademico' => $dataProviderRendimientoacademico,
             'dataProviderRendimientonoacademico' => $dataProviderRendimientonoacademico,
             'modeluser'=>$modeluser,
+            'esEditable'=> $esEditable
         ]);
     }
 

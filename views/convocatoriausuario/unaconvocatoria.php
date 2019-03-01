@@ -1,6 +1,20 @@
 <?php
-//print_r($model);
+
 use yii\helpers\Html;
+use yii\widgets\ActiveForm;
+use yii\grid\GridView;
+
+use dosamigos\datepicker\DatePicker;
+use dosamigos\datepicker\DateRangePicker;
+
+
+
+
+
+
+/* @var $this yii\web\View */
+/* @var $model app\models\Convocatoria */
+/* @var $form yii\widgets\ActiveForm */
 ?>
 <div class="panel panel-success">
 	<div class="panel-heading text-center">
@@ -11,7 +25,17 @@ use yii\helpers\Html;
 	<div class="panel-body">
 		<div class="container-fluid">
 			<h2 class="text-center">
-			<?= Html::a('Postular', ['convocatoriausuario/postularse','id_convocatoria'=>$model->id_convocatoria], ['class' => 'btn btn-success pull-right'])?>
+			<?php if (is_null($postulante)): ?>
+				<?= /*si no esta postulado*/
+				 Html::a('Postular', ['convocatoriausuario/postularse','id_convocatoria'=>$model->id_convocatoria], ['class' => 'btn btn-success pull-right','data' => [
+					'confirm' => 'Estas seguro que desea postularse?.',
+				],])?>
+			<?php else: ?>
+			<?= /*si  esta postulado*/
+				 Html::a('Despostular', ['convocatoriausuario/despostularse','id_convocatoria'=>$model->id_convocatoria], ['class' => 'btn btn-warning pull-right','data' => [
+					'confirm' => 'Estas seguro que desea despostularse?.',
+				],])?>
+			<?php endif; ?>
 			<?= Html::a('Convocatoria', ['/',], ['class' => 'btn btn-success pull-left'])?>
 				<?= Html::encode($model->institucion->nombre);?>
 				<br>
@@ -19,6 +43,23 @@ use yii\helpers\Html;
 			</h2>
 			<hr>
 		</div>
+		<div class="container-fluid">
+			<h4>
+				<dt>Carreras Requeridas</dt>
+			</h4>
+				<?= GridView::widget([
+					'dataProvider' => $dataProviderCarrerasDest,
+					'layout' => '{items}',
+					'columns' => [            
+						['label' => 'Nombre',
+							'attribute' => 'carrera.nombre'],
+						['label' => 'Años necesarios',
+							'attribute' => 'anios_necesario'],
+						['label' => 'Cant. materias necesarias',
+							'attribute' => 'cant_materias_nec'],
+					],
+				]); ?>
+		</div>	
 		<div class="container-fluid">
 			<h4>
 				<dt>Descripcion</dt>
@@ -54,6 +95,8 @@ use yii\helpers\Html;
 					<dt>Sede</dt>
 				</h4>
 			</div>
+			
 		</div>
+		
 	</div>
 </div>

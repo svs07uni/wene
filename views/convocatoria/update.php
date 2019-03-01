@@ -5,7 +5,7 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model app\models\Convocatoria */
 
-$this->title = 'Editar Convocatoria: ' . $model->id_convocatoria;
+$this->title = 'Convocatoria: ' . $model->titulo;
 $this->params['breadcrumbs'][] = ['label' => 'Convocatorias', 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => $model->id_convocatoria, 'url' => ['view', 'id' => $model->id_convocatoria]];
 $this->params['breadcrumbs'][] = 'Update';

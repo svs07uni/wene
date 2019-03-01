@@ -15,6 +15,9 @@ use yii\filters\AccessControl;
 use yii\helpers\Url;
 use yii\bootstrap\Alert;
 use yii\helpers\Json;
+use app\models\CarreraDestinada;
+use yii\data\ActiveDataProvider;
+
 class ConvocatoriausuarioController extends \yii\web\Controller
 {
     public function behaviors()
@@ -101,9 +104,27 @@ class ConvocatoriausuarioController extends \yii\web\Controller
 
 
     public function actionVermas($id_convocatoria) {
+        $usuario = Yii::$app->user->identity;
         $model = Convocatoria::findOne($id_convocatoria);
+        $query = CarreraDestinada::find()->joinWith('carrera')
+                ->where(['id_convocatoria' => $id_convocatoria]);
+        
+        $dataProviderCarrerasDest = new ActiveDataProvider([
+            'query' => $query,
+        ]);
+        if (!is_null($usuario)){
+            $postulante = Postulante::find()
+            ->where(['id_usuario' => $usuario->id_registro,'id_convocatoria' => $id_convocatoria])
+            ->one();
+        }else{
+            $postulante = null;
+        }
+        
+
         return $this->render('unaconvocatoria', [
             'model' => $model,
+            'dataProviderCarrerasDest' => $dataProviderCarrerasDest,
+            'postulante' => $postulante
         ]);
     }   
 

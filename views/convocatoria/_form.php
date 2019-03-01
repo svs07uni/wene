@@ -20,47 +20,8 @@ use dosamigos\datepicker\DateRangePicker;
 <div class="convocatoria-form">
 
     <?php $form = ActiveForm::begin(); ?>
-
-    <?= $form->field($model, 'titulo')->textInput() 
-    ->label('Nombre convocatoria') ?>
-
-    <?= $form->field($model, 'descripcion')->textInput() ?>
-
-    <?= $form->field($model, 'direccion')->textInput() ->label('Direccion de la Empresa')?>
-
- 	<?= $form->field($model, 'fecha_desde')->label("Periodo de publicación")->widget(DateRangePicker::className(), [
-    'attributeTo' => 'fecha_hasta',
-    'labelTo' => 'hasta',
- 	  'form' => $form, // best for correct client validation
-    'language' => 'es',
-    'size' => 'lg',
- 	'clientOptions' => [
-        'autoclose' => true,
-    	'format' => 'dd-mm-yyyy',
- 	 ]
- 		
-	]);?>
-	   
-
-  
-    <?= $form->field($model, 'cant_postulantes')->textInput() ?>
-
-    <?php $datos_tipo= \yii\helpers\ArrayHelper::map(\app\models\Tipo::find()->all(), 'id_tipo', 'nombre');?>
-    <?= $form->field($model, 'id_tipo')->dropDownList($datos_tipo, ['prompt' => 'Seleccione ...' ])->label('Tipo de la convocatoria')?>
-     
-     
     
-	<?php $datos_sede= \yii\helpers\ArrayHelper::map(\app\models\Sede::find()->all(), 'id_sede', 'nombre');?>
-	<?= $form->field($model, 'id_sede_pedido')->dropDownList($datos_sede, ['prompt' => 'Seleccione ...' ])->label('Sede de la convocatoria')?>
-    
-    
-    <?php $datos_institucion= \yii\helpers\ArrayHelper::map(\app\models\Institucion::find()->all(), 'id_institucion', 'nombre');?>
-    <?= $form->field($model, 'id_institucion')->dropDownList($datos_institucion, ['prompt' => 'Seleccione ...' ])->label('Institucion')?>
-    
-       
-   <?= $form->field($model, 'requisitos')->textInput() ?>
-
-   <?php if(isset($dataProviderCarrerasDest)){ ?>
+<?php if(isset($dataProviderCarrerasDest)){ ?>
    <?= GridView::widget([
         'dataProvider' => $dataProviderCarrerasDest,
         'layout' => '{items}',
@@ -110,6 +71,47 @@ use dosamigos\datepicker\DateRangePicker;
         </div>
     </div>
 <?php } ?>
+
+    <?= $form->field($model, 'titulo')->textInput() 
+    ->label('Nombre convocatoria') ?>
+
+    <?= $form->field($model, 'descripcion')->textInput() ?>
+
+    <?= $form->field($model, 'direccion')->textInput() ->label('Direccion de la Empresa')?>
+
+ 	<?= $form->field($model, 'fecha_desde')->label("Periodo de publicación")->widget(DateRangePicker::className(), [
+    'attributeTo' => 'fecha_hasta',
+    'labelTo' => 'hasta',
+ 	  'form' => $form, // best for correct client validation
+    'language' => 'es',
+    'size' => 'lg',
+ 	'clientOptions' => [
+        'autoclose' => true,
+    	'format' => 'dd-mm-yyyy',
+ 	 ]
+ 		
+	]);?>
+	   
+
+  
+    <?= $form->field($model, 'cant_postulantes')->textInput() ?>
+
+    <?php $datos_tipo= \yii\helpers\ArrayHelper::map(\app\models\Tipo::find()->all(), 'id_tipo', 'nombre');?>
+    <?= $form->field($model, 'id_tipo')->dropDownList($datos_tipo, ['prompt' => 'Seleccione ...' ])->label('Tipo de la convocatoria')?>
+     
+     
+    
+	<?php $datos_sede= \yii\helpers\ArrayHelper::map(\app\models\Sede::find()->all(), 'id_sede', 'nombre');?>
+	<?= $form->field($model, 'id_sede_pedido')->dropDownList($datos_sede, ['prompt' => 'Seleccione ...' ])->label('Sede de la convocatoria')?>
+    
+    
+    <?php $datos_institucion= \yii\helpers\ArrayHelper::map(\app\models\Institucion::find()->all(), 'id_institucion', 'nombre');?>
+    <?= $form->field($model, 'id_institucion')->dropDownList($datos_institucion, ['prompt' => 'Seleccione ...' ])->label('Institucion')?>
+    
+       
+   <?= $form->field($model, 'requisitos')->textInput() ?>
+
+
     <div class="form-group">
         <?= Html::submitButton('Guardar', ['class' => 'btn btn-success pull-right']) ?>
     </div>

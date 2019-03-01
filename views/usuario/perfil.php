@@ -15,6 +15,7 @@ use yii\widgets\DetailView;;
 use yii\helpers\Html;
 use kartik\file\FileInput;
 use yii\widgets\ActiveForm;
+$usuario = \Yii::$app->user->identity;
 ?>
 <h3 align="center" > Datos Personales</h3>
 
@@ -22,19 +23,38 @@ use yii\widgets\ActiveForm;
 
 <body>
 <div class="col-sm-2" style="background-color:rgb(236, 240, 245);"> 
-    <?=
-    DetailView::widget([
-        'model' => $modeluser,
-        'attributes' => [
-            [
-                'attribute'=>'',
-                'value'=>'@web/uploads/'.$modeluser->id_registro.'.'.$modeluser->nombre_foto, 
-                'format' => ['image',['style'=> 'border-radius:50%;height: 90px; width: 90px;']],
-                'options' => ['class' => 'user-image'],
+
+    <?php if (is_null($usuario) || !($usuario->nombre_foto=='png') || !($usuario->nombre_foto=='jpg') ): ?>
+        <?=
+        DetailView::widget([
+            'model' => $modeluser,
+            'attributes' => [
+                [
+                    'attribute'=>'',
+                    'value'=>'@web/uploads/default.png', 
+                    'format' => ['image',['style'=> 'border-radius:50%;height: 90px; width: 90px;']],
+                    'options' => ['class' => 'user-image'],
+                ],
             ],
-        ],
-    ]) ?>
+        ]) ?>
+    <?php else: ?>
+    <?=
+        DetailView::widget([
+            'model' => $modeluser,
+            'attributes' => [
+                [
+                    'attribute'=>'',
+                    'value'=>'@web/uploads/'.$modeluser->id_registro.'.'.$modeluser->nombre_foto, 
+                    'format' => ['image',['style'=> 'border-radius:50%;height: 90px; width: 90px;']],
+                    'options' => ['class' => 'user-image'],
+                ],
+            ],
+        ]) ?>
+    <?php endif; ?>
+
+
 </div>
+
 <div class="col-sm-10" > 
         <?= DetailView::widget([
             'model' => $modeluser,
@@ -55,6 +75,10 @@ use yii\widgets\ActiveForm;
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
     
     
+    <?php if (($esEditable)): ?>
+		<?= /*si no esta postulado*/
+	    Html::a('Editar Expericiencias', ['//experiencia/index'], ['class'=>'btn btn-primary'])	?>
+	<?php endif; ?>
     <div class="col-sm-6" style="align=center;"> 
     <h3 align="center" > Rendimiento No Academico</h3>
     <br>

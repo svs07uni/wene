@@ -29,10 +29,24 @@ class ConvocatoriaController extends Controller
     public function behaviors()
     {
         return [
+            'access' => [
+                'class' => AccessControl::className(),
+                'ruleConfig' => [
+                    'class' => AccessRule::className(),
+                ],
+                'only' => ['index','view','delete','create','update'],
+                'rules' => [
+                    [
+                        'actions' => ['index','view','delete','create','update'],
+                        'allow' => true,
+                        'roles' => [User::ROLE_GESTOR],
+                    ],
+                ],
+            ],
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [
-                    'delete' => ['POST'],
+                    'logout' => ['post'],
                 ],
             ],
         ];
@@ -80,7 +94,20 @@ class ConvocatoriaController extends Controller
     public function actionCreate()
     {
         $model = new Convocatoria();
-                
+        $usuario = Yii::$app->user->identity;
+        $id_usuario = $usuario->id_registro;
+        // Filtra en base a las dependencias que abarca el gestor
+        $colCarreras = Carrera::find()
+                                ->all();
+        $carreras = ArrayHelper::map($colCarreras, 
+                                        'id_carrera', 
+                                        'nombre');       
+
+        $query = CarreraDestinada::find()->joinWith('carrera');
+                                
+        $dataProviderCarrerasDest = new ActiveDataProvider([
+            'query' => $query,]);                             
+
       if ($model->load(Yii::$app->request->post())) {
       	$model->fecha_alta=date("d/m/Y");
         $model->activo = true;
@@ -93,6 +120,8 @@ class ConvocatoriaController extends Controller
         
         return $this->render('create', [
             'model' => $model,
+            'carreras' => $carreras,
+            'dataProviderCarrerasDest' => $dataProviderCarrerasDest
         ]);
     }
     
