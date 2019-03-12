@@ -60,8 +60,9 @@ $fieldOptions2 = [
         </div>
         <!-- /.social-auth-links -->
 
-        <a href="#">Me olvidé la contraseña</a><br>
         
+        <a href ='<?=Url::to("@web/registro/recuperar")?>' class="text-center">Me olvidé la contraseña</a>
+        <br>
         <a href ='<?=Url::to("@web/registro/registro")?>' class="text-center">Registrate</a>
         
     </div>
