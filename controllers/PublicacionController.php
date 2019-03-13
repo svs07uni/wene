@@ -4,10 +4,13 @@ namespace app\controllers;
 
 use Yii;
 use app\models\Publicacion;
+use app\models\User;
 use app\models\PublicacionSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use app\common\components\AccessRule;
+use yii\filters\AccessControl;
 
 /**
  * PublicacionController implements the CRUD actions for Publicacion model.
@@ -20,6 +23,20 @@ class PublicacionController extends Controller
     public function behaviors()
     {
         return [
+            'access' => [
+                'class' => AccessControl::className(),
+                'ruleConfig' => [
+                    'class' => AccessRule::className(),
+                ],
+                'only' => ['index','create','delete','update'],
+                'rules' => [
+                    [
+                        'actions' => ['index','create','delete','update'],
+                        'allow' => true,
+                        'roles' => [User::ROLE_GESTOR],
+                    ],
+                ],
+            ],
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [

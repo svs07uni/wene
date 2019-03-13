@@ -8,6 +8,8 @@ use app\models\AptitudSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use app\common\components\AccessRule;
+use yii\filters\AccessControl;
 
 /**
  * AptitudController implements the CRUD actions for Aptitud model.
@@ -20,6 +22,20 @@ class AptitudController extends Controller
     public function behaviors()
     {
         return [
+            'access' => [
+                'class' => AccessControl::className(),
+                'ruleConfig' => [
+                    'class' => AccessRule::className(),
+                ],
+                'only' => ['perfil','create','delete','update','view'],
+                'rules' => [
+                    [
+                        'actions' => ['perfil','create','delete','update','view'],
+                        'allow' => true,
+                        'roles' => ['@'],
+                    ],
+                ],
+            ],
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [

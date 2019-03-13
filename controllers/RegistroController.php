@@ -2,8 +2,43 @@
 namespace app\controllers;
 
 use yii\web\Controller;
+use Yii;
+use app\models\Registro;
+use yii\helpers\Url;
+use app\common\components\AccessRule;
+use yii\filters\AccessControl;
+use yii\filters\VerbFilter;
 class RegistroController extends \yii\web\Controller
 {
+
+    /**
+     * {@inheritdoc}
+     */
+    public function behaviors()
+    {
+        return [
+            'access' => [
+                'class' => AccessControl::className(),
+                'ruleConfig' => [
+                    'class' => AccessRule::className(),
+                ],
+                'only' => ['cambiar'],
+                'rules' => [
+                    [
+                        'actions' => ['cambiar'],
+                        'allow' => true,
+                        'roles' => ['@'],
+                    ],
+                ],
+            ],
+            'verbs' => [
+                'class' => VerbFilter::className(),
+                'actions' => [
+                    'delete' => ['POST'],
+                ],
+            ],
+        ];
+    }
     public function actionIndex()
     {
         return $this->render('index');
@@ -66,9 +101,71 @@ class RegistroController extends \yii\web\Controller
         return true;
     }
 
+    public function actionRecuperar(){
+        $modelRegistro = new \app\models\Registro();
+        $model = new \app\models\Registro();    //carga del modelo para utilizarlo luego
+        $model->email = '';
+        if ($model->load(\Yii::$app->request->post())){// si se realizo un submit del boton guardar
+            //print_r($model->email);
+            if(!$model->email==''){
+                $email=''.$model->email;
+                $modelRegistro = Registro::find()
+                ->where(['email' => $email])
+                ->one();
 
+                $nuevaClave= $modelRegistro->usuario."0".rand(0,500);
+                $modelRegistro->clave = \Yii::$app->getSecurity()->generatePasswordHash($nuevaClave);
+                if($modelRegistro->save(false)){
+                    if(!is_null($modelRegistro)){
+                        $modelRegistro->enviarMail("Recuperar Contraseña WENE","La contraseña actual es: ".$nuevaClave.". Luego de ingresar podras cambiarla desde el panel de Usuario");
+                        echo \yii2mod\alert\Alert::widget([
+                            'options' => [
+                                'title' => "Exito!",
+                                'text' => "Se ha enviado un mail a tu casilla de correo.",
+                                
+                            ],
+                            'callback' => new \yii\web\JsExpression(' function() { 
+                                $guardar = true;
+                                window.location = "'.Url::to(['/']).'";
+                            }')
+                         ]);
+                    }else{
+                    }
+                }
+            }
+        }
+        return $this->render('recuperar',['model'=>$model]);
 
+    }
+    
+    public function actionCambiar(){
+        $usuario = Yii::$app->user->identity;
+        $model = new \app\models\Registro();    //carga del modelo para utilizarlo luego
+        $model = Registro::find()
+                ->where(['id_registro' => $usuario->id_registro])
+                ->one();
 
+        if ($model->load(\Yii::$app->request->post())){// si se realizo un submit del boton guardar
+            //print_r($model);
+            $model->clave = \Yii::$app->getSecurity()->generatePasswordHash($model->clave);
+            if ($model->save(false)) {//guardado de los datos 
+                echo \yii2mod\alert\Alert::widget([
+                    'options' => [
+                        'title' => "Contraseña actualizada correctamente!",
+                        'text' => "Ahora puedes acceder a todas las ofertas laborales.",
+                        
+                    ],
+                    'callback' => new \yii\web\JsExpression(' function() { 
+                        $guardar = true;
+                        window.location = "'.Url::to(['/']).'";
+                    }')
+                 ]);
+            }
+        }
+        
+        return $this->render('cambiar',['model'=>$model]);
+
+    }
 
 }
 

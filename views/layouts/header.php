@@ -33,7 +33,7 @@ if(ISSET(\Yii::$app->user->identity)){
             <ul class="nav navbar-nav">
 
                 <?php if(!Yii::$app->user->isGuest){ ?>
-                    <li class="dropdown notifications-menu">
+                   <!--  <li class="dropdown notifications-menu">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                             <i class="fa fa-bell-o"></i>
                             <span class="label label-warning">10</span>
@@ -41,12 +41,12 @@ if(ISSET(\Yii::$app->user->identity)){
                         <ul class="dropdown-menu">
                             <li class="header">Existen 10 convocatorias activas</li>
                             <li>
-                                <!-- inner menu: contains the actual data -->
+                                <!-- inner menu: contains the actual data
                                 <ul class="menu">
                                     <li>
                                         <a href="#">
                                             <i class="fa fa-users text-aqua"></i> 5 pasantías
-                                        </a>
+                                        </a>f
                                     </li>
                                     
                                     <li>
@@ -65,7 +65,7 @@ if(ISSET(\Yii::$app->user->identity)){
                             </li>
                             <li class="footer"><a href="#">Ver todo</a></li>
                         </ul>
-                    </li>
+                    </li> -->
                 <?php } ?>
                 <!-- User Account: style can be found in dropdown.less -->
 
@@ -119,6 +119,9 @@ if(ISSET(\Yii::$app->user->identity)){
                             <li class="user-footer">
                                 <div class="pull-left">
                                     <a href="<?=Url::to(['usuario/editar'])?>" class="btn btn-default btn-flat">Perfil</a>
+                                </div>
+                                <div class="pull-left">
+                                    <a href="<?=Url::to(['registro/cambiar'])?>" class="btn btn-default btn-flat">Contraseña</a>
                                 </div>
                                 <div class="pull-right">
                                     <?= Html::a(

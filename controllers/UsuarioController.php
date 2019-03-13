@@ -5,6 +5,7 @@ use yii\web\Controller;
 use yii\helpers\Json;
 use app\models\Provincia;
 use app\models\Usuario;
+use app\models\User;
 use app\models\Experiencia;
 use app\models\ExperienciaSearch;
 use app\models\Aptitud;
@@ -17,12 +18,44 @@ use app\models\Rendimiento_no_acadSearch;
 use app\models\Rendimiento_acadSearch;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use app\common\components\AccessRule;
+use yii\filters\AccessControl;
 
 use yii\web\UploadedFile;
 use yii\helpers\Url;
 
 class UsuarioController extends \yii\web\Controller
 {
+
+    /**
+     * {@inheritdoc}
+     */
+    public function behaviors()
+    {
+        return [
+            'access' => [
+                'class' => AccessControl::className(),
+                'ruleConfig' => [
+                    'class' => AccessRule::className(),
+                ],
+                'only' => ['perfil','postularse','editar'],
+                'rules' => [
+                    [
+                        'actions' => ['perfil','postularse','editar'],
+                        'allow' => true,
+                        'roles' => ['@'],
+                    ],
+                ],
+            ],
+            'verbs' => [
+                'class' => VerbFilter::className(),
+                'actions' => [
+                    'delete' => ['POST'],
+                ],
+            ],
+        ];
+    }
+
     /**
      * Ver perfil usuario
      */
@@ -146,7 +179,7 @@ class UsuarioController extends \yii\web\Controller
         $model->id_registro = $registro;
         
         //agrega el id_rol de estudiante para todos, por ahora hardcode
-        $model->id_rol = 2;
+        $model->id_rol = User::ROLE_POSTULANTE;
         //$roles = \yii\helpers\ArrayHelper::map(\app\models\Rol::find()->where(${['nombre'=>'Postulante']})->one());
         $guardar= false;
         if ($model->load(\Yii::$app->request->post())) {

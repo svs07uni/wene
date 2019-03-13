@@ -7,6 +7,7 @@ use app\models\Convocatoria;
 use app\models\ConvocatoriaSearch;
 use app\models\Postulante;
 use app\models\PostulanteSearch;
+use app\models\User;
 use app\models\Carrera;
 use app\models\CarreraDestinada;
 use yii\web\Controller;
@@ -17,6 +18,8 @@ use yii\filters\VerbFilter;
 use app\models\Tipo;
 use yii\grid\GridView;
 use phpDocumentor\Reflection\Types\This;
+use app\common\components\AccessRule;
+use yii\filters\AccessControl;
 
 /**
  * ConvocatoriaController implements the CRUD actions for Convocatoria model.

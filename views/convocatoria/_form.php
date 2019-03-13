@@ -75,7 +75,7 @@ use dosamigos\datepicker\DateRangePicker;
     <?= $form->field($model, 'titulo')->textInput() 
     ->label('Nombre convocatoria') ?>
 
-    <?= $form->field($model, 'descripcion')->textInput() ?>
+    <?= $form->field($model, 'descripcion')->textInput()->label('Tareas a Realizar') ?>
 
     <?= $form->field($model, 'direccion')->textInput() ->label('Direccion de la Empresa')?>
 

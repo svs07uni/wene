@@ -8,6 +8,8 @@ use app\models\CarreraSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use app\common\components\AccessRule;
+use yii\filters\AccessControl;
 
 /**
  * CarreraController implements the CRUD actions for Carrera model.
@@ -20,6 +22,20 @@ class CarreraController extends Controller
     public function behaviors()
     {
         return [
+            'access' => [
+                'class' => AccessControl::className(),
+                'ruleConfig' => [
+                    'class' => AccessRule::className(),
+                ],
+                'only' => ['perfil','create','delete'],
+                'rules' => [
+                    [
+                        'actions' => ['perfil','create','delete'],
+                        'allow' => true,
+                        'roles' => ['@'],
+                    ],
+                ],
+            ],
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [
