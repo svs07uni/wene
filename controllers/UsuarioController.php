@@ -5,6 +5,7 @@ use yii\web\Controller;
 use yii\helpers\Json;
 use app\models\Provincia;
 use app\models\Usuario;
+use app\models\User;
 use app\models\Experiencia;
 use app\models\ExperienciaSearch;
 use app\models\Aptitud;
@@ -178,7 +179,7 @@ class UsuarioController extends \yii\web\Controller
         $model->id_registro = $registro;
         
         //agrega el id_rol de estudiante para todos, por ahora hardcode
-        $model->id_rol = 2;
+        $model->id_rol = User::ROLE_POSTULANTE;
         //$roles = \yii\helpers\ArrayHelper::map(\app\models\Rol::find()->where(${['nombre'=>'Postulante']})->one());
         $guardar= false;
         if ($model->load(\Yii::$app->request->post())) {
