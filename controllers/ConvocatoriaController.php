@@ -7,6 +7,7 @@ use app\models\Convocatoria;
 use app\models\ConvocatoriaSearch;
 use app\models\Postulante;
 use app\models\PostulanteSearch;
+use app\models\User;
 use app\models\Carrera;
 use app\models\CarreraDestinada;
 use yii\web\Controller;
