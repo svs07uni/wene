@@ -8,6 +8,8 @@ use app\models\EstudioSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use app\common\components\AccessRule;
+use yii\filters\AccessControl;
 
 /**
  * EstudioController implements the CRUD actions for Estudio model.
@@ -20,6 +22,20 @@ class EstudioController extends Controller
     public function behaviors()
     {
         return [
+            'access' => [
+                'class' => AccessControl::className(),
+                'ruleConfig' => [
+                    'class' => AccessRule::className(),
+                ],
+                'only' => ['index','create','delete','update'],
+                'rules' => [
+                    [
+                        'actions' => ['index','create','delete','update'],
+                        'allow' => true,
+                        'roles' => ['@'],
+                    ],
+                ],
+            ],
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [

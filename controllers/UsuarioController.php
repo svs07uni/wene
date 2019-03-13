@@ -17,12 +17,44 @@ use app\models\Rendimiento_no_acadSearch;
 use app\models\Rendimiento_acadSearch;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use app\common\components\AccessRule;
+use yii\filters\AccessControl;
 
 use yii\web\UploadedFile;
 use yii\helpers\Url;
 
 class UsuarioController extends \yii\web\Controller
 {
+
+    /**
+     * {@inheritdoc}
+     */
+    public function behaviors()
+    {
+        return [
+            'access' => [
+                'class' => AccessControl::className(),
+                'ruleConfig' => [
+                    'class' => AccessRule::className(),
+                ],
+                'only' => ['perfil','editar'],
+                'rules' => [
+                    [
+                        'actions' => ['perfil','postularse'],
+                        'allow' => true,
+                        'roles' => ['@'],
+                    ],
+                ],
+            ],
+            'verbs' => [
+                'class' => VerbFilter::className(),
+                'actions' => [
+                    'delete' => ['POST'],
+                ],
+            ],
+        ];
+    }
+
     /**
      * Ver perfil usuario
      */

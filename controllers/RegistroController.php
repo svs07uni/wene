@@ -5,8 +5,40 @@ use yii\web\Controller;
 use Yii;
 use app\models\Registro;
 use yii\helpers\Url;
+use app\common\components\AccessRule;
+use yii\filters\AccessControl;
+use yii\filters\VerbFilter;
 class RegistroController extends \yii\web\Controller
 {
+
+    /**
+     * {@inheritdoc}
+     */
+    public function behaviors()
+    {
+        return [
+            'access' => [
+                'class' => AccessControl::className(),
+                'ruleConfig' => [
+                    'class' => AccessRule::className(),
+                ],
+                'only' => ['cambiar'],
+                'rules' => [
+                    [
+                        'actions' => ['cambiar'],
+                        'allow' => true,
+                        'roles' => ['@'],
+                    ],
+                ],
+            ],
+            'verbs' => [
+                'class' => VerbFilter::className(),
+                'actions' => [
+                    'delete' => ['POST'],
+                ],
+            ],
+        ];
+    }
     public function actionIndex()
     {
         return $this->render('index');

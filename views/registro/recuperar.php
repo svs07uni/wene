@@ -44,7 +44,7 @@ use yii\captcha\Captcha;
                     </div>
 
                     <div class="form-group">
-                        <?= Html::submitButton('Registrarse', ['class' => 'btn btn-primary', 'name'=> 'register-button' ]) ?>
+                        <?= Html::submitButton('Enviar', ['class' => 'btn btn-primary', 'name'=> 'register-button' ]) ?>
                     </div>
                 </div>
                 
