@@ -17,6 +17,8 @@ use yii\filters\VerbFilter;
 use app\models\Tipo;
 use yii\grid\GridView;
 use phpDocumentor\Reflection\Types\This;
+use app\common\components\AccessRule;
+use yii\filters\AccessControl;
 
 /**
  * ConvocatoriaController implements the CRUD actions for Convocatoria model.
