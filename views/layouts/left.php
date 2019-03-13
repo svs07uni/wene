@@ -50,52 +50,26 @@ $usuario = Yii::$app->user->identity;
                      'url' => ['convocatoriausuario/misconvocatorias'], 
                      'visible' => !Yii::$app->user->isGuest && Yii::$app->user->identity->id_rol == User::ROLE_POSTULANTE
                     ],
+                    ['label' => 'Convocatorias',
+                        'icon'=>'fas fa-edit',
+                        'url' => ['/convocatoria/index'],
+                        'visible' => !Yii::$app->user->isGuest && Yii::$app->user->identity->id_rol == User::ROLE_GESTOR
+                    ],
+                    ['label' => 'Instituciones',
+                        'icon'=>'fas fa-edit',
+                        'url' => ['/institucion/index'],
+                        'visible' => !Yii::$app->user->isGuest && Yii::$app->user->identity->id_rol == User::ROLE_GESTOR
+                    ],
                     ['label' => 'Mi CV', 
                      'icon' => 'fa fa-id-card-o', 
                      'url' => ['usuario/miperfil'], 
                         'visible' => !Yii::$app->user->isGuest && Yii::$app->user->identity->id_rol == User::ROLE_POSTULANTE
                     ],
-                    ['label' => 'Rendimiento ', 
-                     'icon' => 'pencil',
-                        'visible' => !Yii::$app->user->isGuest && Yii::$app->user->identity->id_rol == User::ROLE_POSTULANTE,
-                            'items'=>[
-                                ['label'=>'Academico',
-                                    'icon'=>'certificate',
-                                    'url'=>['rendimientoacademico/index'],
-                                 ],   
-                                ['label'=>'No Academico',
-                                         'icon'=>'certificate',
-                                         'url'=>['rendimientonoacademico/index'],
-                                        ],
-                                      ],
-                    ],
-                    ['label' => 'Convocatoria', 
-                        'icon'=>'fas fa-briefcase',
-                        'visible' => !Yii::$app->user->isGuest && Yii::$app->user->identity->id_rol == User::ROLE_GESTOR,
-                        'items'=>[
-                            ['label'=>'Crear',
-                                'icon'=>'fas fa-plus',
-                                'url'=>['/convocatoria/create'],
-                            ],
-                            ['label'=>'Listar',
-                                'icon'=>'far fa-list-alt',
-                                'url'=>['/convocatoria'],
-                            ],
-                        ],
-                    ],
+                    
                     ['label' => 'Iniciar sesión', 'icon'=>'fa fa-user-circle','url' => ['site/login'], 'visible' => Yii::$app->user->isGuest],
                     ['label' => 'Acerca de', 'icon'=>'fas fa-info-circle', 'url' => ['site/about']],
-                    ['label' => 'Contactos', 'icon'=>'far fa-comments', 'url' => ['site/contact']],
-                    ['label' => 'Convocatorias',
-                        'icon'=>'fas fa-edit',
-                        'url' => ['/convocatoria/index'],
-                        'visible' => !Yii::$app->user->isGuest && Yii::$app->user->identity->id_rol == User::ROLE_ADMIN
-                    ],
-                    ['label' => 'Instituciones',
-                        'icon'=>'fas fa-edit',
-                        'url' => ['/institucion/index'],
-                        'visible' => !Yii::$app->user->isGuest && Yii::$app->user->identity->id_rol == User::ROLE_ADMIN
-                    ]
+                    ['label' => 'Contactos', 'icon'=>'far fa-comments', 'url' => ['site/contact']]
+                    
                     /*[
                         'label' => 'Some tools',
                         'icon' => 'share',

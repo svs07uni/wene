@@ -38,10 +38,10 @@ class UsuarioController extends \yii\web\Controller
                 'ruleConfig' => [
                     'class' => AccessRule::className(),
                 ],
-                'only' => ['perfil','editar'],
+                'only' => ['perfil','postularse','editar'],
                 'rules' => [
                     [
-                        'actions' => ['perfil','postularse'],
+                        'actions' => ['perfil','postularse','editar'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],
